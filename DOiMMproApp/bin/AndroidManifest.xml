@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.can2do.doimmpro"
+    android:versionCode="18"
+    android:versionName="1.6">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17"/>
+
+    <!-- 权限 -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+　　  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    
+    <!-- -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS" />
+    
+    
+    <application
+        android:name="com.can2do.doimmpro.global.MyApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/myTheme" >
+        <activity
+            android:name="com.can2do.doimmpro.main.LauncherActivity"
+            android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|orientation" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.main.MainActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.DemoMainActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.DialogActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.ImageDownActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.AnimationActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.UIElementActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.CityListActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DemoAbActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DBInsideSampleActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DBSDSampleActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DBOne2OneActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DBOne2ManyActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DBObjectActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.TitleBarActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.ThreadControlActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.TabActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.TabTopActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.TabBottomActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DownListActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DBActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.PullToRefreshActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.ChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.PullToRefreshListActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.PullToRefreshGridActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingButtonActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingPlayViewActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingLeftActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.WelcomeActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.XYLineChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.XYBarChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.PieChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.TimeChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.XYAreaChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.LevelChartActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.WheelActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.CropImageActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.AddPhotoActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.CalendarActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.PHashActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.PullToRefreshViewActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.PullToRefreshMultiColumnListActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuLeftActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuRightActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuLeftRightActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuZoomActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuSlideActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuScaleActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuTitleHoldActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.CarouselActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.CarouselImageActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.CarouselViewActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.ProgressBarActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.ProgressBarCircleActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.ProgressBarHorizontalActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.IocViewActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.Rotate3DActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.demo.activity.Rotate3DActivity1"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+          <activity
+            android:name="com.can2do.doimmpro.demo.activity.Rotate3DActivity2"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.HttpActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.HttpMiniActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+       <activity
+            android:name="com.can2do.doimmpro.demo.activity.SoapActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.NestScrollActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.ListNestViewPagerActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuNestViewPagerActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SceneActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.AnalogClockActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.NumberClockActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.DeskCalendarActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.PopoverActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.demo.activity.SlidingMenuNestTabActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.blog.WebActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.login.LoginActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.login.RegisterActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.login.AgreementActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+         <activity
+            android:name="com.can2do.doimmpro.login.FindPwdActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.login.AboutActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.im.activity.ContacterActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.im.activity.ChatActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity
+            android:name="com.can2do.doimmpro.im.activity.MessageActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        
+        <activity android:name="com.kfb.c.Kf"
+			android:launchMode="singleInstance"
+			android:screenOrientation="portrait" />
+        
+        <activity
+            android:name="com.kfb.a.Qim"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        
+        
+        <!-- push service client -->
+	    <receiver android:name="com.can2do.doimmpro.im.receiver.IMMessageReceiver">
+	        <intent-filter>
+	            <!-- 接收消息 -->
+	            <action android:name="com.andbase.action.NEW_MESSAGE" />
+	            <action android:name="com.andbase.action.CHAT_MESSAGE" />
+	            <action android:name="com.andbase.action.SYS_MESSAGE" />
+	            <!-- 收到好友邀请 -->
+	            <action android:name="com.andbase.action.ROSTER_SUBSCRIBE" />
+	        </intent-filter>
+	    </receiver>
+        
+        <!-- 联系人服务 -->
+		<service android:name="com.can2do.doimmpro.im.service.IMContactService"></service>
+		<!-- 聊天服务 -->
+		<service android:name="com.can2do.doimmpro.im.service.IMChatService"></service>  
+		<!-- 系统消息服务 -->
+		<service android:name="com.can2do.doimmpro.im.service.IMSystemMsgService"></service>
+		<!-- 重连接服务 -->
+ 		<service android:name="com.can2do.doimmpro.im.service.ReConnectService"></service>
+        
+        
+    </application>
+
+</manifest>
