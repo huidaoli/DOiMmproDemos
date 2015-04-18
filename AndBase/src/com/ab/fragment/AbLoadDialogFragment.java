@@ -14,15 +14,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-/**
- * © 2012 amsoft.cn
- * 名称：AbLoadDialogFragment.java 
- * 描述：弹出加载框
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2014-07-30 下午16:00:52
- */
+
 public class AbLoadDialogFragment extends AbDialogFragment {
 
 	private int mTheme;
@@ -68,7 +60,7 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 		parent.setOrientation(LinearLayout.VERTICAL);
 		parent.setPadding(20, 20, 20, 20);
 		parent.setMinimumWidth(AbViewUtil.scaleValue(this.getActivity(), 400));
-		
+
 		mImageView = new ImageView(this.getActivity());
 		mImageView.setImageResource(mIndeterminateDrawable);
 		mImageView.setScaleType(ScaleType.MATRIX);
@@ -83,17 +75,17 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		parent.addView(mTextView, new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-		
+
 		mImageView.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-					// 执行刷新
-					load(v);
+				// 执行刷新
+				load(v);
 			}
 
 		});
-		
+
 		// 执行加载
 		load(mImageView);
 		mContentView = parent;
@@ -120,11 +112,11 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 	public void setTextColor(int textColor) {
 		this.mTextColor = textColor;
 	}
-	
+
 	@Override
 	public void setMessage(String message) {
 		this.mMessage = message;
-		if(mTextView!=null){
+		if (mTextView != null) {
 			mTextView.setText(mMessage);
 		}
 	}
@@ -144,5 +136,5 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 	public void setBackgroundColor(int backgroundColor) {
 		this.mBackgroundColor = backgroundColor;
 	}
-	
+
 }

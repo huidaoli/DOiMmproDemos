@@ -12,13 +12,11 @@ import com.ab.view.titlebar.AbTitleBar;
 import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.global.Constant;
 import com.can2do.doimmpro.global.MyApplication;
+
 /**
  * 
- * © 2012 amsoft.cn
- * 名称：ProgressBarHorizontalActivity.java 
- * 描述：水平进度条
- * @author 还如一梦中
- * @date：2013-9-22 下午4:52:06
+ * © 2012 amsoft.cn 名称：ProgressBarHorizontalActivity.java 描述：水平进度条
+ * 
  * @version v1.0
  */
 public class ProgressBarHorizontalActivity extends AbActivity {
@@ -30,11 +28,10 @@ public class ProgressBarHorizontalActivity extends AbActivity {
 	// ProgressBar进度控制
 	private AbHorizontalProgressBar mAbProgressBar;
 	// 最大1000
-	private int max = 100;	
+	private int max = 100;
 	private int progress = 0;
 	private TextView numberText, maxText;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,43 +47,44 @@ public class ProgressBarHorizontalActivity extends AbActivity {
 
 		// ProgressBar进度控制
 		mAbProgressBar = (AbHorizontalProgressBar) findViewById(R.id.horizontalProgressBar);
-		
+
 		numberText = (TextView) findViewById(R.id.numberText);
 		maxText = (TextView) findViewById(R.id.maxText);
-		
-		maxText.setText("/"+String.valueOf(max));
+
+		maxText.setText("/" + String.valueOf(max));
 		mAbProgressBar.setMax(max);
 		mAbProgressBar.setProgress(progress);
-		
-		mAbTitleBar.getLogoView().setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-		
+		mAbTitleBar.getLogoView().setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						finish();
+					}
+				});
+
 		startAddProgress();
-		
-		mAbProgressBar.setAbOnProgressListener(new AbHorizontalProgressBar.AbOnProgressListener() {
-			
-			@Override
-			public void onProgress(int progress) {
-				
-			}
-			
-			@Override
-			public void onComplete() {
-				progress = 0;
-				mAbProgressBar.reset();
-			}
-		});
-		
+
+		mAbProgressBar
+				.setAbOnProgressListener(new AbHorizontalProgressBar.AbOnProgressListener() {
+
+					@Override
+					public void onProgress(int progress) {
+
+					}
+
+					@Override
+					public void onComplete() {
+						progress = 0;
+						mAbProgressBar.reset();
+					}
+				});
+
 	}
 
-
 	public void startAddProgress() {
-		progress = progress+10;
+		progress = progress + 10;
 		numberText.setText(String.valueOf(progress));
 		mAbProgressBar.setProgress(progress);
 		mUpdateHandler.sendEmptyMessageDelayed(1, 1000);
@@ -102,7 +100,7 @@ public class ProgressBarHorizontalActivity extends AbActivity {
 			super.handleMessage(msg);
 		}
 	};
-	
+
 	private Runnable mUpdateRunnable = new Runnable() {
 		public void run() {
 			while (true) {
@@ -118,7 +116,5 @@ public class ProgressBarHorizontalActivity extends AbActivity {
 			}
 		}
 	};
-	
-	
 
 }

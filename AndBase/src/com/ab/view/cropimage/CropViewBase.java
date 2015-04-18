@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2012 www.amsoft.cn
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.ab.view.cropimage;
 
 import android.content.Context;
@@ -79,7 +64,7 @@ public abstract class CropViewBase extends ImageView {
 
 	/** 没有任何操作. */
 	public static final int STATE_NONE = STATE_HIGHLIGHT + 2;
-	
+
 	/** The m state. */
 	protected int mState = STATE_HIGHLIGHT;
 
@@ -89,19 +74,21 @@ public abstract class CropViewBase extends ImageView {
 	 * The Interface Recycler.
 	 */
 	public interface Recycler {
-		
+
 		/**
 		 * Recycle.
-		 *
-		 * @param b the b
+		 * 
+		 * @param b
+		 *            the b
 		 */
 		public void recycle(Bitmap b);
 	}
 
 	/**
 	 * Sets the recycler.
-	 *
-	 * @param r the new recycler
+	 * 
+	 * @param r
+	 *            the new recycler
 	 */
 	public void setRecycler(Recycler r) {
 		mRecycler = r;
@@ -112,13 +99,18 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * 描述：TODO.
-	 *
+	 * 
 	 * @version v1.0
-	 * @param changed the changed
-	 * @param left the left
-	 * @param top the top
-	 * @param right the right
-	 * @param bottom the bottom
+	 * @param changed
+	 *            the changed
+	 * @param left
+	 *            the left
+	 * @param top
+	 *            the top
+	 * @param right
+	 *            the right
+	 * @param bottom
+	 *            the bottom
 	 * @see android.view.View#onLayout(boolean, int, int, int, int)
 	 * @author: amsoft.cn
 	 * @date：2013-6-17 上午9:04:50
@@ -142,10 +134,12 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * 描述：TODO.
-	 *
+	 * 
 	 * @version v1.0
-	 * @param keyCode the key code
-	 * @param event the event
+	 * @param keyCode
+	 *            the key code
+	 * @param event
+	 *            the event
 	 * @return true, if successful
 	 * @see android.view.View#onKeyDown(int, android.view.KeyEvent)
 	 * @author: amsoft.cn
@@ -167,15 +161,16 @@ public abstract class CropViewBase extends ImageView {
 
 	/** The m last x touch pos. */
 	protected int mLastXTouchPos;
-	
+
 	/** The m last y touch pos. */
 	protected int mLastYTouchPos;
 
 	/**
 	 * 描述：TODO.
-	 *
+	 * 
 	 * @version v1.0
-	 * @param bitmap the new image bitmap
+	 * @param bitmap
+	 *            the new image bitmap
 	 * @see android.widget.ImageView#setImageBitmap(android.graphics.Bitmap)
 	 * @author: amsoft.cn
 	 * @date：2013-6-17 上午9:04:50
@@ -187,9 +182,11 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Sets the image bitmap.
-	 *
-	 * @param bitmap the bitmap
-	 * @param rotation the rotation
+	 * 
+	 * @param bitmap
+	 *            the bitmap
+	 * @param rotation
+	 *            the rotation
 	 */
 	private void setImageBitmap(Bitmap bitmap, int rotation) {
 		super.setImageBitmap(bitmap);
@@ -221,9 +218,11 @@ public abstract class CropViewBase extends ImageView {
 	// of the bitmap, and optionally reset the supplementary matrix.
 	/**
 	 * Sets the image bitmap reset base.
-	 *
-	 * @param bitmap the bitmap
-	 * @param resetSupp the reset supp
+	 * 
+	 * @param bitmap
+	 *            the bitmap
+	 * @param resetSupp
+	 *            the reset supp
 	 */
 	public void setImageBitmapResetBase(final Bitmap bitmap,
 			final boolean resetSupp) {
@@ -232,9 +231,11 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Sets the image rotate bitmap reset base.
-	 *
-	 * @param bitmap the bitmap
-	 * @param resetSupp the reset supp
+	 * 
+	 * @param bitmap
+	 *            the bitmap
+	 * @param resetSupp
+	 *            the reset supp
 	 */
 	public void setImageRotateBitmapResetBase(final RotateBitmap bitmap,
 			final boolean resetSupp) {
@@ -271,9 +272,11 @@ public abstract class CropViewBase extends ImageView {
 	// then translate it back into view (i.e. eliminate black bars).
 	/**
 	 * Center.
-	 *
-	 * @param horizontal the horizontal
-	 * @param vertical the vertical
+	 * 
+	 * @param horizontal
+	 *            the horizontal
+	 * @param vertical
+	 *            the vertical
 	 */
 	public void center(boolean horizontal, boolean vertical) {
 		if (mBitmapDisplayed.getBitmap() == null) {
@@ -320,8 +323,9 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Instantiates a new crop view base.
-	 *
-	 * @param context the context
+	 * 
+	 * @param context
+	 *            the context
 	 */
 	public CropViewBase(Context context) {
 		super(context);
@@ -330,9 +334,11 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Instantiates a new crop view base.
-	 *
-	 * @param context the context
-	 * @param attrs the attrs
+	 * 
+	 * @param context
+	 *            the context
+	 * @param attrs
+	 *            the attrs
 	 */
 	public CropViewBase(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -348,9 +354,11 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Gets the value.
-	 *
-	 * @param matrix the matrix
-	 * @param whichValue the which value
+	 * 
+	 * @param matrix
+	 *            the matrix
+	 * @param whichValue
+	 *            the which value
 	 * @return the value
 	 */
 	protected float getValue(Matrix matrix, int whichValue) {
@@ -361,8 +369,9 @@ public abstract class CropViewBase extends ImageView {
 	// Get the scale factor out of the matrix.
 	/**
 	 * Gets the scale.
-	 *
-	 * @param matrix the matrix
+	 * 
+	 * @param matrix
+	 *            the matrix
 	 * @return the scale
 	 */
 	protected float getScale(Matrix matrix) {
@@ -371,7 +380,7 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Gets the scale.
-	 *
+	 * 
 	 * @return the scale
 	 */
 	public float getScale() {
@@ -381,9 +390,11 @@ public abstract class CropViewBase extends ImageView {
 	// Setup the base matrix so that the image is centered and scaled properly.
 	/**
 	 * Gets the proper base matrix.
-	 *
-	 * @param bitmap the bitmap
-	 * @param matrix the matrix
+	 * 
+	 * @param bitmap
+	 *            the bitmap
+	 * @param matrix
+	 *            the matrix
 	 * @return the proper base matrix
 	 */
 	private void getProperBaseMatrix(RotateBitmap bitmap, Matrix matrix) {
@@ -410,7 +421,7 @@ public abstract class CropViewBase extends ImageView {
 	// Combine the base matrix and the supp matrix to make the final matrix.
 	/**
 	 * Gets the image view matrix.
-	 *
+	 * 
 	 * @return the image view matrix
 	 */
 	protected Matrix getImageViewMatrix() {
@@ -430,7 +441,7 @@ public abstract class CropViewBase extends ImageView {
 	// rather than the current 1024x768, this should be changed down to 200%.
 	/**
 	 * Max zoom.
-	 *
+	 * 
 	 * @return the float
 	 */
 	protected float maxZoom() {
@@ -447,10 +458,13 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Zoom to.
-	 *
-	 * @param scale the scale
-	 * @param centerX the center x
-	 * @param centerY the center y
+	 * 
+	 * @param scale
+	 *            the scale
+	 * @param centerX
+	 *            the center x
+	 * @param centerY
+	 *            the center y
 	 */
 	protected void zoomTo(float scale, float centerX, float centerY) {
 		if (scale > mMaxZoom) {
@@ -467,11 +481,15 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Zoom to.
-	 *
-	 * @param scale the scale
-	 * @param centerX the center x
-	 * @param centerY the center y
-	 * @param durationMs the duration ms
+	 * 
+	 * @param scale
+	 *            the scale
+	 * @param centerX
+	 *            the center x
+	 * @param centerY
+	 *            the center y
+	 * @param durationMs
+	 *            the duration ms
 	 */
 	protected void zoomTo(final float scale, final float centerX,
 			final float centerY, final float durationMs) {
@@ -495,8 +513,9 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Zoom to.
-	 *
-	 * @param scale the scale
+	 * 
+	 * @param scale
+	 *            the scale
 	 */
 	protected void zoomTo(float scale) {
 		float cx = getWidth() / 2F;
@@ -521,8 +540,9 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Zoom in.
-	 *
-	 * @param rate the rate
+	 * 
+	 * @param rate
+	 *            the rate
 	 */
 	protected void zoomIn(float rate) {
 		if (getScale() >= mMaxZoom) {
@@ -541,8 +561,9 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Zoom out.
-	 *
-	 * @param rate the rate
+	 * 
+	 * @param rate
+	 *            the rate
 	 */
 	protected void zoomOut(float rate) {
 		if (mBitmapDisplayed.getBitmap() == null) {
@@ -567,9 +588,11 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Post translate.
-	 *
-	 * @param dx the dx
-	 * @param dy the dy
+	 * 
+	 * @param dx
+	 *            the dx
+	 * @param dy
+	 *            the dy
 	 */
 	protected void postTranslate(float dx, float dy) {
 		mSuppMatrix.postTranslate(dx, dy);
@@ -577,9 +600,11 @@ public abstract class CropViewBase extends ImageView {
 
 	/**
 	 * Pan by.
-	 *
-	 * @param dx the dx
-	 * @param dy the dy
+	 * 
+	 * @param dx
+	 *            the dx
+	 * @param dy
+	 *            the dy
 	 */
 	protected void panBy(float dx, float dy) {
 		postTranslate(dx, dy);

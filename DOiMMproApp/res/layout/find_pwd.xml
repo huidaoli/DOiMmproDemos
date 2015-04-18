@@ -60,8 +60,8 @@
                 android:gravity="center_vertical"
                 android:hint="@string/user_email"
                 android:inputType="textEmailAddress"
-                android:singleLine="true"
                 android:maxLength="20"
+                android:singleLine="true"
                 android:textColor="@color/gray"
                 android:textSize="18sp" >
             </EditText>

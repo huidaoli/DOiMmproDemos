@@ -78,6 +78,5 @@ public class Friend {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	
 
 }

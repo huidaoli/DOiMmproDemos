@@ -11,17 +11,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-/**
- * © 2012 amsoft.cn
- * 名称：EasyX509TrustManager.java 
- * 描述：SSL自签名的实现类
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2013-11-13 上午9:00:52
- */
 public class EasyX509TrustManager implements X509TrustManager {
-	
+
 	private X509TrustManager standardTrustManager = null;
 
 	/**
@@ -50,9 +41,7 @@ public class EasyX509TrustManager implements X509TrustManager {
 	}
 
 	/**
-	 * 执行服务器的安全策略
-	 * 检查签名、信任链中证书的有效日期和CRLs
-	 * 清除因证书过期出现的问题
+	 * 执行服务器的安全策略 检查签名、信任链中证书的有效日期和CRLs 清除因证书过期出现的问题
 	 */
 	@Override
 	public void checkServerTrusted(X509Certificate[] certificates,

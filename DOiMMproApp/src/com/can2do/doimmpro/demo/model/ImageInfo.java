@@ -7,8 +7,7 @@ public class ImageInfo {
 	private int width;
 
 	private int height;
-	
-	
+
 	public ImageInfo() {
 		super();
 	}
@@ -31,7 +30,7 @@ public class ImageInfo {
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public void setWidth(int width) {
 		this.width = width;
 	}

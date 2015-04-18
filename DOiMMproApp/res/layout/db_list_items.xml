@@ -26,16 +26,16 @@
         android:id="@+id/modBtn"
         android:layout_width="50dip"
         android:layout_height="50dip"
-        android:gravity="center"
         android:layout_marginLeft="5dip"
+        android:gravity="center"
         android:text="修改" />
 
     <Button
         android:id="@+id/delBtn"
         android:layout_width="50dip"
         android:layout_height="50dip"
-        android:gravity="center"
         android:layout_marginLeft="5dip"
+        android:gravity="center"
         android:text="删除" />
 
 </LinearLayout>

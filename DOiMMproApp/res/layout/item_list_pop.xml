@@ -4,10 +4,10 @@
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingTop="10dip"
     android:paddingBottom="10dip"
     android:paddingLeft="20dip"
-    android:paddingRight="20dip" >
+    android:paddingRight="20dip"
+    android:paddingTop="10dip" >
 
     <TextView
         android:id="@+id/pop_item"

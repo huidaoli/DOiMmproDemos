@@ -19,18 +19,18 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="80dip"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="80dip" >
 
             <TextView
                 android:id="@+id/guide_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
                 android:layout_marginBottom="32.0dip"
                 android:gravity="center"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
                 android:textColor="#FFFFFF"
                 android:textSize="28.0sp"
                 android:textStyle="bold" />

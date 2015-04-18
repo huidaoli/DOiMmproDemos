@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.ab.model.AbMenuItem;
 import com.can2do.doimmpro.R;
 
-
 public class ListPopAdapter extends BaseAdapter {
 
 	private Context context;
@@ -20,8 +19,9 @@ public class ListPopAdapter extends BaseAdapter {
 	private List<AbMenuItem> list;
 
 	private int itemResource;
-	
-	public ListPopAdapter(Context context, List<AbMenuItem> list,int itemResource) {
+
+	public ListPopAdapter(Context context, List<AbMenuItem> list,
+			int itemResource) {
 		this.context = context;
 		this.list = list;
 		this.itemResource = itemResource;
@@ -48,16 +48,18 @@ public class ListPopAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = LayoutInflater.from(context).inflate(itemResource, null);
+			convertView = LayoutInflater.from(context).inflate(itemResource,
+					null);
 			holder = new ViewHolder();
-			holder.itemText = (TextView) convertView.findViewById(R.id.pop_item);
+			holder.itemText = (TextView) convertView
+					.findViewById(R.id.pop_item);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		AbMenuItem item = list.get(position);
 		holder.itemText.setText(item.getText());
-		
+
 		return convertView;
 	}
 

@@ -1,12 +1,10 @@
 package com.can2do.doimmpro.demo.model;
 
-
 public class City implements Comparable<City> {
 
 	private int id;
 	private String name;
 	private String firstLetter;
-	
 
 	public City() {
 		super();
@@ -42,7 +40,6 @@ public class City implements Comparable<City> {
 	public void setFirstLetter(String firstLetter) {
 		this.firstLetter = firstLetter;
 	}
-	
 
 	@Override
 	public int compareTo(City another) {

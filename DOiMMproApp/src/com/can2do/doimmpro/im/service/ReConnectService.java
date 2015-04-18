@@ -49,7 +49,7 @@ public class ReConnectService extends Service {
 
 	@Override
 	public void onDestroy() {
-	    Log.i("TAG", "[服务]重连服务：关闭");
+		Log.i("TAG", "[服务]重连服务：关闭");
 		unregisterReceiver(reConnectionBroadcastReceiver);
 		super.onDestroy();
 	}
@@ -68,11 +68,13 @@ public class ReConnectService extends Service {
 						reConnect(connection);
 					} else {
 						sendInentAndPre(IMConstant.RECONNECT_STATE_SUCCESS);
-						Toast.makeText(context, "用户已上线!", Toast.LENGTH_LONG).show();
+						Toast.makeText(context, "用户已上线!", Toast.LENGTH_LONG)
+								.show();
 					}
 				} else {
 					sendInentAndPre(IMConstant.RECONNECT_STATE_FAIL);
-					Toast.makeText(context, "网络断开,用户已离线!", Toast.LENGTH_LONG).show();
+					Toast.makeText(context, "网络断开,用户已离线!", Toast.LENGTH_LONG)
+							.show();
 				}
 			}
 
@@ -86,38 +88,39 @@ public class ReConnectService extends Service {
 	 * 
 	 */
 	public void reConnect(final XMPPConnection connection) {
-	       AbTask task = new AbTask();
-	       final AbTaskItem item = new AbTaskItem();
-	       item.setListener(new AbTaskListener(){
+		AbTask task = new AbTask();
+		final AbTaskItem item = new AbTaskItem();
+		item.setListener(new AbTaskListener() {
 
-                @Override
-                public void get(){
-                    try{
-                        connection.connect();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-    
-                @Override
-                public void update(){
-                    if (connection.isConnected()) {
-                        Presence presence = new Presence(Presence.Type.available);
-                        connection.sendPacket(presence);
-                        Toast.makeText(context, "用户已上线!", Toast.LENGTH_LONG).show();
-                     }else{
-                         reConnect(connection);
-                     }
-                }
-	           
-	       });
-	       
-	       task.execute(item);
+			@Override
+			public void get() {
+				try {
+					connection.connect();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void update() {
+				if (connection.isConnected()) {
+					Presence presence = new Presence(Presence.Type.available);
+					connection.sendPacket(presence);
+					Toast.makeText(context, "用户已上线!", Toast.LENGTH_LONG).show();
+				} else {
+					reConnect(connection);
+				}
+			}
+
+		});
+
+		task.execute(item);
 	}
 
 	private void sendInentAndPre(boolean isSuccess) {
 		Intent intent = new Intent();
-		SharedPreferences preference = getSharedPreferences(IMConstant.IMSHARE,0);
+		SharedPreferences preference = getSharedPreferences(IMConstant.IMSHARE,
+				0);
 		// 保存在线连接信息
 		preference.edit().putBoolean(IMConstant.IS_ONLINE, isSuccess).commit();
 		intent.setAction(IMConstant.ACTION_RECONNECT_STATE);

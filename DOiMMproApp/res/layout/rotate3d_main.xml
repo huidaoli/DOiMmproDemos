@@ -19,5 +19,4 @@
         android:layout_margin="5dip"
         android:text="3d切换View" />
 
-
 </LinearLayout>

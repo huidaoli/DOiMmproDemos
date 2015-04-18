@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/gray_white"
     android:gravity="center"
-    android:orientation="vertical" 
-    android:paddingTop="10dip">
+    android:orientation="vertical"
+    android:paddingTop="10dip" >
 
     <com.ab.view.progress.AbHorizontalProgressBar
         android:id="@+id/horizontalProgressBar"
@@ -22,7 +22,7 @@
             android:id="@+id/numberText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray"/>
+            android:textColor="@color/gray" />
 
         <TextView
             android:id="@+id/maxText"

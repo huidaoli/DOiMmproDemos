@@ -23,11 +23,8 @@ import com.can2do.doimmpro.global.MyApplication;
 import com.can2do.doimmpro.web.NetworkWeb;
 
 /**
- * 名称：DemoAbActivity 
- * 描述：AbActivity基本用法
+ * 名称：DemoAbActivity 描述：AbActivity基本用法
  * 
- * @author 还如一梦中
- * @date 2011-12-13
  * @version
  */
 public class DemoAbActivity extends AbActivity {
@@ -60,7 +57,7 @@ public class DemoAbActivity extends AbActivity {
 				startActivity(intent);
 			}
 		});
-		
+
 	}
 
 }

@@ -3,6 +3,7 @@ package com.can2do.doimmpro.model;
 import com.ab.db.orm.annotation.Column;
 import com.ab.db.orm.annotation.Id;
 import com.ab.db.orm.annotation.Table;
+
 @Table(name = "user")
 public class User {
 
@@ -150,16 +151,15 @@ public class User {
 		this.rights = rights;
 	}
 
-
 	public String getHeadUrl() {
-        return headUrl;
-    }
+		return headUrl;
+	}
 
-    public void setHeadUrl(String headUrl){
-        this.headUrl = headUrl;
-    }
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
+	}
 
-    public int getPoint() {
+	public int getPoint() {
 		return point;
 	}
 

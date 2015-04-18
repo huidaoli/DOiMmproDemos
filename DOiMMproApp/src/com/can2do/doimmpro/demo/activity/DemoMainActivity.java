@@ -18,17 +18,15 @@ import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.demo.adapter.MyListViewAdapter;
 import com.can2do.doimmpro.global.Constant;
 import com.can2do.doimmpro.global.MyApplication;
+
 /**
  * 
- * © 2012 amsoft.cn
- * 名称：DemoMainActivity.java 
- * 描述：Demo主界面
- * @author 还如一梦中
- * @date：2013-12-13 上午11:01:21
+ * © 2012 amsoft.cn 名称：DemoMainActivity.java 描述：Demo主界面
+ * 
  * @version v1.0
  */
 public class DemoMainActivity extends AbActivity {
-	
+
 	private MyApplication application;
 	private ListView mListView = null;
 	private MyListViewAdapter myListViewAdapter = null;
@@ -51,17 +49,18 @@ public class DemoMainActivity extends AbActivity {
 		this.setTitleBarOverlay(true);
 		application = (MyApplication) abApplication;
 		mAbTitleBar.getLogoView().setOnClickListener(
-			new View.OnClickListener() {
+				new View.OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
-					finish();
-				}
-		});
-		
+					@Override
+					public void onClick(View v) {
+						finish();
+					}
+				});
+
 		for (int i = 0; i < 75; i++) {
-	            mPhotoList.add(Constant.BASEURL+"content/templates/amsoft/images/head/"+i+".png");
-	    }
+			mPhotoList.add(Constant.BASEURL
+					+ "content/templates/amsoft/images/head/" + i + ".png");
+		}
 
 		// 获取ListView对象
 		mListView = (ListView) findViewById(R.id.mListView);
@@ -92,13 +91,13 @@ public class DemoMainActivity extends AbActivity {
 		map.put("itemsTitle", "Http工具类");
 		map.put("itemsText", "网络通信首选1");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("itemsIcon", mPhotoList.get(4));
 		map.put("itemsTitle", "Soap工具类");
 		map.put("itemsText", "网络通信首选2");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("itemsIcon", mPhotoList.get(5));
 		map.put("itemsTitle", "频繁快速响应Request");
@@ -110,7 +109,7 @@ public class DemoMainActivity extends AbActivity {
 		map.put("itemsTitle", "线程池与线程队列");
 		map.put("itemsText", "适应于Http工具类管理范围外，更灵活的应用");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("itemsIcon", mPhotoList.get(7));
 		map.put("itemsTitle", "一大波Dialog");
@@ -140,7 +139,7 @@ public class DemoMainActivity extends AbActivity {
 		map.put("itemsTitle", "UI控件汇总");
 		map.put("itemsText", "一些常用的UI控件");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("itemsIcon", mPhotoList.get(12));
 		map.put("itemsTitle", "动画效果汇总");
@@ -215,7 +214,8 @@ public class DemoMainActivity extends AbActivity {
 				Intent intent = null;
 				switch (position) {
 				case 0:
-					intent = new Intent(DemoMainActivity.this, DemoAbActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							DemoAbActivity.class);
 					startActivity(intent);
 					break;
 				case 1:
@@ -223,83 +223,103 @@ public class DemoMainActivity extends AbActivity {
 					startActivity(intent);
 					break;
 				case 2:
-					intent = new Intent(DemoMainActivity.this, IocViewActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							IocViewActivity.class);
 					startActivity(intent);
 					break;
 				case 3:
-					intent = new Intent(DemoMainActivity.this, HttpActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							HttpActivity.class);
 					startActivity(intent);
 					break;
 				case 4:
-					intent = new Intent(DemoMainActivity.this, SoapActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							SoapActivity.class);
 					startActivity(intent);
 					break;
 				case 5:
-					intent = new Intent(DemoMainActivity.this, HttpMiniActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							HttpMiniActivity.class);
 					startActivity(intent);
 					break;
 				case 6:
-					intent = new Intent(DemoMainActivity.this, ThreadControlActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							ThreadControlActivity.class);
 					startActivity(intent);
 					break;
 				case 7:
-					intent = new Intent(DemoMainActivity.this, DialogActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							DialogActivity.class);
 					startActivity(intent);
 					break;
 				case 8:
-					intent = new Intent(DemoMainActivity.this, ImageDownActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							ImageDownActivity.class);
 					startActivity(intent);
 					break;
 				case 9:
-					intent = new Intent(DemoMainActivity.this, PullToRefreshActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							PullToRefreshActivity.class);
 					startActivity(intent);
 					break;
 				case 10:
-					intent = new Intent(DemoMainActivity.this, DownListActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							DownListActivity.class);
 					startActivity(intent);
 					break;
 				case 11:
-					intent = new Intent(DemoMainActivity.this, UIElementActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							UIElementActivity.class);
 					startActivity(intent);
 					break;
 				case 12:
-					intent = new Intent(DemoMainActivity.this, AnimationActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							AnimationActivity.class);
 					startActivity(intent);
 					break;
 				case 13:
-					intent = new Intent(DemoMainActivity.this, SlidingMenuActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							SlidingMenuActivity.class);
 					startActivity(intent);
 					break;
 				case 14:
-					intent = new Intent(DemoMainActivity.this, TabActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							TabActivity.class);
 					startActivity(intent);
 					break;
 				case 15:
-					intent = new Intent(DemoMainActivity.this, ChartActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							ChartActivity.class);
 					startActivity(intent);
 					break;
 				case 16:
-					intent = new Intent(DemoMainActivity.this, PHashActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							PHashActivity.class);
 					startActivity(intent);
 					break;
 				case 17:
-					intent = new Intent(DemoMainActivity.this, CarouselActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							CarouselActivity.class);
 					startActivity(intent);
 					break;
 				case 18:
-					intent = new Intent(DemoMainActivity.this, ProgressBarActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							ProgressBarActivity.class);
 					startActivity(intent);
 					break;
 				case 19:
-					intent = new Intent(DemoMainActivity.this, Rotate3DActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							Rotate3DActivity.class);
 					startActivity(intent);
 					break;
 				case 20:
-					intent = new Intent(DemoMainActivity.this, NestScrollActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							NestScrollActivity.class);
 					startActivity(intent);
 					break;
 				case 21:
-					intent = new Intent(DemoMainActivity.this, SceneActivity.class);
+					intent = new Intent(DemoMainActivity.this,
+							SceneActivity.class);
 					startActivity(intent);
 					break;
 				default:

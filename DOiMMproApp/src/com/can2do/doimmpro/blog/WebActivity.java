@@ -17,58 +17,55 @@ import com.ab.view.titlebar.AbTitleBar;
 import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.global.Constant;
 import com.can2do.doimmpro.global.MyApplication;
+
 /**
- * © 2012 amsoft.cn 
- * 名称：WebActivity 
- * 描述：网站Wap
- * @author 还如一梦中
- * @date 2011-11-8
- * @version 
+ * © 2012 amsoft.cn 名称：WebActivity 描述：网站Wap
+ * 
+ * @version
  */
 public class WebActivity extends AbActivity {
-	
-	//主界面
+
+	// 主界面
 	private WebView mWebView = null;
 	private ProgressBar mProgressBar = null;
 	private MyApplication application;
 	private AbTitleBar mAbTitleBar = null;
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //设置布局
-        setAbContentView(R.layout.web);
-        
-        application = (MyApplication)abApplication;
-        
-        mAbTitleBar = this.getTitleBar();
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		// 设置布局
+		setAbContentView(R.layout.web);
+
+		application = (MyApplication) abApplication;
+
+		mAbTitleBar = this.getTitleBar();
 		mAbTitleBar.setTitleText(R.string.blog_name);
 		mAbTitleBar.setLogo(R.drawable.button_selector_back);
 		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
 		mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
 		mAbTitleBar.setLogoLine(R.drawable.line);
 		mAbTitleBar.setVisibility(View.GONE);
-		
-        mWebView = (WebView)findViewById(R.id.webView);
-        mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
-        //设置支持JavaScript脚本
-		WebSettings webSettings = mWebView.getSettings();  
+
+		mWebView = (WebView) findViewById(R.id.webView);
+		mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		// 设置支持JavaScript脚本
+		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
-		//设置可以访问文件
+		// 设置可以访问文件
 		webSettings.setAllowFileAccess(true);
-		//设置可以支持缩放
+		// 设置可以支持缩放
 		webSettings.setSupportZoom(true);
-		//设置默认缩放方式尺寸是far
+		// 设置默认缩放方式尺寸是far
 		webSettings.setDefaultZoom(WebSettings.ZoomDensity.MEDIUM);
-		//设置出现缩放工具
-		webSettings .setBuiltInZoomControls(true);
+		// 设置出现缩放工具
+		webSettings.setBuiltInZoomControls(true);
 		webSettings.setDefaultFontSize(20);
-        //访问assets目录下的文件
-        String url = Constant.BASEURL+"m";
-        mWebView.loadUrl(url);
-        
-		
-        // 设置WebViewClient
+		// 访问assets目录下的文件
+		String url = Constant.BASEURL + "m";
+		mWebView.loadUrl(url);
+
+		// 设置WebViewClient
 		mWebView.setWebViewClient(new WebViewClient() {
 			// url拦截
 			@Override
@@ -77,7 +74,7 @@ public class WebActivity extends AbActivity {
 				view.loadUrl(url);
 				// 相应完成返回true
 				return true;
-				//return super.shouldOverrideUrlLoading(view, url);
+				// return super.shouldOverrideUrlLoading(view, url);
 			}
 
 			// 页面开始加载
@@ -128,35 +125,37 @@ public class WebActivity extends AbActivity {
 			// 处理javascript中的prompt
 			public boolean onJsPrompt(WebView view, String url, String message,
 					String defaultValue, final JsPromptResult result) {
-				return super.onJsPrompt(view, url, message, defaultValue, result);
+				return super.onJsPrompt(view, url, message, defaultValue,
+						result);
 			};
-			
-			//设置网页加载的进度条
+
+			// 设置网页加载的进度条
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
 				mProgressBar.setProgress(newProgress);
 				super.onProgressChanged(view, newProgress);
 			}
-			
-			//设置程序的Title
+
+			// 设置程序的Title
 			@Override
 			public void onReceivedTitle(WebView view, String title) {
 				setTitle(title);
 				super.onReceivedTitle(view, title);
 			}
 		});
-		
-        mAbTitleBar.getLogoView().setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				back();
-			}
-		});
+
+		mAbTitleBar.getLogoView().setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						back();
+					}
+				});
 
 	}
-    
-    /**
+
+	/**
 	 * 拦截返回键
 	 */
 	@Override
@@ -170,11 +169,11 @@ public class WebActivity extends AbActivity {
 			return super.onKeyDown(keyCode, event);
 		}
 	}
-	
-	private void back(){
-		if(mWebView.canGoBack()){
+
+	private void back() {
+		if (mWebView.canGoBack()) {
 			mWebView.goBack();
-		}else{
+		} else {
 			finish();
 		}
 	}

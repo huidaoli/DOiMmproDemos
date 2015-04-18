@@ -4,19 +4,19 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dip" >
-    
+
     <Button
         android:id="@+id/btn1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:text="图片适配"
-        android:layout_margin="5dip"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="图片适配" />
 
     <Button
         android:id="@+id/btn2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:text="View适配"
-        android:layout_margin="5dip"/>
-    
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="View适配" />
+
 </LinearLayout>

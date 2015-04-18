@@ -27,16 +27,22 @@ public class UserDBListAdapter extends BaseAdapter {
 
 	/**
 	 * 构造方法
+	 * 
 	 * @param context
-	 * @param data 列表展现的数据
-	 * @param resource 单行的布局
-	 * @param from Map中的key
-	 * @param to view的id
+	 * @param data
+	 *            列表展现的数据
+	 * @param resource
+	 *            单行的布局
+	 * @param from
+	 *            Map中的key
+	 * @param to
+	 *            view的id
 	 */
 	public UserDBListAdapter(Context context, List<LocalUser> userlist) {
 		mContext = context;
 		mUserlist = userlist;
-		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mInflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
@@ -59,15 +65,18 @@ public class UserDBListAdapter extends BaseAdapter {
 		final ViewHolder holder;
 		// 当前索引
 		final int index = position;
-		
+
 		if (convertView == null) {
 			// 使用自定义的list_items作为Layout
-			convertView = mInflater.inflate(R.layout.db_list_items, parent, false);
+			convertView = mInflater.inflate(R.layout.db_list_items, parent,
+					false);
 			// 减少findView的次数
 			holder = new ViewHolder();
 			// 初始化布局中的元素
-			holder.itemsTitle = ((TextView) convertView.findViewById(R.id.itemsTitle));
-			holder.itemsText = ((EditText) convertView.findViewById(R.id.itemsText));
+			holder.itemsTitle = ((TextView) convertView
+					.findViewById(R.id.itemsTitle));
+			holder.itemsText = ((EditText) convertView
+					.findViewById(R.id.itemsText));
 			holder.modifyBtn = ((Button) convertView.findViewById(R.id.modBtn));
 			holder.delBtn = ((Button) convertView.findViewById(R.id.delBtn));
 			convertView.setTag(holder);
@@ -87,32 +96,35 @@ public class UserDBListAdapter extends BaseAdapter {
 		holder.modifyBtn.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				 //修改数据
-				 user.setName(holder.itemsText.getText().toString().trim());
-				 
-				 if(mContext instanceof DBInsideSampleActivity){
-					 ((DBInsideSampleActivity)mContext).updateData(user);
-				 }else if(mContext instanceof DBSDSampleActivity){
-					 ((DBSDSampleActivity)mContext).updateData(user);
-					
-				 }else{
-					 ((DBObjectActivity)mContext).updateData(user);
-				 }
-				 
+				// 修改数据
+				user.setName(holder.itemsText.getText().toString().trim());
+
+				if (mContext instanceof DBInsideSampleActivity) {
+					((DBInsideSampleActivity) mContext).updateData(user);
+				} else if (mContext instanceof DBSDSampleActivity) {
+					((DBSDSampleActivity) mContext).updateData(user);
+
+				} else {
+					((DBObjectActivity) mContext).updateData(user);
+				}
+
 			}
 		});
-		
+
 		// 删除按钮事件
 		holder.delBtn.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(mContext instanceof DBInsideSampleActivity){
-					 ((DBInsideSampleActivity)mContext).delData(Integer.parseInt(holder.itemsTitle.getText().toString()));
-				 }else if(mContext instanceof DBSDSampleActivity){
-					 ((DBSDSampleActivity)mContext).delData(Integer.parseInt(holder.itemsTitle.getText().toString()));
-				 }else{
-					 ((DBObjectActivity)mContext).delData(Integer.parseInt(holder.itemsTitle.getText().toString()));
-				 }
+				if (mContext instanceof DBInsideSampleActivity) {
+					((DBInsideSampleActivity) mContext).delData(Integer
+							.parseInt(holder.itemsTitle.getText().toString()));
+				} else if (mContext instanceof DBSDSampleActivity) {
+					((DBSDSampleActivity) mContext).delData(Integer
+							.parseInt(holder.itemsTitle.getText().toString()));
+				} else {
+					((DBObjectActivity) mContext).delData(Integer
+							.parseInt(holder.itemsTitle.getText().toString()));
+				}
 			}
 		});
 		return convertView;
@@ -120,19 +132,21 @@ public class UserDBListAdapter extends BaseAdapter {
 
 	/**
 	 * 增加一条并改变视图
+	 * 
 	 * @param item
 	 */
-	public void addItem(int position,LocalUser user) {
-		mUserlist.add(position,user);
+	public void addItem(int position, LocalUser user) {
+		mUserlist.add(position, user);
 		notifyDataSetChanged();
 	}
-	
+
 	/**
 	 * 增加一条并改变视图
+	 * 
 	 * @param item
 	 */
 	public void addItem(LocalUser user) {
-		mUserlist.add(0,user);
+		mUserlist.add(0, user);
 		notifyDataSetChanged();
 	}
 

@@ -32,7 +32,7 @@ import com.can2do.doimmpro.demo.adapter.CityListAdapter;
 import com.can2do.doimmpro.demo.model.City;
 import com.can2do.doimmpro.global.MyApplication;
 
-public class CityListActivity extends AbActivity{
+public class CityListActivity extends AbActivity {
 
 	private MyApplication application;
 	private List<City> list = null;
@@ -40,8 +40,7 @@ public class CityListActivity extends AbActivity{
 	private EditText mSearchEditText = null;
 	private AbTitleBar mAbTitleBar = null;
 	private CityListAdapter mCityListAdapter = null;
-	private AbLoadDialogFragment  mDialogFragment = null;
-
+	private AbLoadDialogFragment mDialogFragment = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,14 +56,16 @@ public class CityListActivity extends AbActivity{
 		mAbTitleBar.setLogoLine(R.drawable.line);
 
 		// 获取ListView对象
-		View headerView = LayoutInflater.from(this).inflate(R.layout.city_header, null);
+		View headerView = LayoutInflater.from(this).inflate(
+				R.layout.city_header, null);
 		mListView = (ListView) this.findViewById(R.id.listView);
 		mListView.addHeaderView(headerView);
-		
-		AbLetterFilterListView letterView = (AbLetterFilterListView)this.findViewById(R.id.letterView);
-		
+
+		AbLetterFilterListView letterView = (AbLetterFilterListView) this
+				.findViewById(R.id.letterView);
+
 		mSearchEditText = (EditText) this.findViewById(R.id.editText);
-		
+
 		// ListView数据
 		list = new ArrayList<City>();
 
@@ -77,15 +78,15 @@ public class CityListActivity extends AbActivity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
-				AbToastUtil.showToast(CityListActivity.this, "点击"+position);
+
+				AbToastUtil.showToast(CityListActivity.this, "点击" + position);
 			}
 		});
 
-		//显示进度框
-		mDialogFragment = AbDialogUtil.showLoadDialog(this, R.drawable.ic_load, "查询中,请等一小会");
-		mDialogFragment
-		.setAbDialogOnLoadListener(new AbDialogOnLoadListener() {
+		// 显示进度框
+		mDialogFragment = AbDialogUtil.showLoadDialog(this, R.drawable.ic_load,
+				"查询中,请等一小会");
+		mDialogFragment.setAbDialogOnLoadListener(new AbDialogOnLoadListener() {
 
 			@Override
 			public void onLoad() {
@@ -94,7 +95,7 @@ public class CityListActivity extends AbActivity{
 			}
 
 		});
-		
+
 		mSearchEditText.addTextChangedListener(new TextWatcher() {
 
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -119,7 +120,6 @@ public class CityListActivity extends AbActivity{
 
 	}
 
-	
 	public void downTask() {
 		AbLogUtil.prepareLog(CityListActivity.class);
 		AbTask mAbTask = new AbTask();
@@ -129,7 +129,8 @@ public class CityListActivity extends AbActivity{
 			public List<?> getList() {
 				List<City> newList = null;
 				try {
-					newList = filledData(getResources().getStringArray(R.array.list));
+					newList = filledData(getResources().getStringArray(
+							R.array.list));
 				} catch (Exception e) {
 				}
 				return newList;
@@ -138,8 +139,8 @@ public class CityListActivity extends AbActivity{
 			@Override
 			public void update(List<?> paramList) {
 				list.clear();
-				list.addAll((List<City>)paramList);
-				//通知Dialog
+				list.addAll((List<City>) paramList);
+				// 通知Dialog
 				mDialogFragment.loadFinish();
 				mCityListAdapter.notifyDataSetChanged();
 			}
@@ -148,60 +149,62 @@ public class CityListActivity extends AbActivity{
 
 		mAbTask.execute(item);
 	}
-	
+
 	/**
 	 * 为ListView填充数据
+	 * 
 	 * @param date
 	 * @return
 	 */
-	private List<City> filledData(String [] array){
+	private List<City> filledData(String[] array) {
 		List<City> newList = new ArrayList<City>();
-		//实例化汉字转拼音类
-		AbCharacterParser	characterParser = AbCharacterParser.getInstance();
-		
-		for(int i=0; i<array.length; i++){
+		// 实例化汉字转拼音类
+		AbCharacterParser characterParser = AbCharacterParser.getInstance();
+
+		for (int i = 0; i < array.length; i++) {
 			City city = new City();
 			city.setName(array[i]);
-			//汉字转换成拼音
+			// 汉字转换成拼音
 			String pinyin = characterParser.getSelling(array[i]);
 			String sortString = pinyin.substring(0, 1).toUpperCase();
-			
+
 			// 正则表达式，判断首字母是否是英文字母
-			if(sortString.matches("[A-Z]")){
+			if (sortString.matches("[A-Z]")) {
 				city.setFirstLetter(sortString.toUpperCase());
-			}else{
+			} else {
 				city.setFirstLetter("#");
 			}
 			newList.add(city);
 		}
 		Collections.sort(newList);
 		return newList;
-		
+
 	}
-	
+
 	/**
 	 * 根据输入框中的值来过滤数据并更新ListView
+	 * 
 	 * @param filterStr
 	 */
-	private void filterData(String filterStr){
-		//实例化汉字转拼音类
+	private void filterData(String filterStr) {
+		// 实例化汉字转拼音类
 		AbCharacterParser characterParser = AbCharacterParser.getInstance();
 		List<City> filterDateList = new ArrayList<City>();
-		if(!TextUtils.isEmpty(filterStr)){
-			for(City city : list){
+		if (!TextUtils.isEmpty(filterStr)) {
+			for (City city : list) {
 				String name = city.getName();
-				if(name.indexOf(filterStr) != -1 || characterParser.getSelling(name).startsWith(filterStr)){
+				if (name.indexOf(filterStr) != -1
+						|| characterParser.getSelling(name).startsWith(
+								filterStr)) {
 					filterDateList.add(city);
 				}
 			}
 		}
-		
+
 		// 根据a-z进行排序
 		Collections.sort(filterDateList);
 		mCityListAdapter.updateListView(filterDateList);
 	}
-
-	
 
 	@Override
 	protected void onResume() {
@@ -211,6 +214,5 @@ public class CityListActivity extends AbActivity{
 	public void onPause() {
 		super.onPause();
 	}
-
 
 }

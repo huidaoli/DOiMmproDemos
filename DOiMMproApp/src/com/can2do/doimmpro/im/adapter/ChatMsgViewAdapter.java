@@ -28,8 +28,8 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 	private MyApplication application = null;
 	private UserDao mUserDao = null;
 	private AbSqliteStorage mAbSqliteStorage = null;
-	//图片下载器
-    private AbImageLoader mAbImageLoader = null;
+	// 图片下载器
+	private AbImageLoader mAbImageLoader = null;
 
 	public static interface IMsgViewType {
 		int IMVT_COM_MSG = 0;
@@ -43,19 +43,19 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		this.mContext = context;
 		this.mChatMsgList = list;
 		this.mInflater = LayoutInflater.from(context);
-		activity = (ChatActivity)context;
-		application = (MyApplication)activity.getApplication();
+		activity = (ChatActivity) context;
+		application = (MyApplication) activity.getApplication();
 		mUserDao = activity.mUserDao;
-		//初始化AbSqliteStorage
-	    mAbSqliteStorage = activity.mAbSqliteStorage;
-	    
-	    //图片下载器
-        mAbImageLoader = new AbImageLoader(mContext);
-        mAbImageLoader.setMaxWidth(100);
-        mAbImageLoader.setMaxHeight(100);
-        mAbImageLoader.setLoadingImage(R.drawable.image_loading);
-        mAbImageLoader.setErrorImage(R.drawable.image_error);
-        mAbImageLoader.setEmptyImage(R.drawable.image_empty);
+		// 初始化AbSqliteStorage
+		mAbSqliteStorage = activity.mAbSqliteStorage;
+
+		// 图片下载器
+		mAbImageLoader = new AbImageLoader(mContext);
+		mAbImageLoader.setMaxWidth(100);
+		mAbImageLoader.setMaxHeight(100);
+		mAbImageLoader.setLoadingImage(R.drawable.image_loading);
+		mAbImageLoader.setErrorImage(R.drawable.image_error);
+		mAbImageLoader.setEmptyImage(R.drawable.image_empty);
 	}
 
 	@Override
@@ -75,15 +75,15 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 
 	@Override
 	public int getItemViewType(int position) {
-	    IMMessage mChatMsg = mChatMsgList.get(position);
-		if(mChatMsg.getToUserName().equals(application.mUser.getUserName())){
+		IMMessage mChatMsg = mChatMsgList.get(position);
+		if (mChatMsg.getToUserName().equals(application.mUser.getUserName())) {
 			return IMsgViewType.IMVT_COM_MSG;
-		}else{
+		} else {
 			return IMsgViewType.IMVT_TO_MSG;
 		}
-		
+
 	}
-	
+
 	@Override
 	public int getViewTypeCount() {
 		return 2;
@@ -92,65 +92,71 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final IMMessage mChatMsg = mChatMsgList.get(position);
-		final boolean isComMsg = getItemViewType(position)==IMsgViewType.IMVT_COM_MSG;
-		final ViewHolder viewHolder;	
-	    if (convertView == null){
-	    	  if (isComMsg){
-				  convertView = mInflater.inflate(R.layout.chatting_item_msg_text_right, null);
-			  }else{
-				  convertView = mInflater.inflate(R.layout.chatting_item_msg_text_left, null);
-			  }
+		final boolean isComMsg = getItemViewType(position) == IMsgViewType.IMVT_COM_MSG;
+		final ViewHolder viewHolder;
+		if (convertView == null) {
+			if (isComMsg) {
+				convertView = mInflater.inflate(
+						R.layout.chatting_item_msg_text_right, null);
+			} else {
+				convertView = mInflater.inflate(
+						R.layout.chatting_item_msg_text_left, null);
+			}
 
-	    	  viewHolder = new ViewHolder();
-			  viewHolder.sendTime = (TextView) convertView.findViewById(R.id.sendTime);
-			  viewHolder.userName = (TextView) convertView.findViewById(R.id.userName);
-			  viewHolder.chatContent = (TextView) convertView.findViewById(R.id.chatContent);
-			  viewHolder.userHead = (ImageView) convertView.findViewById(R.id.userHead);
-			  viewHolder.chatAttach = (ImageView) convertView.findViewById(R.id.chatAttach);
-			  viewHolder.isComMsg = isComMsg;
-			  convertView.setTag(viewHolder);
-	    }else{
-	          viewHolder = (ViewHolder) convertView.getTag();
-	    }
-	    
-	    viewHolder.chatAttach.setVisibility(View.GONE);
-	    viewHolder.chatAttach.setOnClickListener(null);
-	    viewHolder.userHead.setFocusable(false);
-        viewHolder.chatAttach.setFocusable(false);
-        if(mChatMsg.getSendState()==IMMessage.SENDING){
-        	viewHolder.sendTime.setText(mChatMsg.getTime()+" 正在发送...");
-        }else if(mChatMsg.getSendState()==IMMessage.FAILED){
-        	viewHolder.sendTime.setText(mChatMsg.getTime()+" 发送失败");
-        }else if(mChatMsg.getSendState()==IMMessage.SENDED){
-        	viewHolder.sendTime.setText(mChatMsg.getTime()+" 已发送");
-        }else if(mChatMsg.getSendState()==IMMessage.RECEIVED){
-        	viewHolder.sendTime.setText(mChatMsg.getTime()+" 已接收");
-        }
-	    
-	    viewHolder.chatContent.setText(mChatMsg.getContent());
-	    viewHolder.userName.setText(mChatMsg.getUserName());
-	    final User u = mChatMsg.getUser();
-	    String headUrl = null;
-	    if(u!=null){
-	    	 headUrl = u.getHeadUrl();
-	    }else{
-	    	 //activity.queryUserById(mChatMsg.getuId(),position);
-	    }
-	    
-	    //图片的下载
-        mAbImageLoader.display(viewHolder.userHead,headUrl);
-        
-	    return convertView;
+			viewHolder = new ViewHolder();
+			viewHolder.sendTime = (TextView) convertView
+					.findViewById(R.id.sendTime);
+			viewHolder.userName = (TextView) convertView
+					.findViewById(R.id.userName);
+			viewHolder.chatContent = (TextView) convertView
+					.findViewById(R.id.chatContent);
+			viewHolder.userHead = (ImageView) convertView
+					.findViewById(R.id.userHead);
+			viewHolder.chatAttach = (ImageView) convertView
+					.findViewById(R.id.chatAttach);
+			viewHolder.isComMsg = isComMsg;
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+
+		viewHolder.chatAttach.setVisibility(View.GONE);
+		viewHolder.chatAttach.setOnClickListener(null);
+		viewHolder.userHead.setFocusable(false);
+		viewHolder.chatAttach.setFocusable(false);
+		if (mChatMsg.getSendState() == IMMessage.SENDING) {
+			viewHolder.sendTime.setText(mChatMsg.getTime() + " 正在发送...");
+		} else if (mChatMsg.getSendState() == IMMessage.FAILED) {
+			viewHolder.sendTime.setText(mChatMsg.getTime() + " 发送失败");
+		} else if (mChatMsg.getSendState() == IMMessage.SENDED) {
+			viewHolder.sendTime.setText(mChatMsg.getTime() + " 已发送");
+		} else if (mChatMsg.getSendState() == IMMessage.RECEIVED) {
+			viewHolder.sendTime.setText(mChatMsg.getTime() + " 已接收");
+		}
+
+		viewHolder.chatContent.setText(mChatMsg.getContent());
+		viewHolder.userName.setText(mChatMsg.getUserName());
+		final User u = mChatMsg.getUser();
+		String headUrl = null;
+		if (u != null) {
+			headUrl = u.getHeadUrl();
+		} else {
+			// activity.queryUserById(mChatMsg.getuId(),position);
+		}
+
+		// 图片的下载
+		mAbImageLoader.display(viewHolder.userHead, headUrl);
+
+		return convertView;
 	}
-	
-	static class ViewHolder { 
-        public TextView sendTime;
-        public TextView userName;
-        public TextView chatContent;
-        public ImageView userHead;
-        public ImageView chatAttach;
-        public boolean isComMsg = true;
-    }
 
-	
+	static class ViewHolder {
+		public TextView sendTime;
+		public TextView userName;
+		public TextView chatContent;
+		public ImageView userHead;
+		public ImageView chatAttach;
+		public boolean isComMsg = true;
+	}
+
 }

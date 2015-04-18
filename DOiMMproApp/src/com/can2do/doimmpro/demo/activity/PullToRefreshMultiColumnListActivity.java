@@ -47,7 +47,7 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
 		mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
 		mAbTitleBar.setLogoLine(R.drawable.line);
-		
+
 		// 获取Http工具类
 		mAbHttpUtil = AbHttpUtil.getInstance(this);
 
@@ -75,13 +75,13 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 		// 使用自定义的Adapter
 		myListViewAdapter = new MultiColumnImageListAdapter(this, mImageList);
 		mListView.setAdapter(myListViewAdapter);
-		
-		//如果里面有图片是动态加载的，请在这配置!!!,系统要处理释放
-		mListView.setReleaseImageResIds(new int[]{R.id.itemsIcon});
-		
+
+		// 如果里面有图片是动态加载的，请在这配置!!!,系统要处理释放
+		mListView.setReleaseImageResIds(new int[] { R.id.itemsIcon });
+
 		refreshTask();
-		
-		mListView.setOnScrollListener(new OnScrollListener(){
+
+		mListView.setOnScrollListener(new OnScrollListener() {
 
 			@Override
 			public void onScrollChanged(int x, int y, int oldx, int oldy) {
@@ -90,7 +90,7 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 		});
 
 	}
-	
+
 	@Override
 	public void onFooterLoad(AbPullToRefreshView view) {
 		loadMoreTask();
@@ -116,7 +116,6 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 		String url = "http://www.duitang.com/album/1733789/masn/p/"
 				+ currentPage + "/24/";
 		mAbHttpUtil.get(url, new AbStringHttpResponseListener() {
-			
 
 			@Override
 			public void onStart() {
@@ -136,7 +135,9 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 			@Override
 			public void onFailure(int statusCode, String content,
 					Throwable error) {
-				AbToastUtil.showToast(PullToRefreshMultiColumnListActivity.this,error.getMessage());
+				AbToastUtil.showToast(
+						PullToRefreshMultiColumnListActivity.this,
+						error.getMessage());
 			}
 
 			public void onFinish() {
@@ -170,7 +171,9 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 			@Override
 			public void onFailure(int statusCode, String content,
 					Throwable error) {
-				AbToastUtil.showToast(PullToRefreshMultiColumnListActivity.this,error.getMessage());
+				AbToastUtil.showToast(
+						PullToRefreshMultiColumnListActivity.this,
+						error.getMessage());
 			}
 
 			public void onFinish() {
@@ -178,7 +181,6 @@ public class PullToRefreshMultiColumnListActivity extends AbActivity implements
 
 		});
 	}
-	
 
 	/**
 	 * 

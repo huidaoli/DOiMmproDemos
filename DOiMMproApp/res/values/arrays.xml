@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <array name="pinterest_color">
         <item>#fafafa</item>
         <item>#987f70</item>
@@ -22,7 +22,7 @@
         <item>#c2d3b5</item>
         <item>#e2e2e2</item>
     </array>
-    
+
     <string-array name="list">
         <item>阿妹</item>
         <item>阿郎</item>
@@ -68,4 +68,5 @@
         <item>Jack</item>
         <item>~夏先生</item>
     </string-array>
+
 </resources>

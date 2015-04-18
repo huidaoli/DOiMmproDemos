@@ -7,15 +7,7 @@ import android.view.animation.Animation;
 
 import com.ab.util.AbAnimationUtil;
 import com.ab.util.AbDialogUtil;
-/**
- * © 2012 amsoft.cn
- * 名称：AbDialogFragment.java 
- * 描述：弹出框的父类
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2014-07-30 下午16:00:52
- */
+
 public class AbDialogFragment extends DialogFragment {
 
 	private View mIndeterminateView = null;
@@ -27,7 +19,6 @@ public class AbDialogFragment extends DialogFragment {
 	public AbDialogFragment() {
 		super();
 	}
-	
 
 	@Override
 	public void onCancel(DialogInterface dialog) {
@@ -66,44 +57,43 @@ public class AbDialogFragment extends DialogFragment {
 		this.mOnDismissListener = onDismissListener;
 	}
 
-	
 	/**
 	 * 加载调用
 	 */
-	public void load(View v){
-		if(mAbDialogOnLoadListener!=null){
+	public void load(View v) {
+		if (mAbDialogOnLoadListener != null) {
 			mAbDialogOnLoadListener.onLoad();
 		}
 		mIndeterminateView = v;
-		AbAnimationUtil.playRotateAnimation(mIndeterminateView, 300, Animation.INFINITE,
-				Animation.RESTART);
+		AbAnimationUtil.playRotateAnimation(mIndeterminateView, 300,
+				Animation.INFINITE, Animation.RESTART);
 	}
 
 	/**
 	 * 加载成功调用
 	 */
-	public void loadFinish(){
-		//停止动画
+	public void loadFinish() {
+		// 停止动画
 		loadStop();
 		AbDialogUtil.removeDialog(this.getActivity());
 	}
-	
+
 	/**
 	 * 加载结束
 	 */
-	public void loadStop(){
-		//停止动画
-		mIndeterminateView.postDelayed(new Runnable(){
+	public void loadStop() {
+		// 停止动画
+		mIndeterminateView.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
 				mIndeterminateView.clearAnimation();
 			}
-			
+
 		}, 200);
-		
+
 	}
-	
+
 	public AbDialogOnLoadListener getAbDialogOnLoadListener() {
 		return mAbDialogOnLoadListener;
 	}
@@ -112,16 +102,14 @@ public class AbDialogFragment extends DialogFragment {
 			AbDialogOnLoadListener abDialogOnLoadListener) {
 		this.mAbDialogOnLoadListener = abDialogOnLoadListener;
 	}
-	
+
 	public String getMessage() {
 		return mMessage;
 	}
 
-
 	public void setMessage(String mMessage) {
 		this.mMessage = mMessage;
 	}
-
 
 	/**
 	 * 加载事件的接口.
@@ -132,7 +120,7 @@ public class AbDialogFragment extends DialogFragment {
 		 * 加载
 		 */
 		public void onLoad();
-		
+
 	}
 
 }

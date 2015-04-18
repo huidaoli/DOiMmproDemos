@@ -6,15 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * © 2012 amsoft.cn 
- * 名称：AbSampleFragment.java 
- * 描述：全屏的Fragment
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2014-07-30 下午16:00:52
- */
 public class AbSampleFragment extends DialogFragment {
 
 	private View mContentView;
@@ -22,7 +13,7 @@ public class AbSampleFragment extends DialogFragment {
 	public AbSampleFragment() {
 		super();
 	}
-	
+
 	/**
 	 * Create a new instance of AbSampleFragment.
 	 */

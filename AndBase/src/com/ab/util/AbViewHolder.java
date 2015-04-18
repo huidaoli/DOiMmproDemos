@@ -8,9 +8,6 @@ import android.view.View;
  * 名称：AbViewHolder.java 
  * 描述：超简洁的ViewHolder.
  * 代码更简单，性能略低，可以忽略
- * @author 还如一梦中
- * @version v1.0
- * @date：2014-06-17 下午20:32:13
  */
 public class AbViewHolder {
     

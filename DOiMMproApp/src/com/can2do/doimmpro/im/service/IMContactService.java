@@ -32,12 +32,12 @@ import com.can2do.doimmpro.im.util.IMUtil;
  */
 public class IMContactService extends Service {
 
-    /** 记录日志的标记. */
-    private String TAG = IMContactService.class.getSimpleName();
-    
-    /** 记录日志的开关. */
-    private boolean D = Constant.DEBUG;
-    
+	/** 记录日志的标记. */
+	private String TAG = IMContactService.class.getSimpleName();
+
+	/** 记录日志的开关. */
+	private boolean D = Constant.DEBUG;
+
 	private Roster roster = null;
 	private Context context;
 	private IMMsgDao mIMMsgDao = null;
@@ -81,90 +81,89 @@ public class IMContactService extends Service {
 				return false;
 			}
 		};
-		IMUtil.getXMPPConnection()
-				.addPacketListener(subscriptionPacketListener, filter);
+		IMUtil.getXMPPConnection().addPacketListener(
+				subscriptionPacketListener, filter);
 	}
 
 	/**
 	 * 初始化花名册 服务重启时，更新花名册
 	 */
 	private void initRoster() {
-	    roster = IMUtil.getRoster();
+		roster = IMUtil.getRoster();
 		roster.removeRosterListener(rosterListener);
 		roster.addRosterListener(rosterListener);
 		IMUtil.updateContacterList();
-		//数据业务类
-        mIMMsgDao = new IMMsgDao(context);
-		
+		// 数据业务类
+		mIMMsgDao = new IMMsgDao(context);
+
 	}
 
 	private PacketListener subscriptionPacketListener = new PacketListener() {
 
 		@Override
 		public void processPacket(Packet packet) {
-		    
-		    Log.i("TAG", "[服务]收到联系人消息："+packet.getFrom());
-		    
-		    //在登录中保存的
+
+			Log.i("TAG", "[服务]收到联系人消息：" + packet.getFrom());
+
+			// 在登录中保存的
 			String user = getSharedPreferences(IMConstant.IMSHARE, 0)
 					.getString(IMConstant.USERNAME, null);
 			if (packet.getFrom().contains(user))
 				return;
-			
-			
+
 			// 如果是自动接收所有请求，则回复一个添加信息
 			if (Roster.getDefaultSubscriptionMode().equals(
 					SubscriptionMode.accept_all)) {
 				Presence subscription = new Presence(Presence.Type.subscribe);
 				subscription.setTo(packet.getFrom());
-				IMUtil.getXMPPConnection()
-						.sendPacket(subscription);
+				IMUtil.getXMPPConnection().sendPacket(subscription);
 			} else {
-			    // 生成消息历史记录
-                IMMessage mIMMessage = new IMMessage();
-                mIMMessage.setTitle("好友请求");
-                String from = IMUtil.getUserNameByJid(packet.getFrom());
-                mIMMessage.setContent(from + "申请加您为好友");
-                
-                Log.i("TAG", "[服务]收到好友请求："+from + "申请加您为好友");
-                
-                mIMMessage.setSendState(IMMessage.RECEIVED);
-                mIMMessage.setType(IMMessage.ADD_FRIEND_MSG);
-                
-                //发送方
-                mIMMessage.setUserName(from);
-                //接收方
-                mIMMessage.setToUserName(IMUtil.getUserNameByJid(packet.getTo()));
-                
-                mIMMessage.setReadState(IMMessage.UNREAD);
-                mIMMessage.setRequestState(IMMessage.ALL);
-                String time = AbDateUtil.getCurrentDate(AbDateUtil.dateFormatYMDHMS);
-                mIMMessage.setTime(time);
+				// 生成消息历史记录
+				IMMessage mIMMessage = new IMMessage();
+				mIMMessage.setTitle("好友请求");
+				String from = IMUtil.getUserNameByJid(packet.getFrom());
+				mIMMessage.setContent(from + "申请加您为好友");
 
-                //保存本地
-                mIMMsgDao.startWritableDatabase(false);
-                long messageId = mIMMsgDao.insert(mIMMessage);
-                mIMMsgDao.closeDatabase();
-                if (messageId != -1) {
-                    //发出接收到会话的消息
-                    Intent intent = new Intent();
-                    intent.setAction(IMConstant.ACTION_ROSTER_SUBSCRIPTION);
-                    intent.putExtra("MESSAGE", mIMMessage);
-                    sendBroadcast(intent);
+				Log.i("TAG", "[服务]收到好友请求：" + from + "申请加您为好友");
 
-                }
+				mIMMessage.setSendState(IMMessage.RECEIVED);
+				mIMMessage.setType(IMMessage.ADD_FRIEND_MSG);
+
+				// 发送方
+				mIMMessage.setUserName(from);
+				// 接收方
+				mIMMessage
+						.setToUserName(IMUtil.getUserNameByJid(packet.getTo()));
+
+				mIMMessage.setReadState(IMMessage.UNREAD);
+				mIMMessage.setRequestState(IMMessage.ALL);
+				String time = AbDateUtil
+						.getCurrentDate(AbDateUtil.dateFormatYMDHMS);
+				mIMMessage.setTime(time);
+
+				// 保存本地
+				mIMMsgDao.startWritableDatabase(false);
+				long messageId = mIMMsgDao.insert(mIMMessage);
+				mIMMsgDao.closeDatabase();
+				if (messageId != -1) {
+					// 发出接收到会话的消息
+					Intent intent = new Intent();
+					intent.setAction(IMConstant.ACTION_ROSTER_SUBSCRIPTION);
+					intent.putExtra("MESSAGE", mIMMessage);
+					sendBroadcast(intent);
+
+				}
 			}
 		}
 	};
 
-
 	@Override
 	public void onDestroy() {
-	    Log.i("TAG", "[服务]联系人服务：关闭");
+		Log.i("TAG", "[服务]联系人服务：关闭");
 		// 释放资源
-	    IMUtil.getXMPPConnection()
-				.removePacketListener(subscriptionPacketListener);
-	    IMUtil.destroyContacterList();
+		IMUtil.getXMPPConnection().removePacketListener(
+				subscriptionPacketListener);
+		IMUtil.destroyContacterList();
 		super.onDestroy();
 	}
 
@@ -180,10 +179,10 @@ public class IMContactService extends Service {
 			if (IMUtil.contacters.containsKey(subscriber)) {
 				// 将状态改变之前的user广播出去
 				intent.putExtra(IMUser.USERKEY,
-				        IMUtil.contacters.get(subscriber));
+						IMUtil.contacters.get(subscriber));
 				IMUtil.contacters.remove(subscriber);
 				IMUtil.contacters.put(subscriber,
-				        IMUtil.transEntryToUser(entry, roster));
+						IMUtil.transEntryToUser(entry, roster));
 			}
 			sendBroadcast(intent);
 		}
@@ -195,12 +194,11 @@ public class IMContactService extends Service {
 				intent.setAction(IMConstant.ACTION_ROSTER_UPDATED);
 				// 获得状态改变的entry
 				RosterEntry userEntry = roster.getEntry(address);
-				IMUser user = IMUtil
-						.transEntryToUser(userEntry, roster);
+				IMUser user = IMUtil.transEntryToUser(userEntry, roster);
 				if (IMUtil.contacters.get(address) != null) {
 					// 这里发布的是更新前的user
 					intent.putExtra(IMUser.USERKEY,
-					        IMUtil.contacters.get(address));
+							IMUtil.contacters.get(address));
 					// 将发生改变的用户更新到userManager
 					IMUtil.contacters.remove(address);
 					IMUtil.contacters.put(address, user);
@@ -232,15 +230,12 @@ public class IMContactService extends Service {
 				Intent intent = new Intent();
 				intent.setAction(IMConstant.ACTION_ROSTER_ADDED);
 				RosterEntry userEntry = roster.getEntry(address);
-				IMUser user = IMUtil
-						.transEntryToUser(userEntry, roster);
+				IMUser user = IMUtil.transEntryToUser(userEntry, roster);
 				IMUtil.contacters.put(address, user);
 				intent.putExtra(IMUser.USERKEY, user);
 				sendBroadcast(intent);
 			}
 		}
 	};
-	
-	
 
 }

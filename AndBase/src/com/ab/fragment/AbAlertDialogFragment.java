@@ -6,31 +6,24 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-/**
- * © 2012 amsoft.cn
- * 名称：AbAlertDialogFragment.java 
- * 描述：弹出框
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2014-07-29 上午9:00:52
- */
+
 public class AbAlertDialogFragment extends DialogFragment {
-	
+
 	int mIcon;
 	String mTitle;
 	String mMessage;
 	static View mContentView;
 	static AbDialogOnClickListener mOnClickListener;
-	
+
 	/**
 	 * Create a new instance of AbDialogFragment.
 	 */
-	public static AbAlertDialogFragment newInstance(int icon,String title,String message,View view,AbDialogOnClickListener onClickListener) {
+	public static AbAlertDialogFragment newInstance(int icon, String title,
+			String message, View view, AbDialogOnClickListener onClickListener) {
 		AbAlertDialogFragment f = new AbAlertDialogFragment();
 		mOnClickListener = onClickListener;
 		mContentView = view;
-		
+
 		Bundle args = new Bundle();
 		args.putInt("icon", icon);
 		args.putString("title", title);
@@ -39,7 +32,6 @@ public class AbAlertDialogFragment extends DialogFragment {
 
 		return f;
 	}
-	
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -47,57 +39,57 @@ public class AbAlertDialogFragment extends DialogFragment {
 		mIcon = getArguments().getInt("icon");
 		mTitle = getArguments().getString("title");
 		mMessage = getArguments().getString("message");
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
-		if(mIcon > 0){
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),
+				AlertDialog.THEME_HOLO_LIGHT);
+		if (mIcon > 0) {
 			builder.setIcon(mIcon);
 		}
-		
-		if(mTitle != null){
+
+		if (mTitle != null) {
 			builder.setTitle(mTitle);
 		}
-		
-		if(mMessage != null){
+
+		if (mMessage != null) {
 			builder.setMessage(mMessage);
-			
+
 		}
-		if(mContentView!=null){
+		if (mContentView != null) {
 			builder.setView(mContentView);
 		}
-		
-		if(mOnClickListener != null){
+
+		if (mOnClickListener != null) {
 			builder.setPositiveButton("确认",
-	            new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int whichButton) {
-	                	if(mOnClickListener != null){
-	                		mOnClickListener.onPositiveClick();
-	                	}
-	                }
-	            }
-		     );
-		     builder.setNegativeButton("取消",
-	            new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int whichButton) {
-	                	if(mOnClickListener != null){
-	                		mOnClickListener.onNegativeClick();
-	                	}
-	                }
-	            }
-		    );
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+							if (mOnClickListener != null) {
+								mOnClickListener.onPositiveClick();
+							}
+						}
+					});
+			builder.setNegativeButton("取消",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+							if (mOnClickListener != null) {
+								mOnClickListener.onNegativeClick();
+							}
+						}
+					});
 		}
-		
-	    return builder.create();
+
+		return builder.create();
 	}
-	
-	
+
 	/**
-     * Dialog事件的接口.
-     */
-    public interface AbDialogOnClickListener {
-    	
-    	public void onPositiveClick();
-   	    
-     	public void onNegativeClick();
-    }
-	
+	 * Dialog事件的接口.
+	 */
+	public interface AbDialogOnClickListener {
+
+		public void onPositiveClick();
+
+		public void onNegativeClick();
+	}
+
 }

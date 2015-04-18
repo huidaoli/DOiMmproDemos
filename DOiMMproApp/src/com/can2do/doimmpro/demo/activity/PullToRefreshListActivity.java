@@ -42,7 +42,7 @@ public class PullToRefreshListActivity extends AbActivity implements
 	private ImageListAdapter myListViewAdapter = null;
 	private int total = 50;
 	private int pageSize = 15;
-	private AbLoadDialogFragment  mDialogFragment = null;
+	private AbLoadDialogFragment mDialogFragment = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -95,10 +95,10 @@ public class PullToRefreshListActivity extends AbActivity implements
 			}
 		});
 
-		//显示进度框
-		mDialogFragment = AbDialogUtil.showLoadDialog(this, R.drawable.ic_load, "查询中,请等一小会");
-		mDialogFragment
-		.setAbDialogOnLoadListener(new AbDialogOnLoadListener() {
+		// 显示进度框
+		mDialogFragment = AbDialogUtil.showLoadDialog(this, R.drawable.ic_load,
+				"查询中,请等一小会");
+		mDialogFragment.setAbDialogOnLoadListener(new AbDialogOnLoadListener() {
 
 			@Override
 			public void onLoad() {
@@ -120,7 +120,7 @@ public class PullToRefreshListActivity extends AbActivity implements
 		refreshTask();
 
 	}
-	
+
 	public void refreshTask() {
 		AbLogUtil.prepareLog(PullToRefreshListActivity.class);
 		AbTask mAbTask = new AbTask();
@@ -150,8 +150,8 @@ public class PullToRefreshListActivity extends AbActivity implements
 
 			@Override
 			public void update(List<?> paramList) {
-				
-				//通知Dialog
+
+				// 通知Dialog
 				mDialogFragment.loadFinish();
 				AbLogUtil.d(PullToRefreshListActivity.class, "返回", true);
 				List<Map<String, Object>> newList = (List<Map<String, Object>>) paramList;
@@ -228,6 +228,5 @@ public class PullToRefreshListActivity extends AbActivity implements
 	public void onPause() {
 		super.onPause();
 	}
-
 
 }

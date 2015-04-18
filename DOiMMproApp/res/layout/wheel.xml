@@ -86,7 +86,7 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp" />
             </RelativeLayout>
-            
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dip"

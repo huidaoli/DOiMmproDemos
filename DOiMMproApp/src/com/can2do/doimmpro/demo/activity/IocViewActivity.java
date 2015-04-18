@@ -12,39 +12,39 @@ import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.global.MyApplication;
 
 public class IocViewActivity extends AbActivity {
-	
+
 	private MyApplication application;
-	
-	@AbIocView(id = R.id.mBtn,click="btnClick")Button button;
-	@AbIocView(id = R.id.mText)TextView mTextView;
-	
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setAbContentView(R.layout.ioc_view);
-        
-        AbTitleBar mAbTitleBar = this.getTitleBar();
-        mAbTitleBar.setTitleText(R.string.ioc_name);
-        mAbTitleBar.setLogo(R.drawable.button_selector_back);
-        mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
-        mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
-        mAbTitleBar.setLogoLine(R.drawable.line);
-	    
-        application = (MyApplication)abApplication;
-        mAbTitleBar.getLogoView().setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-    	
-    }
-    
-    public void btnClick(View v){
+
+	@AbIocView(id = R.id.mBtn, click = "btnClick")
+	Button button;
+	@AbIocView(id = R.id.mText)
+	TextView mTextView;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setAbContentView(R.layout.ioc_view);
+
+		AbTitleBar mAbTitleBar = this.getTitleBar();
+		mAbTitleBar.setTitleText(R.string.ioc_name);
+		mAbTitleBar.setLogo(R.drawable.button_selector_back);
+		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
+		mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
+		mAbTitleBar.setLogoLine(R.drawable.line);
+
+		application = (MyApplication) abApplication;
+		mAbTitleBar.getLogoView().setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						finish();
+					}
+				});
+
+	}
+
+	public void btnClick(View v) {
 		mTextView.setText("我变了");
 	}
 }
-
-

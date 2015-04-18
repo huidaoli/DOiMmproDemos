@@ -39,15 +39,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:text="待添加" />
-    
-      <Button
+
+    <Button
         android:id="@+id/button6"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:text="待添加" />
-      
-       <Button
+
+    <Button
         android:id="@+id/button7"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

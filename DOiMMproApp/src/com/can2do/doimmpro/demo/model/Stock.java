@@ -11,28 +11,28 @@ public class Stock {
 	@Id
 	@Column(name = "_id")
 	public int _id;
-	
+
 	@Column(name = "id")
 	public String id;
-	
+
 	@Column(name = "text1")
 	public String text1;
-	
+
 	@Column(name = "text2")
 	public String text2;
-	
+
 	@Column(name = "text3")
 	public String text3;
-	
+
 	@Column(name = "text4")
 	public String text4;
-	
+
 	@Column(name = "text5")
 	public String text5;
-	
+
 	@Column(name = "text6")
 	public String text6;
-	
+
 	@Column(name = "u_id")
 	public String uId;
 

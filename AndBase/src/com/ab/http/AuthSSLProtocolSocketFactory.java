@@ -1,26 +1,5 @@
 package com.ab.http;
 
-/***
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements. See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-//package org.apache.commons.httpclient.contrib.ssl;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
@@ -55,153 +34,13 @@ import org.apache.http.params.HttpParams;
 
 import com.ab.util.AbLogUtil;
 
-/***
- * <p>
- * AuthSSLProtocolSocketFactory can be used to validate the identity of the
- * HTTPS server against a list of trusted certificates and to authenticate to
- * the HTTPS server using a private key.
- * </p>
- * 
- * <p>
- * AuthSSLProtocolSocketFactory will enable server authentication when supplied
- * with a {@link KeyStore truststore} file containg one or several trusted
- * certificates. The client secure socket will reject the connection during the
- * SSL session handshake if the target HTTPS server attempts to authenticate
- * itself with a non-trusted certificate.
- * </p>
- * 
- * <p>
- * Use JDK keytool utility to import a trusted certificate and generate a
- * truststore file:
- * 
- * <pre>
- *     keytool -import -alias "my server cert" -file server.crt -keystore my.truststore
- * </pre>
- * 
- * </p>
- * 
- * <p>
- * AuthSSLProtocolSocketFactory will enable client authentication when supplied
- * with a {@link KeyStore keystore} file containg a private key/public
- * certificate pair. The client secure socket will use the private key to
- * authenticate itself to the target HTTPS server during the SSL session
- * handshake if requested to do so by the server. The target HTTPS server will
- * in its turn verify the certificate presented by the client in order to
- * establish client's authenticity
- * </p>
- * 
- * <p>
- * Use the following sequence of actions to generate a keystore file
- * </p>
- * <ul>
- * <li>
- * <p>
- * Use JDK keytool utility to generate a new key
- * 
- * <pre>
- * keytool -genkey -v -alias "my client key" -validity 365 -keystore my.keystore
- * </pre>
- * 
- * For simplicity use the same password for the key as that of the keystore
- * </p>
- * </li>
- * <li>
- * <p>
- * Issue a certificate signing request (CSR)
- * 
- * <pre>
- * keytool -certreq -alias "my client key" -file mycertreq.csr -keystore my.keystore
- * </pre>
- * 
- * </p>
- * </li>
- * <li>
- * <p>
- * Send the certificate request to the trusted Certificate Authority for
- * signature. One may choose to act as her own CA and sign the certificate
- * request using a PKI tool, such as OpenSSL.
- * </p>
- * </li>
- * <li>
- * <p>
- * Import the trusted CA root certificate
- * 
- * <pre>
- * keytool -import -alias "my trusted ca" -file caroot.crt -keystore my.keystore
- * </pre>
- * 
- * </p>
- * </li>
- * <li>
- * <p>
- * Import the PKCS#7 file containg the complete certificate chain
- * 
- * <pre>
- * keytool -import -alias "my client key" -file mycert.p7 -keystore my.keystore
- * </pre>
- * 
- * </p>
- * </li>
- * <li>
- * <p>
- * Verify the content the resultant keystore file
- * 
- * <pre>
- * keytool -list -v -keystore my.keystore
- * </pre>
- * 
- * </p>
- * </li>
- * </ul>
- * <p>
- * Example of using custom protocol socket factory for a specific host:
- * 
- * <pre>
- * Protocol authhttps = new Protocol(&quot;https&quot;, new AuthSSLProtocolSocketFactory(
- * 		new URL(&quot;file:my.keystore&quot;), &quot;mypassword&quot;,
- * 		new URL(&quot;file:my.truststore&quot;), &quot;mypassword&quot;), 443);
- * 
- * HttpClient client = new HttpClient();
- * client.getHostConfiguration().setHost(&quot;localhost&quot;, 443, authhttps);
- * // use relative url only
- * GetMethod httpget = new GetMethod(&quot;/&quot;);
- * client.executeMethod(httpget);
- * </pre>
- * 
- * </p>
- * <p>
- * Example of using custom protocol socket factory per default instead of the
- * standard one:
- * 
- * <pre>
- * Protocol authhttps = new Protocol(&quot;https&quot;, new AuthSSLProtocolSocketFactory(
- * 		new URL(&quot;file:my.keystore&quot;), &quot;mypassword&quot;,
- * 		new URL(&quot;file:my.truststore&quot;), &quot;mypassword&quot;), 443);
- * Protocol.registerProtocol(&quot;https&quot;, authhttps);
- * 
- * HttpClient client = new HttpClient();
- * GetMethod httpget = new GetMethod(&quot;https://localhost/&quot;);
- * client.executeMethod(httpget);
- * </pre>
- * 
- * </p>
- * 
- * @author <a href="mailto:oleg -at- ural.ru">Oleg Kalnichevski</a>
- * 
- *         <p>
- *         DISCLAIMER: HttpClient developers DO NOT actively support this
- *         component. The component is provided as a reference material, which
- *         may be inappropriate for use without additional customization.
- *         </p>
- */
-
 public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 
 	private URL keystoreUrl = null;
 	private String keystorePassword = null;
 	private URL truststoreUrl = null;
 	private String truststorePassword = null;
-	private SSLContext sslcontext = null; 
+	private SSLContext sslcontext = null;
 
 	/***
 	 * Constructor for AuthSSLProtocolSocketFactory. Either a keystore or
@@ -237,7 +76,8 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 		if (url == null) {
 			throw new IllegalArgumentException("Keystore url may not be null");
 		}
-		AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"Initializing key store");
+		AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+				"Initializing key store");
 		KeyStore keystore = KeyStore.getInstance("jks");
 		InputStream is = null;
 		try {
@@ -256,7 +96,8 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 		if (keystore == null) {
 			throw new IllegalArgumentException("Keystore may not be null");
 		}
-		AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"Initializing key manager");
+		AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+				"Initializing key manager");
 		KeyManagerFactory kmfactory = KeyManagerFactory
 				.getInstance(KeyManagerFactory.getDefaultAlgorithm());
 		kmfactory.init(keystore, password != null ? password.toCharArray()
@@ -269,7 +110,8 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 		if (keystore == null) {
 			throw new IllegalArgumentException("Keystore may not be null");
 		}
-		AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"Initializing trust manager");
+		AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+				"Initializing trust manager");
 		TrustManagerFactory tmfactory = TrustManagerFactory
 				.getInstance(TrustManagerFactory.getDefaultAlgorithm());
 		tmfactory.init(keystore);
@@ -297,20 +139,33 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 						Certificate[] certs = keystore
 								.getCertificateChain(alias);
 						if (certs != null) {
-							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"Certificate chain '" + alias + "':");
+							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+									"Certificate chain '" + alias + "':");
 							for (int c = 0; c < certs.length; c++) {
 								if (certs[c] instanceof X509Certificate) {
 									X509Certificate cert = (X509Certificate) certs[c];
-									AbLogUtil.d(AuthSSLProtocolSocketFactory.class," Certificate " + (c + 1) + ":");
-									AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Subject DN: "
-											+ cert.getSubjectDN());
-									AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Signature Algorithm: "
-											+ cert.getSigAlgName());
-									AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Valid from: "
-											+ cert.getNotBefore());
-									AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Valid until: "
-											+ cert.getNotAfter());
-									AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Issuer: " + cert.getIssuerDN());
+									AbLogUtil.d(
+											AuthSSLProtocolSocketFactory.class,
+											" Certificate " + (c + 1) + ":");
+									AbLogUtil.d(
+											AuthSSLProtocolSocketFactory.class,
+											"  Subject DN: "
+													+ cert.getSubjectDN());
+									AbLogUtil.d(
+											AuthSSLProtocolSocketFactory.class,
+											"  Signature Algorithm: "
+													+ cert.getSigAlgName());
+									AbLogUtil.d(
+											AuthSSLProtocolSocketFactory.class,
+											"  Valid from: "
+													+ cert.getNotBefore());
+									AbLogUtil.d(
+											AuthSSLProtocolSocketFactory.class,
+											"  Valid until: "
+													+ cert.getNotAfter());
+									AbLogUtil.d(
+											AuthSSLProtocolSocketFactory.class,
+											"  Issuer: " + cert.getIssuerDN());
 								}
 							}
 						}
@@ -325,18 +180,25 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 					Enumeration aliases = keystore.aliases();
 					while (aliases.hasMoreElements()) {
 						String alias = (String) aliases.nextElement();
-						AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"Trusted certificate '" + alias + "':");
+						AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+								"Trusted certificate '" + alias + "':");
 						Certificate trustedcert = keystore
 								.getCertificate(alias);
 						if (trustedcert != null
 								&& trustedcert instanceof X509Certificate) {
 							X509Certificate cert = (X509Certificate) trustedcert;
-							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Subject DN: " + cert.getSubjectDN());
-							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Signature Algorithm: "
-									+ cert.getSigAlgName());
-							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Valid from: " + cert.getNotBefore());
-							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Valid until: " + cert.getNotAfter());
-							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,"  Issuer: " + cert.getIssuerDN());
+							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+									"  Subject DN: " + cert.getSubjectDN());
+							AbLogUtil.d(
+									AuthSSLProtocolSocketFactory.class,
+									"  Signature Algorithm: "
+											+ cert.getSigAlgName());
+							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+									"  Valid from: " + cert.getNotBefore());
+							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+									"  Valid until: " + cert.getNotAfter());
+							AbLogUtil.d(AuthSSLProtocolSocketFactory.class,
+									"  Issuer: " + cert.getIssuerDN());
 						}
 					}
 				}
@@ -346,19 +208,19 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 			sslcontext.init(keymanagers, trustmanagers, null);
 			return sslcontext;
 		} catch (NoSuchAlgorithmException e) {
-			AbLogUtil.e(AuthSSLProtocolSocketFactory.class,e.getMessage());
+			AbLogUtil.e(AuthSSLProtocolSocketFactory.class, e.getMessage());
 			throw new AuthSSLInitializationError(
 					"Unsupported algorithm exception: " + e.getMessage());
 		} catch (KeyStoreException e) {
-			AbLogUtil.e(AuthSSLProtocolSocketFactory.class,e.getMessage());
+			AbLogUtil.e(AuthSSLProtocolSocketFactory.class, e.getMessage());
 			throw new AuthSSLInitializationError("Keystore exception: "
 					+ e.getMessage());
 		} catch (GeneralSecurityException e) {
-			AbLogUtil.e(AuthSSLProtocolSocketFactory.class,e.getMessage());
+			AbLogUtil.e(AuthSSLProtocolSocketFactory.class, e.getMessage());
 			throw new AuthSSLInitializationError("Key management exception: "
 					+ e.getMessage());
 		} catch (IOException e) {
-			AbLogUtil.e(AuthSSLProtocolSocketFactory.class,e.getMessage());
+			AbLogUtil.e(AuthSSLProtocolSocketFactory.class, e.getMessage());
 			throw new AuthSSLInitializationError(
 					"I/O error reading keystore/truststore file: "
 							+ e.getMessage());
@@ -484,6 +346,5 @@ public class AuthSSLProtocolSocketFactory implements LayeredSocketFactory {
 	public boolean isSecure(Socket arg0) throws IllegalArgumentException {
 		return true;
 	}
-	
-	
+
 }

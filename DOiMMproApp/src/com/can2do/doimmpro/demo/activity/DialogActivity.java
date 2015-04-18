@@ -29,33 +29,49 @@ import com.can2do.doimmpro.web.NetworkWeb;
 /**
  * 名称：DemoAbActivity 描述：AbActivity基本用法
  * 
- * @author 还如一梦中
- * @date 2011-12-13
  * @version
  */
 public class DialogActivity extends AbActivity {
 
 	private MyApplication application;
 
-	
-    @AbIocView(id = R.id.button2,click="btnClick")Button button2;
-    @AbIocView(id = R.id.button3,click="btnClick")Button button3;
-    @AbIocView(id = R.id.button4,click="btnClick")Button button4;
-    @AbIocView(id = R.id.button5,click="btnClick")Button button5;
-    @AbIocView(id = R.id.button6,click="btnClick")Button button6;
-    @AbIocView(id = R.id.button7,click="btnClick")Button button7;
-    @AbIocView(id = R.id.button8,click="btnClick")Button button8;
-    @AbIocView(id = R.id.button9,click="btnClick")Button button9;
-    @AbIocView(id = R.id.button10,click="btnClick")Button button10;
-    @AbIocView(id = R.id.button11,click="btnClick")Button button11;
-    @AbIocView(id = R.id.button12,click="btnClick")Button button12;
-    @AbIocView(id = R.id.button13,click="btnClick")Button button13;
-    @AbIocView(id = R.id.button14,click="btnClick")Button button14;
-    @AbIocView(id = R.id.button15,click="btnClick")Button button15;
-    @AbIocView(id = R.id.button16,click="btnClick")Button button16;
-    @AbIocView(id = R.id.button17,click="btnClick")Button button17;
-    @AbIocView(id = R.id.button18,click="btnClick")Button button18;
-    @AbIocView(id = R.id.button19,click="btnClick")Button button19;
+	@AbIocView(id = R.id.button2, click = "btnClick")
+	Button button2;
+	@AbIocView(id = R.id.button3, click = "btnClick")
+	Button button3;
+	@AbIocView(id = R.id.button4, click = "btnClick")
+	Button button4;
+	@AbIocView(id = R.id.button5, click = "btnClick")
+	Button button5;
+	@AbIocView(id = R.id.button6, click = "btnClick")
+	Button button6;
+	@AbIocView(id = R.id.button7, click = "btnClick")
+	Button button7;
+	@AbIocView(id = R.id.button8, click = "btnClick")
+	Button button8;
+	@AbIocView(id = R.id.button9, click = "btnClick")
+	Button button9;
+	@AbIocView(id = R.id.button10, click = "btnClick")
+	Button button10;
+	@AbIocView(id = R.id.button11, click = "btnClick")
+	Button button11;
+	@AbIocView(id = R.id.button12, click = "btnClick")
+	Button button12;
+	@AbIocView(id = R.id.button13, click = "btnClick")
+	Button button13;
+	@AbIocView(id = R.id.button14, click = "btnClick")
+	Button button14;
+	@AbIocView(id = R.id.button15, click = "btnClick")
+	Button button15;
+	@AbIocView(id = R.id.button16, click = "btnClick")
+	Button button16;
+	@AbIocView(id = R.id.button17, click = "btnClick")
+	Button button17;
+	@AbIocView(id = R.id.button18, click = "btnClick")
+	Button button18;
+	@AbIocView(id = R.id.button19, click = "btnClick")
+	Button button19;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -236,35 +252,34 @@ public class DialogActivity extends AbActivity {
 
 		});
 	}
-	
-	
-	public void btnClick(View v){
+
+	public void btnClick(View v) {
 		View mView = null;
 		switch (v.getId()) {
 		case R.id.button2:
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
 			AbDialogUtil.showDialog(mView,
-			new DialogInterface.OnCancelListener() {
+					new DialogInterface.OnCancelListener() {
 
-				@Override
-				public void onCancel(DialogInterface dialog) {
-					AbToastUtil.showToast(DialogActivity.this,
-							"弹出框被取消");
-				}
-			});
+						@Override
+						public void onCancel(DialogInterface dialog) {
+							AbToastUtil
+									.showToast(DialogActivity.this, "弹出框被取消");
+						}
+					});
 			break;
 		case R.id.button3:
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
 			// AbDialogUtil.showPanel(mView);
 			AbDialogUtil.showPanel(mView,
-				new DialogInterface.OnCancelListener() {
+					new DialogInterface.OnCancelListener() {
 
-					@Override
-					public void onCancel(DialogInterface dialog) {
-						AbToastUtil.showToast(DialogActivity.this,
-								"弹出框被取消");
-					}
-			});
+						@Override
+						public void onCancel(DialogInterface dialog) {
+							AbToastUtil
+									.showToast(DialogActivity.this, "弹出框被取消");
+						}
+					});
 			break;
 		case R.id.button4:
 			// 显示有背景层的加载的弹出框
@@ -284,119 +299,124 @@ public class DialogActivity extends AbActivity {
 			break;
 		case R.id.button8:
 			AbDialogUtil.showAlertDialog(DialogActivity.this,
-				R.drawable.ic_alert, "这里是标题", "这里写一些描述",
-				new AbDialogOnClickListener() {
+					R.drawable.ic_alert, "这里是标题", "这里写一些描述",
+					new AbDialogOnClickListener() {
 
-					@Override
-					public void onPositiveClick() {
-						AbToastUtil.showToast(DialogActivity.this,
-								"点击了确认");
+						@Override
+						public void onPositiveClick() {
+							AbToastUtil.showToast(DialogActivity.this, "点击了确认");
 
-					}
+						}
 
-					@Override
-					public void onNegativeClick() {
-						AbToastUtil.showToast(DialogActivity.this,
-								"点击了取消");
+						@Override
+						public void onNegativeClick() {
+							AbToastUtil.showToast(DialogActivity.this, "点击了取消");
 
-					}
-			});
+						}
+					});
 			break;
 		case R.id.button9:
 			AbDialogUtil.showAlertDialog(DialogActivity.this,
-					R.drawable.ic_alert, "这里是标题", "这里写一些描述",
-					null);
+					R.drawable.ic_alert, "这里是标题", "这里写一些描述", null);
 			break;
 		case R.id.button10:
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
 			AbDialogUtil.showAlertDialog(mView);
 			break;
 		case R.id.button11:
-			//无按钮＋动画
-			mView = mInflater.inflate(R.layout.dialog_text,null);
-			AbDialogUtil.showDialog(mView,R.animator.fragment_top_enter,R.animator.fragment_top_exit,R.animator.fragment_pop_top_enter,R.animator.fragment_pop_top_exit);
+			// 无按钮＋动画
+			mView = mInflater.inflate(R.layout.dialog_text, null);
+			AbDialogUtil.showDialog(mView, R.animator.fragment_top_enter,
+					R.animator.fragment_top_exit,
+					R.animator.fragment_pop_top_enter,
+					R.animator.fragment_pop_top_exit);
 			break;
 		case R.id.button12:
-			//按钮＋列表
-			mView = mInflater.inflate(R.layout.dialog_button_listview,null);
-			AbDialogUtil.showDialog(mView,R.animator.fragment_top_enter,R.animator.fragment_top_exit,R.animator.fragment_pop_top_enter,R.animator.fragment_pop_top_exit);
-			ListView listView = (ListView)mView.findViewById(R.id.list);
-			String[] mStrings = {
-		            "对话框选项item1", "对话框选项item2", "对话框选项item3", "对话框选项item4"};
+			// 按钮＋列表
+			mView = mInflater.inflate(R.layout.dialog_button_listview, null);
+			AbDialogUtil.showDialog(mView, R.animator.fragment_top_enter,
+					R.animator.fragment_top_exit,
+					R.animator.fragment_pop_top_enter,
+					R.animator.fragment_pop_top_exit);
+			ListView listView = (ListView) mView.findViewById(R.id.list);
+			String[] mStrings = { "对话框选项item1", "对话框选项item2", "对话框选项item3",
+					"对话框选项item4" };
 			listView.setAdapter(new ArrayAdapter<String>(this,
-		               R.layout.dialog_list_item_1, mStrings));
-			Button leftBtn = (Button)mView.findViewById(R.id.left_btn);
-			Button rightBtn = (Button)mView.findViewById(R.id.right_btn);
-			leftBtn.setOnClickListener(new OnClickListener(){
+					R.layout.dialog_list_item_1, mStrings));
+			Button leftBtn = (Button) mView.findViewById(R.id.left_btn);
+			Button rightBtn = (Button) mView.findViewById(R.id.right_btn);
+			leftBtn.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					AbDialogUtil.removeDialog(DialogActivity.this);
 				}
-				
+
 			});
-			
-			rightBtn.setOnClickListener(new OnClickListener(){
+
+			rightBtn.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					AbDialogUtil.removeDialog(DialogActivity.this);
 				}
-				
+
 			});
-			
+
 			break;
 		case R.id.button13:
-			//按钮＋文本
-			//动画未生效
-			mView = mInflater.inflate(R.layout.dialog_text_button,null);
-			AbDialogUtil.showDialog(mView,R.animator.fragment_top_enter,R.animator.fragment_top_exit,R.animator.fragment_pop_top_enter,R.animator.fragment_pop_top_exit);
-			Button leftBtn1 = (Button)mView.findViewById(R.id.left_btn);
-			Button rightBtn1 = (Button)mView.findViewById(R.id.right_btn);
-			leftBtn1.setOnClickListener(new OnClickListener(){
+			// 按钮＋文本
+			// 动画未生效
+			mView = mInflater.inflate(R.layout.dialog_text_button, null);
+			AbDialogUtil.showDialog(mView, R.animator.fragment_top_enter,
+					R.animator.fragment_top_exit,
+					R.animator.fragment_pop_top_enter,
+					R.animator.fragment_pop_top_exit);
+			Button leftBtn1 = (Button) mView.findViewById(R.id.left_btn);
+			Button rightBtn1 = (Button) mView.findViewById(R.id.right_btn);
+			leftBtn1.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					AbDialogUtil.removeDialog(DialogActivity.this);
 				}
-				
+
 			});
-			
-			rightBtn1.setOnClickListener(new OnClickListener(){
+
+			rightBtn1.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					AbDialogUtil.removeDialog(DialogActivity.this);
 				}
-				
+
 			});
 			break;
-			
+
 		case R.id.button14:
-			//上
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
-			AbDialogUtil.showDialog(mView,Gravity.TOP);
+			// 上
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
+			AbDialogUtil.showDialog(mView, Gravity.TOP);
 			break;
 		case R.id.button15:
-			//中
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
-			AbDialogUtil.showDialog(mView,Gravity.CENTER);
+			// 中
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
+			AbDialogUtil.showDialog(mView, Gravity.CENTER);
 			break;
 		case R.id.button16:
-			//下
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
-			AbDialogUtil.showDialog(mView,Gravity.BOTTOM);
+			// 下
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
+			AbDialogUtil.showDialog(mView, Gravity.BOTTOM);
 			break;
 		case R.id.button17:
-			//全屏
-			mView = mInflater.inflate(R.layout.dialog_custom_view,null);
+			// 全屏
+			mView = mInflater.inflate(R.layout.dialog_custom_view, null);
 			AbDialogUtil.showFullScreenDialog(mView);
 			break;
 		case R.id.button18:
-			AbDialogUtil.showProgressDialog(DialogActivity.this, 0,
-					"查询中...");
+			AbDialogUtil.showProgressDialog(DialogActivity.this, 0, "查询中...");
 			new Handler().postDelayed(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					AbDialogUtil.removeDialog(DialogActivity.this);

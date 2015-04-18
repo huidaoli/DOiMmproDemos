@@ -14,15 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ab.util.AbViewUtil;
-/**
- * © 2012 amsoft.cn
- * 名称：AbRefreshDialogFragment.java 
- * 描述：弹出的刷新框
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2014-07-30 上午11:00:52
- */
+
 public class AbRefreshDialogFragment extends AbDialogFragment {
 
 	private int mTheme;
@@ -40,7 +32,7 @@ public class AbRefreshDialogFragment extends AbDialogFragment {
 	 * argument.
 	 */
 	public static AbRefreshDialogFragment newInstance(int style, int theme) {
-		//不用单例模式
+		// 不用单例模式
 		AbRefreshDialogFragment f = new AbRefreshDialogFragment();
 		// Supply style input as an argument.
 		Bundle args = new Bundle();
@@ -69,7 +61,7 @@ public class AbRefreshDialogFragment extends AbDialogFragment {
 		parent.setOrientation(LinearLayout.VERTICAL);
 		parent.setPadding(20, 20, 20, 20);
 		parent.setMinimumWidth(AbViewUtil.scaleValue(this.getActivity(), 400));
-		
+
 		mImageView = new ImageView(this.getActivity());
 		mImageView.setImageResource(mIndeterminateDrawable);
 		mImageView.setScaleType(ScaleType.MATRIX);
@@ -88,8 +80,8 @@ public class AbRefreshDialogFragment extends AbDialogFragment {
 
 			@Override
 			public void onClick(View v) {
-					// 执行刷新
-					load(v);
+				// 执行刷新
+				load(v);
 			}
 
 		});
@@ -118,11 +110,11 @@ public class AbRefreshDialogFragment extends AbDialogFragment {
 	public void setTextColor(int textColor) {
 		this.mTextColor = textColor;
 	}
-	
+
 	@Override
 	public void setMessage(String message) {
 		this.mMessage = message;
-		if(mTextView!=null){
+		if (mTextView != null) {
 			mTextView.setText(mMessage);
 		}
 	}
@@ -142,6 +134,5 @@ public class AbRefreshDialogFragment extends AbDialogFragment {
 	public void setBackgroundColor(int backgroundColor) {
 		this.mBackgroundColor = backgroundColor;
 	}
-
 
 }

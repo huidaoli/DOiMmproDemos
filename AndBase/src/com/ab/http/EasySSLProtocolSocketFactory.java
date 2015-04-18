@@ -16,16 +16,6 @@ import org.apache.http.conn.scheme.SocketFactory;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-
-/**
- * © 2012 amsoft.cn
- * 名称：EasySSLProtocolSocketFactory.java 
- * 描述：SSL自签名的实现类
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2013-11-13 上午9:00:52
- */
 public class EasySSLProtocolSocketFactory implements SocketFactory,
 		LayeredSocketFactory {
 

@@ -29,8 +29,8 @@ import com.can2do.doimmpro.im.service.IMSystemMsgService;
 import com.can2do.doimmpro.im.service.ReConnectService;
 
 public class IMUtil {
-    
-    public static Context mContext  = null;
+
+	public static Context mContext = null;
 
 	/** 已经登录了 */
 	public static final int LOGGED_CODE = 0;
@@ -38,48 +38,47 @@ public class IMUtil {
 	public static final int SUCCESS_CODE = 1;
 	/** 登录失败 */
 	public static final int FAIL_CODE = -1;
-	
-	/**IM连接配置信息*/
-	public static IMConfig mIMConfig = null;
-	
-	/**
-     * 保存着所有的联系人信息
-     */
-    public static Map<String, IMUser> contacters = null;
-	
-	
-	public static IMConfig getIMLoginConfig(){
-        return mIMConfig;
-    }
 
-    public static void setIMConfig(Context context,IMConfig iMConfig){
-        mIMConfig = iMConfig;
-        mContext = context;
-        // 初始化xmpp配置
-        XmppConnectionManager.getInstance().init(mIMConfig);
-    }
-    
-    public static boolean isLogin(){
-        XMPPConnection connection = getXMPPConnection();
-        if(!connection.isConnected() || !connection.isAuthenticated()){
-            return false;
-        }
-        return true;
-    }
-    
-	public static int loginIM(String userName,String password) {
+	/** IM连接配置信息 */
+	public static IMConfig mIMConfig = null;
+
+	/**
+	 * 保存着所有的联系人信息
+	 */
+	public static Map<String, IMUser> contacters = null;
+
+	public static IMConfig getIMLoginConfig() {
+		return mIMConfig;
+	}
+
+	public static void setIMConfig(Context context, IMConfig iMConfig) {
+		mIMConfig = iMConfig;
+		mContext = context;
+		// 初始化xmpp配置
+		XmppConnectionManager.getInstance().init(mIMConfig);
+	}
+
+	public static boolean isLogin() {
+		XMPPConnection connection = getXMPPConnection();
+		if (!connection.isConnected() || !connection.isAuthenticated()) {
+			return false;
+		}
+		return true;
+	}
+
+	public static int loginIM(String userName, String password) {
 		try {
-		    
+
 			XMPPConnection connection = getXMPPConnection();
-            // 连接
-            connection.connect();
-            // 登录
-            connection.login(userName,password);
-			
+			// 连接
+			connection.connect();
+			// 登录
+			connection.login(userName, password);
+
 			// 处理离线消息
 			// OfflineMsgManager.getInstance(activitySupport).dealOfflineMsg(connection);
 			connection.sendPacket(new Presence(Presence.Type.available));
-			
+
 			// 隐身登录
 			if (mIMConfig.isNovisible()) {
 				Presence presence = new Presence(Presence.Type.unavailable);
@@ -91,16 +90,19 @@ public class IMUtil {
 				}
 			}
 			mIMConfig.setOnline(true);
-			
-			//保存当前登录的用户信息
-			SharedPreferences preference = mContext.getSharedPreferences(IMConstant.IMSHARE,0);
-	        // 保存在线连接信息
-	        preference.edit().putString(IMConstant.USERNAME, mIMConfig.getUserMame()).commit();
-	        
-	        mIMConfig.setUserName(userName);
-	        mIMConfig.setPassword(password);
-	        
-	        return SUCCESS_CODE;
+
+			// 保存当前登录的用户信息
+			SharedPreferences preference = mContext.getSharedPreferences(
+					IMConstant.IMSHARE, 0);
+			// 保存在线连接信息
+			preference.edit()
+					.putString(IMConstant.USERNAME, mIMConfig.getUserMame())
+					.commit();
+
+			mIMConfig.setUserName(userName);
+			mIMConfig.setPassword(password);
+
+			return SUCCESS_CODE;
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (e instanceof IllegalStateException) {
@@ -115,14 +117,16 @@ public class IMUtil {
 	public static void logoutIM() {
 		XmppConnectionManager.getInstance().disconnect();
 	}
-	
+
 	/**
 	 * 和用户建立聊天
+	 * 
 	 * @param toUserName
 	 * @return
 	 */
-	public static Chat createChat(String toUserName){
-	   return getXMPPConnection().getChatManager().createChat(getJidByName(toUserName), null);
+	public static Chat createChat(String toUserName) {
+		return getXMPPConnection().getChatManager().createChat(
+				getJidByName(toUserName), null);
 	}
 
 	public static void startIMService(Context context) {
@@ -159,23 +163,22 @@ public class IMUtil {
 		context.stopService(reConnectService);
 
 		// 系统消息连接服务
-		Intent systemMsgService = new Intent(context,
-				IMSystemMsgService.class);
+		Intent systemMsgService = new Intent(context, IMSystemMsgService.class);
 		context.stopService(systemMsgService);
 	}
-	
+
 	/**
-     * 获取连接
-     * */
-    public static XMPPConnection getXMPPConnection() {
-        XMPPConnection mConnection = null;
-        try {
-            mConnection = XmppConnectionManager.getInstance().getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return mConnection;
-    }
+	 * 获取连接
+	 * */
+	public static XMPPConnection getXMPPConnection() {
+		XMPPConnection mConnection = null;
+		try {
+			mConnection = XmppConnectionManager.getInstance().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mConnection;
+	}
 
 	/**
 	 * 获取花名册
@@ -209,39 +212,39 @@ public class IMUtil {
 				getNoGroupUserList(roster)));
 		return groups;
 	}
-	
+
 	/**
-     * 刷新联系人列表
-     */
+	 * 刷新联系人列表
+	 */
 	public static void updateContacterList() {
-        if (contacters == null){
-            contacters = new HashMap<String, IMUser>();
-        }else{
-            contacters.clear();
-        }
-        
-        for (RosterEntry entry : getRoster().getEntries()) {
-            contacters.put(entry.getUser(),
-                    transEntryToUser(entry,getRoster()));
-        }
-    }
-	
+		if (contacters == null) {
+			contacters = new HashMap<String, IMUser>();
+		} else {
+			contacters.clear();
+		}
+
+		for (RosterEntry entry : getRoster().getEntries()) {
+			contacters.put(entry.getUser(),
+					transEntryToUser(entry, getRoster()));
+		}
+	}
+
 	/**
-     * 刷新联系人列表
-     */
-    public static void destroyContacterList() {
-        contacters = null;
-    }
-	
+	 * 刷新联系人列表
+	 */
+	public static void destroyContacterList() {
+		contacters = null;
+	}
+
 	/**
 	 * 获得所有的联系人列表
 	 */
 	public static List<IMUser> getContacterList() {
-		if (contacters == null){
+		if (contacters == null) {
 			contacters = new HashMap<String, IMUser>();
 			for (RosterEntry entry : getRoster().getEntries()) {
 				contacters.put(entry.getUser(),
-						transEntryToUser(entry,getRoster()));
+						transEntryToUser(entry, getRoster()));
 			}
 		}
 
@@ -252,7 +255,7 @@ public class IMUtil {
 
 		return userList;
 	}
-	
+
 	/**
 	 * 获得所有未分组的联系人列表
 	 */
@@ -282,9 +285,10 @@ public class IMUtil {
 		user.setAvailable(presence.isAvailable());
 		return user;
 	}
-	
+
 	/**
 	 * 获得所有组名
+	 * 
 	 * @return
 	 */
 	public static List<String> getGroupNames(Roster roster) {
@@ -295,9 +299,10 @@ public class IMUtil {
 		}
 		return groupNames;
 	}
-	
+
 	/**
 	 * 给JID返回用户名
+	 * 
 	 * @param Jid
 	 * @return
 	 */
@@ -313,7 +318,9 @@ public class IMUtil {
 
 	/**
 	 * 给用户名返回JID
-	 * @param xmppServiceName 域名:如amsoft.cn
+	 * 
+	 * @param xmppServiceName
+	 *            域名:如amsoft.cn
 	 * @param userName
 	 * @return
 	 */
@@ -323,15 +330,16 @@ public class IMUtil {
 		}
 		return userName + "@" + mIMConfig.getXmppServiceName();
 	}
-	
+
 	/**
-     * 回复一个presence信息给用户(接受好友请求，拒绝好友)
-     * @param type
-     * @param to
-     */
+	 * 回复一个presence信息给用户(接受好友请求，拒绝好友)
+	 * 
+	 * @param type
+	 * @param to
+	 */
 	public static void sendSubscribe(Presence.Type type, String to) {
-        Presence presence = new Presence(type);
-        presence.setTo(to);
-        getXMPPConnection().sendPacket(presence);
-    }
+		Presence presence = new Presence(type);
+		presence.setTo(to);
+		getXMPPConnection().sendPacket(presence);
+	}
 }

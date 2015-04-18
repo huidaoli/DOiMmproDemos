@@ -57,7 +57,7 @@ public class MainActivity extends AbActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setAbContentView(R.layout.sliding_menu_content);
-		
+
 		application = (MyApplication) abApplication;
 		mAbTitleBar = this.getTitleBar();
 		mAbTitleBar.setTitleText(R.string.app_name);
@@ -67,6 +67,7 @@ public class MainActivity extends AbActivity {
 		mAbTitleBar.setLogoLine(R.drawable.line);
 
 		mMainContentFragment = new MainContentFragment();
+
 		// 主视图的Fragment添加
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, mMainContentFragment).commit();
@@ -108,11 +109,10 @@ public class MainActivity extends AbActivity {
 		// 初始化数据库操作实现类
 		mUserDao = new UserDao(this);
 
-		if(application.mUser!=null){
+		if (application.mUser != null) {
 			// 自动登录
 			checkLogin(application.mUser);
 		}
-		
 
 		msp = Zhao.getInstance(getApplicationContext(),
 				"2da6ed47775fc5b7715fa5853f32f199");
@@ -124,34 +124,32 @@ public class MainActivity extends AbActivity {
 		list.setThemeStyle(getApplicationContext(), 3);
 		list.init(getApplicationContext());
 
-		//showChaping();//广告弹窗
+		// showChaping();//广告弹窗
 
 	}
-	
 
 	@Override
-    protected void onNewIntent(Intent intent){
-	    toByIntent(intent);
-        super.onNewIntent(intent);
-    }
-	
-	
-	public void toByIntent(Intent intent){
-	    //聊天对象
-        String userName = intent.getStringExtra("USERNAME");
-        //会话类型,跳转到不同的界面
-        int type = intent.getIntExtra("TYPE",IMMessage.SYS_MSG);
-        if (type == IMMessage.ADD_FRIEND_MSG) {
-            
-        }else if(type == IMMessage.CHAT_MSG){
-            if(application.mUser == null){
-                toLogin(CHAT_CODE);
-            }else{
-            	toChat(userName);
-            }
-        }else if(type == IMMessage.SYS_MSG){
-           //系统消息
-        }
+	protected void onNewIntent(Intent intent) {
+		toByIntent(intent);
+		super.onNewIntent(intent);
+	}
+
+	public void toByIntent(Intent intent) {
+		// 聊天对象
+		String userName = intent.getStringExtra("USERNAME");
+		// 会话类型,跳转到不同的界面
+		int type = intent.getIntExtra("TYPE", IMMessage.SYS_MSG);
+		if (type == IMMessage.ADD_FRIEND_MSG) {
+
+		} else if (type == IMMessage.CHAT_MSG) {
+			if (application.mUser == null) {
+				toLogin(CHAT_CODE);
+			} else {
+				toChat(userName);
+			}
+		} else if (type == IMMessage.SYS_MSG) {
+			// 系统消息
+		}
 	}
 
 	// 显示app
@@ -178,7 +176,7 @@ public class MainActivity extends AbActivity {
 			@Override
 			public void onClick(View v) {
 				// 应用游戏
-				//showApp();
+				// showApp();
 				Intent intent = new Intent(MainActivity.this,
 						AboutActivity.class);
 				startActivity(intent);
@@ -208,20 +206,20 @@ public class MainActivity extends AbActivity {
 			if (mMainContentFragment.canBack()) {
 				if (isExit == false) {
 					isExit = true;
-					AbToastUtil.showToast(MainActivity.this,"再按一次退出程序");
-					new Handler().postDelayed(new Runnable(){
+					AbToastUtil.showToast(MainActivity.this, "再按一次退出程序");
+					new Handler().postDelayed(new Runnable() {
 
 						@Override
 						public void run() {
 							isExit = false;
 						}
-				    	
-				    }, 2000);
+
+					}, 2000);
 				} else {
 					super.onBackPressed();
 				}
 			}
-			
+
 		}
 	}
 
@@ -235,24 +233,24 @@ public class MainActivity extends AbActivity {
 		mAbStorageQuery.equals("password", user.getPassword());
 		mAbStorageQuery.equals("is_login_user", true);
 		mAbSqliteStorage.findData(mAbStorageQuery, mUserDao,
-			new AbDataSelectListener() {
+				new AbDataSelectListener() {
 
-				@Override
-				public void onFailure(int errorCode, String errorMessage) {
-					AbToastUtil.showToast(MainActivity.this,errorMessage);
-				}
-
-				@Override
-				public void onSuccess(List<?> paramList) {
-					if (paramList != null && paramList.size() > 0) {
-					    //登录IM
-						loginIMTask((User) paramList.get(0));
-					}else{
-						AbToastUtil.showToast(MainActivity.this,"IM信息缺失");
+					@Override
+					public void onFailure(int errorCode, String errorMessage) {
+						AbToastUtil.showToast(MainActivity.this, errorMessage);
 					}
-				}
 
-		});
+					@Override
+					public void onSuccess(List<?> paramList) {
+						if (paramList != null && paramList.size() > 0) {
+							// 登录IM
+							loginIMTask((User) paramList.get(0));
+						} else {
+							AbToastUtil.showToast(MainActivity.this, "IM信息缺失");
+						}
+					}
+
+				});
 	}
 
 	/**
@@ -261,51 +259,52 @@ public class MainActivity extends AbActivity {
 	public void updateMenu() {
 		mMainMenuFragment.initMenu();
 	}
-	
+
 	/**
 	 * 描述：启动IM服务
 	 */
-	public void startIMService(){
+	public void startIMService() {
 		Log.d("TAG", "----启动IM服务----");
 		IMUtil.startIMService(this);
 	}
-	
+
 	/**
 	 * 描述：关闭IM服务
 	 */
-	public void stopIMService(){
+	public void stopIMService() {
 		Log.d("TAG", "----关闭IM服务----");
 		IMUtil.logoutIM();
 		IMUtil.stopIMService(this);
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode,Intent intent) {
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
 		if (resultCode != RESULT_OK) {
 			return;
 		}
-		
-		//刷新
+
+		// 刷新
 		updateMenu();
-		
+
 		switch (requestCode) {
-			case LOGIN_CODE :
-				//登录成功后启动IM服务
-				startIMService();
-				break;
-			case CHAT_CODE :
-			    //进入会话窗口
-		        String userName = intent.getStringExtra("USERNAME");
-		        toChat(userName);
-                break;
-			case FRIEND_CODE :
-				//登录成功后启动IM服务
-				startIMService();
-				//进入联系人
-				toContact();
-				break;
+		case LOGIN_CODE:
+			// 登录成功后启动IM服务
+			startIMService();
+			break;
+		case CHAT_CODE:
+			// 进入会话窗口
+			String userName = intent.getStringExtra("USERNAME");
+			toChat(userName);
+			break;
+		case FRIEND_CODE:
+			// 登录成功后启动IM服务
+			startIMService();
+			// 进入联系人
+			toContact();
+			break;
 		}
-		
+
 	}
 
 	/**
@@ -324,91 +323,91 @@ public class MainActivity extends AbActivity {
 	 * 登录IM
 	 * 
 	 * */
-	public void loginIMTask(final User user){
-		   if(IMUtil.isLogin()){
-		       return;
-		   }
-		   AbDialogUtil.showProgressDialog(MainActivity.this,R.drawable.ic_load,"登录到IM");
-	       AbTask task = new AbTask();
-	       final AbTaskItem item = new AbTaskItem();
-	       item.setListener(new AbTaskObjectListener(){
+	public void loginIMTask(final User user) {
+		if (IMUtil.isLogin()) {
+			return;
+		}
+		AbDialogUtil.showProgressDialog(MainActivity.this, R.drawable.ic_load,
+				"登录到IM");
+		AbTask task = new AbTask();
+		final AbTaskItem item = new AbTaskItem();
+		item.setListener(new AbTaskObjectListener() {
 
-	           @Override
-	           public <T> void update(T entity) {
-	        	   AbDialogUtil.removeDialog(MainActivity.this);
-	               Log.d("TAG", "登录执行完成");
-	               int code = (Integer)entity;
-	               if(code == IMUtil.SUCCESS_CODE || code == IMUtil.LOGGED_CODE){
-	            	   AbToastUtil.showToast(MainActivity.this,"IM登录成功");
-	                    //启动IM服务
-                       startIMService();
-                       //要跳转到哪里
-                       toByIntent(getIntent());
-	               }else if(code == IMUtil.FAIL_CODE){
-	            	   AbToastUtil.showToast(MainActivity.this,"IM登录失败");
-	               }
- 
-	           }
+			@Override
+			public <T> void update(T entity) {
+				AbDialogUtil.removeDialog(MainActivity.this);
+				Log.d("TAG", "登录执行完成");
+				int code = (Integer) entity;
+				if (code == IMUtil.SUCCESS_CODE || code == IMUtil.LOGGED_CODE) {
+					AbToastUtil.showToast(MainActivity.this, "IM登录成功");
+					// 启动IM服务
+					startIMService();
+					// 要跳转到哪里
+					toByIntent(getIntent());
+				} else if (code == IMUtil.FAIL_CODE) {
+					AbToastUtil.showToast(MainActivity.this, "IM登录失败");
+				}
 
-	           @SuppressWarnings("unchecked")
-	           @Override
-	           public Integer getObject() {
-	               int code = IMUtil.FAIL_CODE;
-	               try{
-	                   //设置用户名与密码
-	                   code = IMUtil.loginIM(user.getUserName(),user.getPassword());
-	               } catch (Exception e) {
-	                   e.printStackTrace();
-	               }
-	               return code;
-	           }
-	           
-	       });
-	       
-	       task.execute(item);
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Integer getObject() {
+				int code = IMUtil.FAIL_CODE;
+				try {
+					// 设置用户名与密码
+					code = IMUtil.loginIM(user.getUserName(),
+							user.getPassword());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return code;
+			}
+
+		});
+
+		task.execute(item);
 	}
-	
-	public void toLogin(int requestCode){
-	    Intent loginIntent = new Intent(this,LoginActivity.class);
-        startActivityForResult(loginIntent,requestCode);
+
+	public void toLogin(int requestCode) {
+		Intent loginIntent = new Intent(this, LoginActivity.class);
+		startActivityForResult(loginIntent, requestCode);
 	}
-	
-	public void toChat(String userName){
-	    //进入会话窗口
-        Intent chatIntent = new Intent(MainActivity.this,ChatActivity.class);
-        chatIntent.putExtra("USERNAME", userName);
-        startActivity(chatIntent);
-    }
-	
-	public void toContact(){
-	    //进入联系人
-        Intent friendIntent = new Intent(MainActivity.this,
-                ContacterActivity.class);
-        startActivity(friendIntent);
-    }
-	
+
+	public void toChat(String userName) {
+		// 进入会话窗口
+		Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
+		chatIntent.putExtra("USERNAME", userName);
+		startActivity(chatIntent);
+	}
+
+	public void toContact() {
+		// 进入联系人
+		Intent friendIntent = new Intent(MainActivity.this,
+				ContacterActivity.class);
+		startActivity(friendIntent);
+	}
+
 	@Override
 	protected void onPause() {
 		initTitleRightLayout();
 		AbLogUtil.d(this, "--onPause--");
-		//AbMonitorUtil.closeMonitor();
+		// AbMonitorUtil.closeMonitor();
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
 		AbLogUtil.d(this, "--onResume--");
-		//如果debug模式被打开，显示监控
-        //AbMonitorUtil.openMonitor(this);
+		// 如果debug模式被打开，显示监控
+		// AbMonitorUtil.openMonitor(this);
 		super.onResume();
 	}
 
 	@Override
 	public void finish() {
 		super.finish();
-		
+
 	}
-	
-	
 
 }

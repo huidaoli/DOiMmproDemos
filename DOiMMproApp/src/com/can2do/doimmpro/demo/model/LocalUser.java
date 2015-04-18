@@ -6,6 +6,7 @@ import com.ab.db.orm.annotation.Column;
 import com.ab.db.orm.annotation.Id;
 import com.ab.db.orm.annotation.Relations;
 import com.ab.db.orm.annotation.Table;
+
 @Table(name = "local_user")
 public class LocalUser {
 
@@ -13,7 +14,7 @@ public class LocalUser {
 	@Id
 	@Column(name = "_id")
 	private int _id;
-	
+
 	@Column(name = "u_id")
 	private String uId;
 
@@ -32,103 +33,85 @@ public class LocalUser {
 	// 创建时间
 	@Column(name = "create_time")
 	private String createTime;
-	
+
 	// 包含实体的存储，指定外键
-	@Relations(name="stock",type="one2one",foreignKey = "u_id",action="query_insert")
+	@Relations(name = "stock", type = "one2one", foreignKey = "u_id", action = "query_insert")
 	private Stock stock;
 
 	// 包含List的存储，指定外键
-	@Relations(name="stocks",type="one2many",foreignKey = "u_id",action="query_insert")
+	@Relations(name = "stocks", type = "one2many", foreignKey = "u_id", action = "query_insert")
 	private List<Stock> stocks;
-	
+
 	// 有些字段您可能不希望保存到数据库中,不用@Column注释就不会映射到数据库.
 	private String remark;
-
 
 	public int get_id() {
 		return _id;
 	}
 
-
 	public void set_id(int _id) {
 		this._id = _id;
 	}
-
 
 	public String getuId() {
 		return uId;
 	}
 
-
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public int getAge() {
 		return age;
 	}
 
-
 	public void setAge(int age) {
 		this.age = age;
 	}
-
 
 	public String getCreateTime() {
 		return createTime;
 	}
 
-
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-
 
 	public List<Stock> getStocks() {
 		return stocks;
 	}
 
-
 	public void setStocks(List<Stock> stocks) {
 		this.stocks = stocks;
 	}
-
 
 	public String getRemark() {
 		return remark;
 	}
 
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
-
 	public Stock getStock() {
 		return stock;
 	}
-
 
 	public void setStock(Stock stock) {
 		this.stock = stock;

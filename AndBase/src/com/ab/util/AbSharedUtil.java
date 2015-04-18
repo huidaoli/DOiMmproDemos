@@ -14,9 +14,6 @@ import com.ab.global.AbConstant;
 * 名称：AbSharedUtil.java 
 * 描述：保存到 SharedPreferences 的数据.    
 *
-* @author 还如一梦中
-* @version v1.0
-* @date：2014-10-09 下午11:52:13
 */
 public class AbSharedUtil {
 

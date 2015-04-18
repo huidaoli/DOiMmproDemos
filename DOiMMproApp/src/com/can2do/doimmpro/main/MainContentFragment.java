@@ -22,7 +22,7 @@ import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.global.Constant;
 import com.can2do.doimmpro.global.MyApplication;
 
-public class MainContentFragment extends Fragment{
+public class MainContentFragment extends Fragment {
 
 	private MyApplication application;
 	private Activity mActivity = null;
@@ -53,7 +53,7 @@ public class MainContentFragment extends Fragment{
 		webSettings.setDefaultFontSize(20);
 
 		// 访问assets目录下的文件
-		//String url = Constant.BASEURL+"m";
+		// String url = Constant.BASEURL+"m";
 		String url = Constant.BASEURL;
 		mWebView.loadUrl(url);
 
@@ -134,22 +134,21 @@ public class MainContentFragment extends Fragment{
 				super.onReceivedTitle(view, title);
 			}
 		});
-		
-		
 
 		return view;
 	}
-	
+
 	/**
 	 * 
 	 * 描述：能退出吗
+	 * 
 	 * @return
-	 * @throws 
+	 * @throws
 	 * @date：2013-12-13 上午11:06:58
 	 * @version v1.0
 	 */
-	public boolean canBack(){
-		if(mWebView.canGoBack()){
+	public boolean canBack() {
+		if (mWebView.canGoBack()) {
 			mWebView.goBack();
 			return false;
 		}

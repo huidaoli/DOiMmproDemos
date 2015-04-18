@@ -51,6 +51,7 @@ public class XmppConnectionManager {
 
 	/**
 	 * 初始化连接
+	 * 
 	 * @param loginConfig
 	 * @return
 	 */
@@ -62,7 +63,8 @@ public class XmppConnectionManager {
 		connectionConfig = new ConnectionConfiguration(
 				loginConfig.getXmppHost(), loginConfig.getXmppPort(),
 				loginConfig.getXmppServiceName());
-		//connectionConfig.setSASLAuthenticationEnabled(false);// 不使用SASL验证，设置为false
+		// connectionConfig.setSASLAuthenticationEnabled(false);//
+		// 不使用SASL验证，设置为false
 		connectionConfig
 				.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
 		// 允许自动连接

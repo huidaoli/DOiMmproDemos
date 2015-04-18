@@ -9,27 +9,26 @@ import android.util.Log;
 import com.ab.util.AbFileUtil;
 import com.can2do.doimmpro.im.global.IMConstant;
 
-
 public class IMRecorder {
 
 	private static final String TAG = IMRecorder.class.getSimpleName();
-	
+
 	private Context context;
-	
-	/**SD卡未找到的错误码*/
+
+	/** SD卡未找到的错误码 */
 	private static final int SD_NOT_FOUND = 404;
 	private static final String SD_NOT_FOUND_MSG = "SD卡未找到";
-	
+
 	private static final int CREATE_FILE_ERROR = 500;
-    private static final String CREATE_FILE_ERROR_MSG = "创建文件失败";
-	
+	private static final String CREATE_FILE_ERROR_MSG = "创建文件失败";
+
 	/** 默认音频下载文件地址. */
-    private static  String downPathAudioFileDir = null;
+	private static String downPathAudioFileDir = null;
 
 	private IMRecordListener recordListener;
-	
+
 	private MediaRecorder mediaRecord = null;
-	
+
 	/** 准备录音 */
 	private boolean isPreRecording = false;
 
@@ -37,13 +36,13 @@ public class IMRecorder {
 	private boolean isRecording = false;
 
 	private boolean isCancel = false;
-	
+
 	private File audioFile;
-	
+
 	private String fileName = null;
-	
+
 	private long startRecordTime = 0;
-	
+
 	public IMRecorder(Context context, IMRecordListener recordListener) {
 
 		this.recordListener = recordListener;
@@ -54,40 +53,40 @@ public class IMRecorder {
 	 * 开始录音
 	 */
 	public void startRecording() {
-	    
-		if (isPreRecording || isRecording){
-		    return;
+
+		if (isPreRecording || isRecording) {
+			return;
 		}
-		
-		if(fileName == null){
-		    fileName = System.currentTimeMillis()+IMConstant.AMR_FILE;
+
+		if (fileName == null) {
+			fileName = System.currentTimeMillis() + IMConstant.AMR_FILE;
 		}
-		
-		if(!AbFileUtil.isCanUseSD()){
-		    recordListener.onError(SD_NOT_FOUND, SD_NOT_FOUND_MSG);
-		    return;
+
+		if (!AbFileUtil.isCanUseSD()) {
+			recordListener.onError(SD_NOT_FOUND, SD_NOT_FOUND_MSG);
+			return;
 		}
-		
-		downPathAudioFileDir = AbFileUtil.getDownloadRootDir(context)+ File.separator+ "audio" + File.separator;
-		
-		audioFile = new File(downPathAudioFileDir+fileName);
-		
-		
-		try{
-            if(!audioFile.getParentFile().exists()){
-                audioFile.getParentFile().mkdirs();
-            }
-            if(!audioFile.exists()){
-                audioFile.createNewFile();
-            }
-        }catch (Exception e1){
-            e1.printStackTrace();
-            recordListener.onError(CREATE_FILE_ERROR, CREATE_FILE_ERROR_MSG);
-        }
-		
-		isPreRecording = true;	
-		
-		//准备录音
+
+		downPathAudioFileDir = AbFileUtil.getDownloadRootDir(context)
+				+ File.separator + "audio" + File.separator;
+
+		audioFile = new File(downPathAudioFileDir + fileName);
+
+		try {
+			if (!audioFile.getParentFile().exists()) {
+				audioFile.getParentFile().mkdirs();
+			}
+			if (!audioFile.exists()) {
+				audioFile.createNewFile();
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			recordListener.onError(CREATE_FILE_ERROR, CREATE_FILE_ERROR_MSG);
+		}
+
+		isPreRecording = true;
+
+		// 准备录音
 		recordListener.onPreRecording();
 
 		mediaRecord = new MediaRecorder();
@@ -100,25 +99,30 @@ public class IMRecorder {
 
 		long currTime = 0;
 		try {
-		    //准备录音
-		    Log.i(TAG, "准备录音");
+			// 准备录音
+			Log.i(TAG, "准备录音");
 			currTime = System.currentTimeMillis();
 			mediaRecord.prepare();
-			Log.i(TAG, "准备消耗时间：" + String.valueOf(System.currentTimeMillis() - currTime));
-			
+			Log.i(TAG,
+					"准备消耗时间："
+							+ String.valueOf(System.currentTimeMillis()
+									- currTime));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}
-		
+
 		startRecordTime = System.currentTimeMillis();
-		
+
 		mediaRecord.start();
-		
-		//准备录音
-        recordListener.onRecording();
-		
-		Log.i(TAG, "开始消耗时间：" + String.valueOf(System.currentTimeMillis() - currTime));
+
+		// 准备录音
+		recordListener.onRecording();
+
+		Log.i(TAG,
+				"开始消耗时间："
+						+ String.valueOf(System.currentTimeMillis() - currTime));
 		Log.i(TAG, "开始录音");
 
 		isRecording = true;
@@ -128,29 +132,30 @@ public class IMRecorder {
 	 * 停止录音
 	 */
 	public void stopRecording(final boolean isCancel) {
-	        if(!isRecording){
-	            return;
-	        }
-    	    if(isCancel){
-    	        Log.i(TAG, "取消录音");
-    	        this.isCancel = isCancel;
-    	        recordListener.onCancel();
-    	    }else{
-    	        Log.i(TAG, "停止录音");
-    	        mediaRecord.stop();
-    	        recordListener.onFinish(audioFile, System.currentTimeMillis()-startRecordTime);
-    	    }
-    	    isPreRecording = false;
-			isRecording = false;
-			fileName = null;
+		if (!isRecording) {
+			return;
+		}
+		if (isCancel) {
+			Log.i(TAG, "取消录音");
+			this.isCancel = isCancel;
+			recordListener.onCancel();
+		} else {
+			Log.i(TAG, "停止录音");
+			mediaRecord.stop();
+			recordListener.onFinish(audioFile, System.currentTimeMillis()
+					- startRecordTime);
+		}
+		isPreRecording = false;
+		isRecording = false;
+		fileName = null;
 	}
 
-    public String getFileName(){
-        return fileName;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public void setFileName(String fileName){
-        this.fileName = fileName;
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 }

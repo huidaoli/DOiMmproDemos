@@ -13,8 +13,6 @@ import com.can2do.doimmpro.global.MyApplication;
 /**
  * 名称：PullToRefreshActivity 描述：下拉刷新分页
  * 
- * @author 还如一梦中
- * @date 2011-12-13
  * @version
  */
 public class PullToRefreshActivity extends AbActivity {

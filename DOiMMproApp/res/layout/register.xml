@@ -30,9 +30,9 @@
                 android:gravity="center_vertical"
                 android:hint="@string/userName"
                 android:inputType="text"
-                android:singleLine="true"
                 android:maxLength="20"
                 android:paddingBottom="10dip"
+                android:singleLine="true"
                 android:textColor="@color/gray"
                 android:textSize="18sp" />
 
@@ -61,9 +61,9 @@
                 android:gravity="center_vertical"
                 android:hint="@string/userPwd"
                 android:inputType="textPassword"
-                android:singleLine="true"
                 android:maxLength="20"
                 android:paddingBottom="10dip"
+                android:singleLine="true"
                 android:textColor="@color/gray"
                 android:textSize="18sp" >
             </EditText>
@@ -93,9 +93,9 @@
                 android:gravity="center_vertical"
                 android:hint="@string/firm_pwd"
                 android:inputType="textPassword"
+                android:maxLength="20"
                 android:paddingBottom="10dip"
                 android:singleLine="true"
-                android:maxLength="20"
                 android:textColor="@color/gray"
                 android:textSize="18sp" >
             </EditText>
@@ -125,9 +125,9 @@
                 android:gravity="center_vertical"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:singleLine="true"
                 android:maxLength="20"
                 android:paddingBottom="10dip"
+                android:singleLine="true"
                 android:textColor="@color/gray"
                 android:textSize="18sp" >
             </EditText>

@@ -56,11 +56,11 @@
         android:id="@+id/operate_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" 
         android:layout_alignParentRight="true"
         android:layout_below="@+id/item_text"
-        android:paddingRight="10dip"
-        android:paddingBottom="5dip">
+        android:orientation="horizontal"
+        android:paddingBottom="5dip"
+        android:paddingRight="10dip" >
 
         <Button
             android:id="@+id/accept_button"
@@ -72,13 +72,13 @@
             android:text="@string/accept_btn"
             android:textColor="@color/white"
             android:textSize="16sp" />
-        
+
         <Button
             android:id="@+id/reject_button"
             android:layout_width="80dip"
             android:layout_height="32dip"
-            android:layout_marginLeft="8dip"
             android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="8dip"
             android:background="@drawable/button_selector_white"
             android:gravity="center"
             android:text="@string/reject_btn"

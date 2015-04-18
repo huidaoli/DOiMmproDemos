@@ -20,7 +20,8 @@ public class LeftMenuAdapter extends BaseExpandableListAdapter {
 	private ArrayList<ArrayList<AbMenuItem>> mChilds;
 	private LayoutInflater mInflater = null;
 
-	public LeftMenuAdapter(Context context, ArrayList<String> groupName,ArrayList<ArrayList<AbMenuItem>> childs ) {
+	public LeftMenuAdapter(Context context, ArrayList<String> groupName,
+			ArrayList<ArrayList<AbMenuItem>> childs) {
 		mContext = context;
 		mGroupName = groupName;
 		mChilds = childs;
@@ -39,10 +40,13 @@ public class LeftMenuAdapter extends BaseExpandableListAdapter {
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.main_menu_list_child, null);
+			convertView = mInflater
+					.inflate(R.layout.main_menu_list_child, null);
 			holder = new ViewHolder();
-			holder.mChildIcon = (ImageView) convertView.findViewById(R.id.desktop_list_child_icon);
-			holder.mChildName = (TextView) convertView.findViewById(R.id.desktop_list_child_name);
+			holder.mChildIcon = (ImageView) convertView
+					.findViewById(R.id.desktop_list_child_icon);
+			holder.mChildName = (TextView) convertView
+					.findViewById(R.id.desktop_list_child_name);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -73,9 +77,11 @@ public class LeftMenuAdapter extends BaseExpandableListAdapter {
 			View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.main_menu_list_group, null);
+			convertView = mInflater
+					.inflate(R.layout.main_menu_list_group, null);
 			holder = new ViewHolder();
-			holder.mGroupName = (TextView) convertView.findViewById(R.id.desktop_list_group_name);
+			holder.mGroupName = (TextView) convertView
+					.findViewById(R.id.desktop_list_group_name);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();

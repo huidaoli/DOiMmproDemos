@@ -27,12 +27,8 @@ import com.can2do.doimmpro.global.MyApplication;
 
 /**
  * 
- * © 2012 amsoft.cn 
- * 名称：MiniRequestActivity.java 
- * 描述：快速响应的请求
+ * © 2012 amsoft.cn 名称：MiniRequestActivity.java 描述：快速响应的请求
  * 
- * @author 还如一梦中
- * @date：2014-11-03 上午11:01:21
  * @version v1.0
  */
 public class HttpMiniActivity extends AbActivity {
@@ -42,26 +38,26 @@ public class HttpMiniActivity extends AbActivity {
 	private Response.Listener<String> mListener = new Response.Listener<String>() {
 		@Override
 		public void onResponse(String response) {
-			AbDialogUtil.showAlertDialog(HttpMiniActivity.this,"返回结果",response.trim(),new AbDialogOnClickListener(){
+			AbDialogUtil.showAlertDialog(HttpMiniActivity.this, "返回结果",
+					response.trim(), new AbDialogOnClickListener() {
 
-				@Override
-				public void onNegativeClick() {
-				}
+						@Override
+						public void onNegativeClick() {
+						}
 
-				@Override
-				public void onPositiveClick() {
-				}
-        	});
+						@Override
+						public void onPositiveClick() {
+						}
+					});
 		}
 	};
-	
+
 	private Response.ErrorListener mErrorListener = new Response.ErrorListener() {
 		@Override
 		public void onErrorResponse(VolleyError error) {
-			AbToastUtil.showToast(HttpMiniActivity.this,error.getMessage());
+			AbToastUtil.showToast(HttpMiniActivity.this, error.getMessage());
 		}
-    };
-	
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -79,8 +75,8 @@ public class HttpMiniActivity extends AbActivity {
 		mApplication = (MyApplication) abApplication;
 		Button getBtn = (Button) this.findViewById(R.id.getBtn);
 
-		mQueue = Volley.newRequestQueue(this);  
-		
+		mQueue = Volley.newRequestQueue(this);
+
 		// get请求
 		getBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -89,22 +85,25 @@ public class HttpMiniActivity extends AbActivity {
 
 				// 一个url地址
 				String urlGet = "http://www.amsoft.cn";
-				StringRequest requestGet = new StringRequest(urlGet,mListener,mErrorListener);
-				
+				StringRequest requestGet = new StringRequest(urlGet, mListener,
+						mErrorListener);
+
 				mQueue.add(requestGet);
-				
+
 				String urlPost = "http://www.baidu.com";
-				
-				StringRequest requestPost = new StringRequest(Method.POST, urlPost, mListener,mErrorListener) {
+
+				StringRequest requestPost = new StringRequest(Method.POST,
+						urlPost, mListener, mErrorListener) {
 					@Override
-					protected Map<String, String> getParams() throws AuthFailureError {
+					protected Map<String, String> getParams()
+							throws AuthFailureError {
 						Map<String, String> map = new HashMap<String, String>();
 						map.put("params1", "value1");
 						map.put("params2", "value2");
 						return map;
 					}
 				};
-				
+
 				mQueue.add(requestPost);
 
 			}
@@ -113,17 +112,16 @@ public class HttpMiniActivity extends AbActivity {
 
 	@Override
 	public void finish() {
-		mQueue.cancelAll(new RequestFilter(){
+		mQueue.cancelAll(new RequestFilter() {
 
 			@Override
 			public boolean apply(Request<?> request) {
-				//所有
+				// 所有
 				return true;
 			}
-			
+
 		});
 		super.finish();
 	}
-	
 
 }

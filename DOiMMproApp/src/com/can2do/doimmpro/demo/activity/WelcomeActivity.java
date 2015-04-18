@@ -16,7 +16,7 @@ import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.global.MyApplication;
 
 public class WelcomeActivity extends AbActivity {
-	
+
 	private MyApplication application;
 	private ImageView mShowPicture;
 	private TextView mShowText;
@@ -35,29 +35,29 @@ public class WelcomeActivity extends AbActivity {
 	private Drawable mPicture_1;
 	private Drawable mPicture_2;
 	private Drawable mPicture_3;
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setAbContentView(R.layout.welcome);
-        
-        AbTitleBar mAbTitleBar = this.getTitleBar();
-        mAbTitleBar.setTitleText(R.string.welcome_name);
-        mAbTitleBar.setLogo(R.drawable.button_selector_back);
-        mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
-        mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
-        mAbTitleBar.setLogoLine(R.drawable.line);
-        
-        mAbTitleBar.setVisibility(View.GONE);
-        
-        application = (MyApplication)abApplication;
-        mShowPicture = (ImageView) findViewById(R.id.guide_picture);
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setAbContentView(R.layout.welcome);
+
+		AbTitleBar mAbTitleBar = this.getTitleBar();
+		mAbTitleBar.setTitleText(R.string.welcome_name);
+		mAbTitleBar.setLogo(R.drawable.button_selector_back);
+		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
+		mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
+		mAbTitleBar.setLogoLine(R.drawable.line);
+
+		mAbTitleBar.setVisibility(View.GONE);
+
+		application = (MyApplication) abApplication;
+		mShowPicture = (ImageView) findViewById(R.id.guide_picture);
 		mShowText = (TextView) findViewById(R.id.guide_content);
 		init();
 		setListener();
-    }
-    
-    /**
+	}
+
+	/**
 	 * 监听事件
 	 */
 	private void setListener() {
@@ -121,7 +121,7 @@ public class WelcomeActivity extends AbActivity {
 				mShowPicture.startAnimation(mFadeIn);
 			}
 		});
-		
+
 	}
 
 	/**
@@ -142,11 +142,14 @@ public class WelcomeActivity extends AbActivity {
 	 * 初始化动画
 	 */
 	private void initAnim() {
-		mFadeIn = AnimationUtils.loadAnimation(WelcomeActivity.this,R.anim.welcome_fade_in);
+		mFadeIn = AnimationUtils.loadAnimation(WelcomeActivity.this,
+				R.anim.welcome_fade_in);
 		mFadeIn.setDuration(1000);
-		mFadeInScale = AnimationUtils.loadAnimation(WelcomeActivity.this,R.anim.welcome_fade_in_scale);
+		mFadeInScale = AnimationUtils.loadAnimation(WelcomeActivity.this,
+				R.anim.welcome_fade_in_scale);
 		mFadeInScale.setDuration(6000);
-		mFadeOut = AnimationUtils.loadAnimation(WelcomeActivity.this,R.anim.welcome_fade_out);
+		mFadeOut = AnimationUtils.loadAnimation(WelcomeActivity.this,
+				R.anim.welcome_fade_out);
 		mFadeOut.setDuration(1000);
 	}
 
@@ -158,7 +161,5 @@ public class WelcomeActivity extends AbActivity {
 		mPicture_2 = getResources().getDrawable(R.drawable.pic2);
 		mPicture_3 = getResources().getDrawable(R.drawable.pic3);
 	}
-    
+
 }
-
-

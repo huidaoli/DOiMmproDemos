@@ -57,7 +57,7 @@ public class MainMenuFragment extends Fragment {
 	private AbImageLoader mAbImageLoader = null;
 	private RelativeLayout loginLayout = null;
 	private User mUser = null;
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		mActivity = (MainActivity) this.getActivity();
@@ -77,7 +77,7 @@ public class MainMenuFragment extends Fragment {
 
 			@Override
 			public void onClick(View arg0) {
-				AbDialogUtil.showProgressDialog(mActivity,0, "正在清空缓存...");
+				AbDialogUtil.showProgressDialog(mActivity, 0, "正在清空缓存...");
 				AbTask task = new AbTask();
 				// 定义异步执行的对象
 				final AbTaskItem item = new AbTaskItem();
@@ -223,17 +223,17 @@ public class MainMenuFragment extends Fragment {
 		m8.setIconId(R.drawable.about);
 		m8.setText("关于我们");
 		mChild2.add(m8);
-		
+
 		AbMenuItem m9 = new AbMenuItem();
 		m9.setIconId(R.drawable.about);
 		m9.setText("刷新");
 		mChild2.add(m9);
-		
+
 		AbMenuItem m10 = new AbMenuItem();
 		m10.setIconId(R.drawable.about);
 		m10.setText("注销");
 		mChild2.add(m10);
-		
+
 		mAdapter.notifyDataSetChanged();
 		for (int i = 0; i < mGroupName.size(); i++) {
 			mMenuListView.expandGroup(i);
@@ -307,7 +307,7 @@ public class MainMenuFragment extends Fragment {
 						startActivity(intent);
 					} else if (childPosition == 3) {
 						// 应用游戏
-						//mActivity.showApp();
+						// mActivity.showApp();
 						Intent intent = new Intent(mActivity,
 								AboutActivity.class);
 						startActivity(intent);
@@ -315,7 +315,7 @@ public class MainMenuFragment extends Fragment {
 				} else if (groupPosition == 1) {
 					if (childPosition == 0) {
 						// 选项、赞助作者
-						//mActivity.showApp();
+						// mActivity.showApp();
 						Intent intent = new Intent(mActivity,
 								AboutActivity.class);
 						startActivity(intent);

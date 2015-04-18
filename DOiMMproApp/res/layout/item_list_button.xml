@@ -29,8 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="8dip"
-        android:layout_marginRight="10dip">
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="8dip" >
     </com.ab.view.sliding.AbSlidingButton>
 
 </RelativeLayout>

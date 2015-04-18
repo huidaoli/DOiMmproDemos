@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2012 www.amsoft.cn
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.ab.view.level;
 
 // TODO: Auto-generated Javadoc
@@ -20,61 +5,61 @@ package com.ab.view.level;
  * The Class AbLevelSeriesRenderer.
  */
 public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** 等级图形的宽. */
 	private int width;
-	
+
 	/** 等级图形的高. */
 	private int height;
-	
+
 	/** 各等级段的颜色. */
-	private int [] color = null;
-	
-	/** 假如 每段的百分比  2  3  2  1  1  1. */
-	private float [] part = null;
-	
+	private int[] color = null;
+
+	/** 假如 每段的百分比 2 3 2 1 1 1. */
+	private float[] part = null;
+
 	/** 各等级段的值. */
-	private float [] partValue = null;
-	
+	private float[] partValue = null;
+
 	/** 当前值. */
 	private String textValue = null;
-	
+
 	/** 当前值描述. */
 	private String textDesc = null;
-	
+
 	/** 当前值的等级. */
 	private int textlevelIndex = 0;
-	
+
 	/** 当前值文字大小. */
 	private int textLevelSize = 30;
-	
+
 	/** 当前值文字与顶部的距离. */
 	private int marginTop = 30;
-	
+
 	/** 指示三角形的宽度. */
-	private int arrowWidth  = 20;
-	
+	private int arrowWidth = 20;
+
 	/** 指示三角形的高度. */
 	private int arrowHeight = 10;
-	
+
 	/** 等级条的高度. */
 	private int levelHeight = 20;
-	
+
 	/** 指示三角形与其他间距. */
 	private int arrowMarginTop = 10;
-	
+
 	/** 等级坐标文字大小. */
 	private int partTextSize = 15;
-	
+
 	/** 等级说明文字大小. */
 	private int textDescSize = 22;
-	
+
 	/** 等级说明文字外边框的宽. */
 	private int textRectWidth = 120;
-	
+
 	/** 等级说明文字外边框的搞. */
 	private int textRectHeight = 60;
 
@@ -87,7 +72,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the width.
-	 *
+	 * 
 	 * @return the width
 	 */
 	public int getWidth() {
@@ -96,8 +81,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the width.
-	 *
-	 * @param width the new width
+	 * 
+	 * @param width
+	 *            the new width
 	 */
 	public void setWidth(int width) {
 		this.width = width;
@@ -105,7 +91,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the height.
-	 *
+	 * 
 	 * @return the height
 	 */
 	public int getHeight() {
@@ -114,8 +100,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the height.
-	 *
-	 * @param height the new height
+	 * 
+	 * @param height
+	 *            the new height
 	 */
 	public void setHeight(int height) {
 		this.height = height;
@@ -123,7 +110,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the color.
-	 *
+	 * 
 	 * @return the color
 	 */
 	public int[] getColor() {
@@ -132,8 +119,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the color.
-	 *
-	 * @param color the new color
+	 * 
+	 * @param color
+	 *            the new color
 	 */
 	public void setColor(int[] color) {
 		this.color = color;
@@ -141,7 +129,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the part.
-	 *
+	 * 
 	 * @return the part
 	 */
 	public float[] getPart() {
@@ -150,8 +138,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the part.
-	 *
-	 * @param part the new part
+	 * 
+	 * @param part
+	 *            the new part
 	 */
 	public void setPart(float[] part) {
 		this.part = part;
@@ -159,7 +148,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the part value.
-	 *
+	 * 
 	 * @return the part value
 	 */
 	public float[] getPartValue() {
@@ -168,8 +157,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the part value.
-	 *
-	 * @param partValue the new part value
+	 * 
+	 * @param partValue
+	 *            the new part value
 	 */
 	public void setPartValue(float[] partValue) {
 		this.partValue = partValue;
@@ -177,7 +167,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the text value.
-	 *
+	 * 
 	 * @return the text value
 	 */
 	public String getTextValue() {
@@ -186,8 +176,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the text value.
-	 *
-	 * @param textValue the new text value
+	 * 
+	 * @param textValue
+	 *            the new text value
 	 */
 	public void setTextValue(String textValue) {
 		this.textValue = textValue;
@@ -195,7 +186,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the text desc.
-	 *
+	 * 
 	 * @return the text desc
 	 */
 	public String getTextDesc() {
@@ -204,8 +195,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the text desc.
-	 *
-	 * @param textDesc the new text desc
+	 * 
+	 * @param textDesc
+	 *            the new text desc
 	 */
 	public void setTextDesc(String textDesc) {
 		this.textDesc = textDesc;
@@ -213,7 +205,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the textlevel index.
-	 *
+	 * 
 	 * @return the textlevel index
 	 */
 	public int getTextlevelIndex() {
@@ -222,8 +214,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the textlevel index.
-	 *
-	 * @param textlevelIndex the new textlevel index
+	 * 
+	 * @param textlevelIndex
+	 *            the new textlevel index
 	 */
 	public void setTextlevelIndex(int textlevelIndex) {
 		this.textlevelIndex = textlevelIndex;
@@ -231,7 +224,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the text level size.
-	 *
+	 * 
 	 * @return the text level size
 	 */
 	public int getTextLevelSize() {
@@ -240,8 +233,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the text level size.
-	 *
-	 * @param textLevelSize the new text level size
+	 * 
+	 * @param textLevelSize
+	 *            the new text level size
 	 */
 	public void setTextLevelSize(int textLevelSize) {
 		this.textLevelSize = textLevelSize;
@@ -249,7 +243,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the margin top.
-	 *
+	 * 
 	 * @return the margin top
 	 */
 	public int getMarginTop() {
@@ -258,8 +252,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the margin top.
-	 *
-	 * @param marginTop the new margin top
+	 * 
+	 * @param marginTop
+	 *            the new margin top
 	 */
 	public void setMarginTop(int marginTop) {
 		this.marginTop = marginTop;
@@ -267,7 +262,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the arrow width.
-	 *
+	 * 
 	 * @return the arrow width
 	 */
 	public int getArrowWidth() {
@@ -276,8 +271,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the arrow width.
-	 *
-	 * @param arrowWidth the new arrow width
+	 * 
+	 * @param arrowWidth
+	 *            the new arrow width
 	 */
 	public void setArrowWidth(int arrowWidth) {
 		this.arrowWidth = arrowWidth;
@@ -285,7 +281,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the arrow height.
-	 *
+	 * 
 	 * @return the arrow height
 	 */
 	public int getArrowHeight() {
@@ -294,8 +290,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the arrow height.
-	 *
-	 * @param arrowHeight the new arrow height
+	 * 
+	 * @param arrowHeight
+	 *            the new arrow height
 	 */
 	public void setArrowHeight(int arrowHeight) {
 		this.arrowHeight = arrowHeight;
@@ -303,7 +300,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the level height.
-	 *
+	 * 
 	 * @return the level height
 	 */
 	public int getLevelHeight() {
@@ -312,8 +309,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the level height.
-	 *
-	 * @param levelHeight the new level height
+	 * 
+	 * @param levelHeight
+	 *            the new level height
 	 */
 	public void setLevelHeight(int levelHeight) {
 		this.levelHeight = levelHeight;
@@ -321,7 +319,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the arrow margin top.
-	 *
+	 * 
 	 * @return the arrow margin top
 	 */
 	public int getArrowMarginTop() {
@@ -330,8 +328,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the arrow margin top.
-	 *
-	 * @param arrowMarginTop the new arrow margin top
+	 * 
+	 * @param arrowMarginTop
+	 *            the new arrow margin top
 	 */
 	public void setArrowMarginTop(int arrowMarginTop) {
 		this.arrowMarginTop = arrowMarginTop;
@@ -339,7 +338,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the part text size.
-	 *
+	 * 
 	 * @return the part text size
 	 */
 	public int getPartTextSize() {
@@ -348,8 +347,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the part text size.
-	 *
-	 * @param partTextSize the new part text size
+	 * 
+	 * @param partTextSize
+	 *            the new part text size
 	 */
 	public void setPartTextSize(int partTextSize) {
 		this.partTextSize = partTextSize;
@@ -357,7 +357,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the text desc size.
-	 *
+	 * 
 	 * @return the text desc size
 	 */
 	public int getTextDescSize() {
@@ -366,8 +366,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the text desc size.
-	 *
-	 * @param textDescSize the new text desc size
+	 * 
+	 * @param textDescSize
+	 *            the new text desc size
 	 */
 	public void setTextDescSize(int textDescSize) {
 		this.textDescSize = textDescSize;
@@ -375,7 +376,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the text rect width.
-	 *
+	 * 
 	 * @return the text rect width
 	 */
 	public int getTextRectWidth() {
@@ -384,8 +385,9 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the text rect width.
-	 *
-	 * @param textRectWidth the new text rect width
+	 * 
+	 * @param textRectWidth
+	 *            the new text rect width
 	 */
 	public void setTextRectWidth(int textRectWidth) {
 		this.textRectWidth = textRectWidth;
@@ -393,7 +395,7 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Gets the text rect height.
-	 *
+	 * 
 	 * @return the text rect height
 	 */
 	public int getTextRectHeight() {
@@ -402,13 +404,12 @@ public class AbLevelSeriesRenderer extends AbLevelDefaultRenderer {
 
 	/**
 	 * Sets the text rect height.
-	 *
-	 * @param textRectHeight the new text rect height
+	 * 
+	 * @param textRectHeight
+	 *            the new text rect height
 	 */
 	public void setTextRectHeight(int textRectHeight) {
 		this.textRectHeight = textRectHeight;
 	}
-	
-	
-  
+
 }

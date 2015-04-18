@@ -7,14 +7,14 @@ package com.can2do.doimmpro.im;
  */
 public class IMConfig {
 
-	private String xmppHost;       // 地址
-	private Integer xmppPort;      // 端口
+	private String xmppHost; // 地址
+	private Integer xmppPort; // 端口
 	private String xmppServiceName;// 服务器名称
-	private String userName;       // 用户名
-	private String password;       // 密码
-	private String sessionId;      // 会话id
-	private boolean isNovisible;   // 是否隐身登录
-	private boolean isOnline;      // 用户连接成功connection
+	private String userName; // 用户名
+	private String password; // 密码
+	private String sessionId; // 会话id
+	private boolean isNovisible; // 是否隐身登录
+	private boolean isOnline; // 用户连接成功connection
 
 	public boolean isOnline() {
 		return isOnline;
@@ -79,6 +79,5 @@ public class IMConfig {
 	public void setNovisible(boolean isNovisible) {
 		this.isNovisible = isNovisible;
 	}
-
 
 }

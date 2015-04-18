@@ -19,7 +19,5 @@ public class ArticleListResult extends AbResult {
 	public void setItems(List<Article> items) {
 		this.items = items;
 	}
-	
-	
 
 }

@@ -1,15 +1,11 @@
 package com.can2do.doimmpro.im.model;
 
-
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * intent可以携带传递Parcel数据，需要实现三个方法 . 
- * 1、describeContents()返回0就可以.
- * 2、将需要的数据写入Parcel中，框架调用这个方法传递数据. 
- * 3、重写外部类反序列化该类时调用的方法.
+ * intent可以携带传递Parcel数据，需要实现三个方法 . 1、describeContents()返回0就可以.
+ * 2、将需要的数据写入Parcel中，框架调用这个方法传递数据. 3、重写外部类反序列化该类时调用的方法.
  */
 public class IMUser implements Parcelable {
 
@@ -17,10 +13,10 @@ public class IMUser implements Parcelable {
 	 * 将user保存在intent中时的key
 	 */
 	public static final String USERKEY = "im_user";
-	
+
 	public static final int AVAILABLE = 1;
 	public static final int UNAVAILABLE = 0;
-	
+
 	private String jid;
 	private String name;
 	private boolean available;

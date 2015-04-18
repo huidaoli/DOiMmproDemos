@@ -83,28 +83,27 @@ public class MyApplication extends Application {
 	 * IM配置
 	 */
 	public void initIMConfig() {
-	    IMConfig mIMConfig = new IMConfig();
+		IMConfig mIMConfig = new IMConfig();
 
-	    mIMConfig.setXmppHost(mSharedPreferences.getString(
+		mIMConfig.setXmppHost(mSharedPreferences.getString(
 				IMConstant.XMPP_HOST,
 				getResources().getString(R.string.xmpp_host)));
 
-	    mIMConfig.setXmppPort(mSharedPreferences.getInt(
-				IMConstant.XMPP_PORT,
+		mIMConfig.setXmppPort(mSharedPreferences.getInt(IMConstant.XMPP_PORT,
 				getResources().getInteger(R.integer.xmpp_port)));
 
-	    mIMConfig.setXmppServiceName(mSharedPreferences.getString(
+		mIMConfig.setXmppServiceName(mSharedPreferences.getString(
 				IMConstant.XMPP_SEIVICE_NAME,
 				getResources().getString(R.string.xmpp_service_name)));
 
-	    mIMConfig.setNovisible(mSharedPreferences.getBoolean(
+		mIMConfig.setNovisible(mSharedPreferences.getBoolean(
 				IMConstant.IS_NOVISIBLE,
 				getResources().getBoolean(R.bool.is_novisible)));
-		
-		IMUtil.setIMConfig(this.getApplicationContext(),mIMConfig);
-		
+
+		IMUtil.setIMConfig(this.getApplicationContext(), mIMConfig);
+
 	}
-	
+
 	@Override
 	public void onTerminate() {
 		super.onTerminate();

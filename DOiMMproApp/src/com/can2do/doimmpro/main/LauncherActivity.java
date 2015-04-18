@@ -11,9 +11,8 @@ import android.widget.RelativeLayout;
 
 import com.can2do.doimmpro.R;
 
-
 public class LauncherActivity extends Activity {
-	
+
 	private RelativeLayout mLaunchLayout;
 	private Animation mFadeIn;
 	private Animation mFadeInScale;
@@ -30,10 +29,10 @@ public class LauncherActivity extends Activity {
 	}
 
 	private void setListener() {
-		
+
 		/**
-		 * 动画切换原理:开始时是用第一个渐现动画,当第一个动画结束时开始第二个放大动画,当第二个动画结束时调用第三个渐隐动画,
-		 * 第三个动画结束时修改显示的内容并且重新调用第一个动画,从而达到循环效果
+		 * 动画切换原理:开始时是用第一个渐现动画, 当第一个动画结束时开始第二个放大动画, 当第二个动画结束时调用第三个渐隐动画,
+		 * 第三个动画结束时修改显示的内容并且重新调用第一个动画, 从而达到循环效果
 		 */
 		mFadeIn.setAnimationListener(new AnimationListener() {
 
@@ -63,7 +62,7 @@ public class LauncherActivity extends Activity {
 				mLaunchLayout.startAnimation(mFadeOut);
 			}
 		});
-		
+
 		mFadeOut.setAnimationListener(new AnimationListener() {
 
 			public void onAnimationStart(Animation animation) {
@@ -78,10 +77,9 @@ public class LauncherActivity extends Activity {
 			}
 
 			public void onAnimationEnd(Animation animation) {
-				
+
 			}
 		});
-		
 
 	}
 
@@ -91,11 +89,14 @@ public class LauncherActivity extends Activity {
 	}
 
 	private void initAnim() {
-		mFadeIn = AnimationUtils.loadAnimation(LauncherActivity.this,R.anim.welcome_fade_in);
+		mFadeIn = AnimationUtils.loadAnimation(LauncherActivity.this,
+				R.anim.welcome_fade_in);
 		mFadeIn.setDuration(1500);
-		mFadeInScale = AnimationUtils.loadAnimation(LauncherActivity.this,R.anim.welcome_fade_in_scale);
+		mFadeInScale = AnimationUtils.loadAnimation(LauncherActivity.this,
+				R.anim.welcome_fade_in_scale);
 		mFadeInScale.setDuration(2000);
-		mFadeOut = AnimationUtils.loadAnimation(LauncherActivity.this,R.anim.welcome_fade_out);
+		mFadeOut = AnimationUtils.loadAnimation(LauncherActivity.this,
+				R.anim.welcome_fade_out);
 		mFadeOut.setDuration(1500);
 	}
 

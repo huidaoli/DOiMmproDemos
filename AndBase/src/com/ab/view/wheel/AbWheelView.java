@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2012 www.amsoft.cn
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.ab.view.wheel;
 
 import java.util.LinkedList;
@@ -47,16 +32,11 @@ import com.ab.util.AbViewUtil;
 // TODO: Auto-generated Javadoc
 
 /**
- * © 2012 amsoft.cn
- * 名称：AbWheelView.java 
- * 描述：轮子View
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2013-05-17 下午6:46:29
+ * © 2012 amsoft.cn 名称：AbWheelView.java 描述：轮子View
+ * 
  */
 public class AbWheelView extends View {
-	
+
 	/** The m context. */
 	private Context mContext = null;
 
@@ -70,14 +50,15 @@ public class AbWheelView extends View {
 	private static final int ITEMS_TEXT_COLOR = 0xFF000000;
 
 	/** Top and bottom shadows colors. */
-	private static int[] SHADOWS_COLORS = new int[] { 0xFF111111, 0x00AAAAAA, 0x00AAAAAA };
+	private static int[] SHADOWS_COLORS = new int[] { 0xFF111111, 0x00AAAAAA,
+			0x00AAAAAA };
 
 	/** Label offset. */
 	private static final int LABEL_OFFSET = 8;
 
 	/** Left and right padding value. */
 	private static final int PADDING = 5;
-	
+
 	/** Default count of visible items. */
 	private static final int DEF_VISIBLE_ITEMS = 5;
 
@@ -109,7 +90,7 @@ public class AbWheelView extends View {
 
 	/** The value paint. */
 	private TextPaint valuePaint;
-	
+
 	/** The label paint. */
 	private TextPaint labelPaint;
 
@@ -154,68 +135,72 @@ public class AbWheelView extends View {
 
 	/** The scrolling listeners. */
 	private List<AbOnWheelScrollListener> scrollingListeners = new LinkedList<AbOnWheelScrollListener>();
-	
+
 	/** 中间覆盖条的背景图. */
 	private Drawable centerSelectDrawable;
-	
+
 	/** 中间覆盖条的颜色，如果没有设置centerDrawable时才生效. */
-	private int[] centerSelectGradientColors = new int[] {0x70222222,0x70222222, 0x70EEEEEE};
-	
+	private int[] centerSelectGradientColors = new int[] { 0x70222222,
+			0x70222222, 0x70EEEEEE };
+
 	/** The center select stroke width. */
-	private int centerSelectStrokeWidth  = 1;
-	
+	private int centerSelectStrokeWidth = 1;
+
 	/** The center select stroke color. */
-	private int centerSelectStrokeColor  = 0x70333333;
-	
+	private int centerSelectStrokeColor = 0x70333333;
+
 	/** Shadows drawables. */
 	private GradientDrawable topShadow;
-    
-    /** The bottom shadow. */
-    private GradientDrawable bottomShadow;
-    
-    /** Current value. */
+
+	/** The bottom shadow. */
+	private GradientDrawable bottomShadow;
+
+	/** Current value. */
 	private int valueTextColor = 0xF0000000;
-	
+
 	/** Current label text color. */
 	private int labelTextColor = 0xF0000000;
-	
-	//轮子的背景 底部的颜色 
+
+	// 轮子的背景 底部的颜色
 	/** The bottom gradient colors. */
 	private int[] bottomGradientColors = new int[] { 0x333, 0xDDD, 0x333 };
-	//轮子的背景 顶部的颜色 
+	// 轮子的背景 顶部的颜色
 	/** The top gradient colors. */
 	private int[] topGradientColors = new int[] { 0xAAA, 0xFFF, 0xAAA };
-	
+
 	/** The top stroke width. */
-	private int topStrokeWidth  = 1;
-	
+	private int topStrokeWidth = 1;
+
 	/** The top stroke color. */
-	private int topStrokeColor  = 0xFF333333;
-	
+	private int topStrokeColor = 0xFF333333;
+
 	/** 值的文字大小. */
 	private int valueTextSize = 35;
-	
+
 	/** 标签的文字大小. */
 	private int labelTextSize = 35;
 
 	/** Top and bottom items offset. */
 	private int itemOffset = valueTextSize / 5;
-	
+
 	/** 中间覆盖条高度. */
 	private int additionalItemHeight = 30;
-	
+
 	/** 屏幕宽度. */
 	private int screenWidth = 0;
-	
+
 	/** 屏幕高度. */
 	private int screenHeight = 0;
-	
+
 	/**
 	 * Constructor.
-	 *
-	 * @param context the context
-	 * @param attrs the attrs
-	 * @param defStyle the def style
+	 * 
+	 * @param context
+	 *            the context
+	 * @param attrs
+	 *            the attrs
+	 * @param defStyle
+	 *            the def style
 	 */
 	public AbWheelView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -224,9 +209,11 @@ public class AbWheelView extends View {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param context the context
-	 * @param attrs the attrs
+	 * 
+	 * @param context
+	 *            the context
+	 * @param attrs
+	 *            the attrs
 	 */
 	public AbWheelView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -235,8 +222,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param context the context
+	 * 
+	 * @param context
+	 *            the context
 	 */
 	public AbWheelView(Context context) {
 		super(context);
@@ -245,23 +233,25 @@ public class AbWheelView extends View {
 
 	/**
 	 * Initializes class data.
-	 *
-	 * @param context the context
+	 * 
+	 * @param context
+	 *            the context
 	 */
 	private void initData(Context context) {
 		mContext = context;
 		gestureDetector = new GestureDetector(context, gestureListener);
 		gestureDetector.setIsLongpressEnabled(false);
 		scroller = new Scroller(context);
-		DisplayMetrics displayMetrics = new DisplayMetrics(); 
-		((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-		screenWidth = displayMetrics.widthPixels; 
-		screenHeight = displayMetrics.heightPixels; 
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		((Activity) context).getWindowManager().getDefaultDisplay()
+				.getMetrics(displayMetrics);
+		screenWidth = displayMetrics.widthPixels;
+		screenHeight = displayMetrics.heightPixels;
 	}
 
 	/**
 	 * Gets wheel adapter.
-	 *
+	 * 
 	 * @return the adapter
 	 */
 	public AbWheelAdapter getAdapter() {
@@ -270,8 +260,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets wheel adapter.
-	 *
-	 * @param adapter the new wheel adapter
+	 * 
+	 * @param adapter
+	 *            the new wheel adapter
 	 */
 	public void setAdapter(AbWheelAdapter adapter) {
 		this.adapter = adapter;
@@ -281,8 +272,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Set the the specified scrolling interpolator.
-	 *
-	 * @param interpolator the interpolator
+	 * 
+	 * @param interpolator
+	 *            the interpolator
 	 */
 	public void setInterpolator(Interpolator interpolator) {
 		scroller.forceFinished(true);
@@ -291,7 +283,7 @@ public class AbWheelView extends View {
 
 	/**
 	 * Gets count of visible items.
-	 *
+	 * 
 	 * @return the count of visible items
 	 */
 	public int getVisibleItems() {
@@ -300,8 +292,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets count of visible items.
-	 *
-	 * @param count the new count
+	 * 
+	 * @param count
+	 *            the new count
 	 */
 	public void setVisibleItems(int count) {
 		visibleItems = count;
@@ -310,7 +303,7 @@ public class AbWheelView extends View {
 
 	/**
 	 * Gets label.
-	 *
+	 * 
 	 * @return the label
 	 */
 	public String getLabel() {
@@ -319,8 +312,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets label.
-	 *
-	 * @param newLabel the label to set
+	 * 
+	 * @param newLabel
+	 *            the label to set
 	 */
 	public void setLabel(String newLabel) {
 		if (label == null || !label.equals(newLabel)) {
@@ -332,8 +326,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Adds wheel changing listener.
-	 *
-	 * @param listener the listener
+	 * 
+	 * @param listener
+	 *            the listener
 	 */
 	public void addChangingListener(AbOnWheelChangedListener listener) {
 		changingListeners.add(listener);
@@ -341,8 +336,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Removes wheel changing listener.
-	 *
-	 * @param listener the listener
+	 * 
+	 * @param listener
+	 *            the listener
 	 */
 	public void removeChangingListener(AbOnWheelChangedListener listener) {
 		changingListeners.remove(listener);
@@ -350,9 +346,11 @@ public class AbWheelView extends View {
 
 	/**
 	 * Notifies changing listeners.
-	 *
-	 * @param oldValue  the old wheel value
-	 * @param newValue  the new wheel value
+	 * 
+	 * @param oldValue
+	 *            the old wheel value
+	 * @param newValue
+	 *            the new wheel value
 	 */
 	protected void notifyChangingListeners(int oldValue, int newValue) {
 		for (AbOnWheelChangedListener listener : changingListeners) {
@@ -362,8 +360,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Adds wheel scrolling listener.
-	 *
-	 * @param listener the listener
+	 * 
+	 * @param listener
+	 *            the listener
 	 */
 	public void addScrollingListener(AbOnWheelScrollListener listener) {
 		scrollingListeners.add(listener);
@@ -371,8 +370,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Removes wheel scrolling listener.
-	 *
-	 * @param listener the listener
+	 * 
+	 * @param listener
+	 *            the listener
 	 */
 	public void removeScrollingListener(AbOnWheelScrollListener listener) {
 		scrollingListeners.remove(listener);
@@ -398,7 +398,7 @@ public class AbWheelView extends View {
 
 	/**
 	 * Gets current value.
-	 *
+	 * 
 	 * @return the current value
 	 */
 	public int getCurrentItem() {
@@ -407,8 +407,11 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the current item. Does nothing when index is wrong.
-	 * @param index the item index
-	 * @param animated the animation flag
+	 * 
+	 * @param index
+	 *            the item index
+	 * @param animated
+	 *            the animation flag
 	 */
 	public void setCurrentItem(int index, boolean animated) {
 		if (adapter == null || adapter.getItemsCount() == 0) {
@@ -442,7 +445,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the current item w/o animation. Does nothing when index is wrong.
-	 * @param index the item index
+	 * 
+	 * @param index
+	 *            the item index
 	 */
 	public void setCurrentItem(int index) {
 		setCurrentItem(index, false);
@@ -451,6 +456,7 @@ public class AbWheelView extends View {
 	/**
 	 * Tests if wheel is cyclic. That means before the 1st item there is shown
 	 * the last one
+	 * 
 	 * @return true if wheel is cyclic
 	 */
 	public boolean isCyclic() {
@@ -459,8 +465,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Set wheel cyclic flag.
-	 *
-	 * @param isCyclic the flag to set
+	 * 
+	 * @param isCyclic
+	 *            the flag to set
 	 */
 	public void setCyclic(boolean isCyclic) {
 		this.isCyclic = isCyclic;
@@ -483,76 +490,88 @@ public class AbWheelView extends View {
 	 */
 	private void initResourcesIfNecessary() {
 		if (itemsPaint == null) {
-			itemsPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
+			itemsPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG
+					| Paint.FAKE_BOLD_TEXT_FLAG);
 			// itemsPaint.density = getResources().getDisplayMetrics().density;
 			itemsPaint.setTextSize(valueTextSize);
 		}
 
 		if (valuePaint == null) {
-			valuePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.FAKE_BOLD_TEXT_FLAG | Paint.DITHER_FLAG);
+			valuePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG
+					| Paint.FAKE_BOLD_TEXT_FLAG | Paint.DITHER_FLAG);
 			// valuePaint.density = getResources().getDisplayMetrics().density;
 			valuePaint.setTextSize(valueTextSize);
 		}
-		
+
 		if (labelPaint == null) {
-			labelPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.FAKE_BOLD_TEXT_FLAG | Paint.DITHER_FLAG);
+			labelPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG
+					| Paint.FAKE_BOLD_TEXT_FLAG | Paint.DITHER_FLAG);
 			labelPaint.setTextSize(labelTextSize);
-			//设置阴影
+			// 设置阴影
 			labelPaint.setShadowLayer(0.5f, 0, 1, 0xFFFFFFFF);
 		}
 
-		//如果没设置中间的选中条用默认的颜色
+		// 如果没设置中间的选中条用默认的颜色
 		if (centerSelectDrawable == null) {
-			GradientDrawable mGradientDrawable = new GradientDrawable(Orientation.BOTTOM_TOP, centerSelectGradientColors);
-			mGradientDrawable.setStroke(centerSelectStrokeWidth, centerSelectStrokeColor);
+			GradientDrawable mGradientDrawable = new GradientDrawable(
+					Orientation.BOTTOM_TOP, centerSelectGradientColors);
+			mGradientDrawable.setStroke(centerSelectStrokeWidth,
+					centerSelectStrokeColor);
 			centerSelectDrawable = mGradientDrawable;
 		}
 
-		/* Android中提供了Shader类专门用来渲染图像以及一些几何图形，
-		 Shader下面包括几个直接子类，分别是BitmapShader、 ComposeShader、LinearGradient、
-		 RadialGradient、SweepGradient。 BitmapShader主要用来渲染图像，
-		 LinearGradient 用来进行梯度渲染，RadialGradient 用来进行环形渲染，
-		 SweepGradient 
-		 用来进行梯度渲染，ComposeShader则是一个 混合渲染，可以和其它几个子类组合起来使用。 */
+		/*
+		 * Android中提供了Shader类专门用来渲染图像以及一些几何图形， Shader下面包括几个直接子类，分别是BitmapShader、
+		 * ComposeShader、LinearGradient、 RadialGradient、SweepGradient。
+		 * BitmapShader主要用来渲染图像， LinearGradient 用来进行梯度渲染，RadialGradient
+		 * 用来进行环形渲染， SweepGradient 用来进行梯度渲染，ComposeShader则是一个
+		 * 混合渲染，可以和其它几个子类组合起来使用。
+		 */
 
-		//上边界渐变层
+		// 上边界渐变层
 		if (topShadow == null) {
-			topShadow = new GradientDrawable(Orientation.TOP_BOTTOM, SHADOWS_COLORS);
+			topShadow = new GradientDrawable(Orientation.TOP_BOTTOM,
+					SHADOWS_COLORS);
 		}
-		//下边界渐变层
+		// 下边界渐变层
 		if (bottomShadow == null) {
-			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP, SHADOWS_COLORS);
+			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP,
+					SHADOWS_COLORS);
 		}
-		
-		if(this.getBackground()==null){
-			//原来用颜色渐变实现setBackgroundDrawable(layerDrawable);
-			//底部的颜色
-			GradientDrawable mGradientDrawable1 = new GradientDrawable(Orientation.TOP_BOTTOM, topGradientColors);
-			GradientDrawable mGradientDrawable2 = new GradientDrawable(Orientation.BOTTOM_TOP, bottomGradientColors);
-			
+
+		if (this.getBackground() == null) {
+			// 原来用颜色渐变实现setBackgroundDrawable(layerDrawable);
+			// 底部的颜色
+			GradientDrawable mGradientDrawable1 = new GradientDrawable(
+					Orientation.TOP_BOTTOM, topGradientColors);
+			GradientDrawable mGradientDrawable2 = new GradientDrawable(
+					Orientation.BOTTOM_TOP, bottomGradientColors);
+
 			mGradientDrawable1.setStroke(topStrokeWidth, topStrokeColor);
 			mGradientDrawable1.setShape(GradientDrawable.RECTANGLE);
 			mGradientDrawable2.setShape(GradientDrawable.RECTANGLE);
-			mGradientDrawable1.setGradientType(GradientDrawable.LINEAR_GRADIENT );
-			mGradientDrawable2.setGradientType(GradientDrawable.LINEAR_GRADIENT );
+			mGradientDrawable1
+					.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+			mGradientDrawable2
+					.setGradientType(GradientDrawable.LINEAR_GRADIENT);
 
 			GradientDrawable[] mDrawables = new GradientDrawable[2];
 			mDrawables[0] = mGradientDrawable1;
 			mDrawables[1] = mGradientDrawable2;
-			
-			LayerDrawable layerDrawable = new LayerDrawable(mDrawables); 
-			layerDrawable.setLayerInset(0, 0, 0, 0, 0);  //第一个参数0代表数组的第1个元素
-			layerDrawable.setLayerInset(1, 4, 1, 4, 1);  //第一个参数1代表数组的第2个元素
+
+			LayerDrawable layerDrawable = new LayerDrawable(mDrawables);
+			layerDrawable.setLayerInset(0, 0, 0, 0, 0); // 第一个参数0代表数组的第1个元素
+			layerDrawable.setLayerInset(1, 4, 1, 4, 1); // 第一个参数1代表数组的第2个元素
 			setBackgroundDrawable(layerDrawable);
 		}
-		
-		
+
 	}
 
 	/**
 	 * Calculates desired height for layout.
-	 *
-	 * @param layout the source layout
+	 * 
+	 * @param layout
+	 *            the source layout
 	 * @return the desired layout height
 	 */
 	private int getDesiredHeight(Layout layout) {
@@ -560,7 +579,8 @@ public class AbWheelView extends View {
 			return 0;
 		}
 
-		int desired = getItemHeight() * visibleItems - itemOffset * 2 - additionalItemHeight;
+		int desired = getItemHeight() * visibleItems - itemOffset * 2
+				- additionalItemHeight;
 
 		// Check against our minimum height
 		desired = Math.max(desired, getSuggestedMinimumHeight());
@@ -570,8 +590,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Returns text item by index.
-	 *
-	 * @param index the item index
+	 * 
+	 * @param index
+	 *            the item index
 	 * @return the item or null
 	 */
 	private String getTextItem(int index) {
@@ -593,8 +614,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Builds text depending on current value.
-	 *
-	 * @param useCurrentValue the use current value
+	 * 
+	 * @param useCurrentValue
+	 *            the use current value
 	 * @return the text
 	 */
 	private String buildText(boolean useCurrentValue) {
@@ -618,7 +640,7 @@ public class AbWheelView extends View {
 
 	/**
 	 * Returns the max item length that can be present.
-	 *
+	 * 
 	 * @return the max length
 	 */
 	private int getMaxTextLength() {
@@ -630,14 +652,14 @@ public class AbWheelView extends View {
 		int adapterLength = adapter.getMaximumLength();
 		if (adapterLength > 0) {
 			return adapterLength;
-		}else{
+		} else {
 			return 0;
 		}
 	}
 
 	/**
 	 * Returns height of wheel item.
-	 *
+	 * 
 	 * @return the item height
 	 */
 	private int getItemHeight() {
@@ -653,9 +675,11 @@ public class AbWheelView extends View {
 
 	/**
 	 * Calculates control width and creates text layouts.
-	 *
-	 * @param widthSize the input layout width
-	 * @param mode the layout mode
+	 * 
+	 * @param widthSize
+	 *            the input layout width
+	 * @param mode
+	 *            the layout mode
 	 * @return the calculated control width
 	 */
 	private int calculateLayoutWidth(int widthSize, int mode) {
@@ -665,21 +689,22 @@ public class AbWheelView extends View {
 
 		int maxLength = getMaxTextLength();
 		if (maxLength > 0) {
-			//一个字符宽度
-			float textWidth = (int)AbGraphicUtil.getStringWidth("0", labelPaint);
-			//不算lable的宽度
+			// 一个字符宽度
+			float textWidth = (int) AbGraphicUtil.getStringWidth("0",
+					labelPaint);
+			// 不算lable的宽度
 			itemsWidth = (int) (maxLength * textWidth);
 		} else {
 			itemsWidth = 0;
 		}
-		
-		//空隙宽度
-		itemsWidth += LABEL_OFFSET; 
 
-		//label宽度的计算
+		// 空隙宽度
+		itemsWidth += LABEL_OFFSET;
+
+		// label宽度的计算
 		labelWidth = 0;
 		if (label != null && label.length() > 0) {
-			labelWidth = (int)AbGraphicUtil.getStringWidth(label, labelPaint);
+			labelWidth = (int) AbGraphicUtil.getStringWidth(label, labelPaint);
 		}
 
 		boolean recalculate = false;
@@ -708,25 +733,23 @@ public class AbWheelView extends View {
 				itemsWidth = labelWidth = 0;
 			}
 			if (labelWidth > 0) {
-				//对半分后再调整下
-				int newItemsWidth = pureWidth/2;
+				// 对半分后再调整下
+				int newItemsWidth = pureWidth / 2;
 				int newLabelWidth = pureWidth - itemsWidth;
-				if(newItemsWidth<itemsWidth){
-					//放不下了,看label有空余宽度没有
-					itemsWidth = newItemsWidth + newLabelWidth-labelWidth;
-				}else{
+				if (newItemsWidth < itemsWidth) {
+					// 放不下了,看label有空余宽度没有
+					itemsWidth = newItemsWidth + newLabelWidth - labelWidth;
+				} else {
 					labelWidth = newLabelWidth;
 					itemsWidth = newItemsWidth;
 				}
-				
-				
-				
+
 			} else {
 				// no label
-				itemsWidth = pureWidth + LABEL_OFFSET; 
+				itemsWidth = pureWidth + LABEL_OFFSET;
 			}
 		}
-		
+
 		if (itemsWidth > 0) {
 			createLayouts(itemsWidth, labelWidth);
 		}
@@ -736,27 +759,35 @@ public class AbWheelView extends View {
 
 	/**
 	 * Creates layouts.
-	 *
-	 * @param widthItems width of items layout
-	 * @param widthLabel width of label layout
+	 * 
+	 * @param widthItems
+	 *            width of items layout
+	 * @param widthLabel
+	 *            width of label layout
 	 */
 	private void createLayouts(int widthItems, int widthLabel) {
-		//190 94
-		//if(D)Log.d(TAG, "widthItems:"+widthItems);
-		//if(D)Log.d(TAG, "widthLabel:"+widthLabel);
-		
+		// 190 94
+		// if(D)Log.d(TAG, "widthItems:"+widthItems);
+		// if(D)Log.d(TAG, "widthLabel:"+widthLabel);
+
 		if (itemsLayout == null || itemsLayout.getWidth() > widthItems) {
-			itemsLayout = new StaticLayout(buildText(isScrollingPerformed), itemsPaint, widthItems,
-					widthLabel > 0 ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_CENTER, 1,
+			itemsLayout = new StaticLayout(buildText(isScrollingPerformed),
+					itemsPaint, widthItems,
+					widthLabel > 0 ? Layout.Alignment.ALIGN_OPPOSITE
+							: Layout.Alignment.ALIGN_CENTER, 1,
 					additionalItemHeight, false);
 		} else {
 			itemsLayout.increaseWidthTo(widthItems);
 		}
 
-		if (!isScrollingPerformed && (valueLayout == null || valueLayout.getWidth() > widthItems)) {
-			String text = getAdapter() != null ? getAdapter().getItem(currentItem) : null;
-			valueLayout = new StaticLayout(text != null ? text : "", valuePaint, widthItems,
-					widthLabel > 0 ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_CENTER, 1,
+		if (!isScrollingPerformed
+				&& (valueLayout == null || valueLayout.getWidth() > widthItems)) {
+			String text = getAdapter() != null ? getAdapter().getItem(
+					currentItem) : null;
+			valueLayout = new StaticLayout(text != null ? text : "",
+					valuePaint, widthItems,
+					widthLabel > 0 ? Layout.Alignment.ALIGN_OPPOSITE
+							: Layout.Alignment.ALIGN_CENTER, 1,
 					additionalItemHeight, false);
 		} else if (isScrollingPerformed) {
 			valueLayout = null;
@@ -766,8 +797,9 @@ public class AbWheelView extends View {
 
 		if (widthLabel > 0) {
 			if (labelLayout == null || labelLayout.getWidth() > widthLabel) {
-				labelLayout = new StaticLayout(label, labelPaint, widthLabel, Layout.Alignment.ALIGN_NORMAL, 1,
-						additionalItemHeight, false);
+				labelLayout = new StaticLayout(label, labelPaint, widthLabel,
+						Layout.Alignment.ALIGN_NORMAL, 1, additionalItemHeight,
+						false);
 			} else {
 				labelLayout.increaseWidthTo(widthLabel);
 			}
@@ -776,10 +808,12 @@ public class AbWheelView extends View {
 
 	/**
 	 * 描述：TODO.
-	 *
+	 * 
 	 * @version v1.0
-	 * @param widthMeasureSpec the width measure spec
-	 * @param heightMeasureSpec the height measure spec
+	 * @param widthMeasureSpec
+	 *            the width measure spec
+	 * @param heightMeasureSpec
+	 *            the height measure spec
 	 * @see android.view.View#onMeasure(int, int)
 	 * @author: amsoft.cn
 	 * @date：2013-6-17 上午9:04:47
@@ -808,9 +842,10 @@ public class AbWheelView extends View {
 
 	/**
 	 * 描述：TODO.
-	 *
+	 * 
 	 * @version v1.0
-	 * @param canvas the canvas
+	 * @param canvas
+	 *            the canvas
 	 * @see android.view.View#onDraw(android.graphics.Canvas)
 	 * @author: amsoft.cn
 	 * @date：2013-6-17 上午9:04:47
@@ -842,26 +877,29 @@ public class AbWheelView extends View {
 
 	/**
 	 * Draws shadows on top and bottom of control.
-	 *
-	 * @param canvas the canvas for drawing
+	 * 
+	 * @param canvas
+	 *            the canvas for drawing
 	 */
 	private void drawShadows(Canvas canvas) {
 		topShadow.setBounds(0, 0, getWidth(), getHeight() / visibleItems);
 		topShadow.draw(canvas);
 
-		bottomShadow.setBounds(0, getHeight() - getHeight() / visibleItems, getWidth(), getHeight());
+		bottomShadow.setBounds(0, getHeight() - getHeight() / visibleItems,
+				getWidth(), getHeight());
 		bottomShadow.draw(canvas);
 	}
 
 	/**
 	 * Draws value and label layout.
-	 *
-	 * @param canvas the canvas for drawing
+	 * 
+	 * @param canvas
+	 *            the canvas for drawing
 	 */
 	private void drawValue(Canvas canvas) {
 		valuePaint.setColor(valueTextColor);
 		valuePaint.drawableState = getDrawableState();
-		
+
 		labelPaint.setColor(labelTextColor);
 		labelPaint.drawableState = getDrawableState();
 
@@ -887,8 +925,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Draws items.
-	 *
-	 * @param canvas the canvas for drawing
+	 * 
+	 * @param canvas
+	 *            the canvas for drawing
 	 */
 	private void drawItems(Canvas canvas) {
 		canvas.save();
@@ -905,21 +944,24 @@ public class AbWheelView extends View {
 
 	/**
 	 * Draws rect for current value.
-	 *
-	 * @param canvas the canvas for drawing
+	 * 
+	 * @param canvas
+	 *            the canvas for drawing
 	 */
 	private void drawCenterRect(Canvas canvas) {
 		int center = getHeight() / 2;
 		int offset = getItemHeight() / 2;
-		centerSelectDrawable.setBounds(0, center - offset, getWidth(), center + offset);
+		centerSelectDrawable.setBounds(0, center - offset, getWidth(), center
+				+ offset);
 		centerSelectDrawable.draw(canvas);
 	}
 
 	/**
 	 * 描述：TODO.
-	 *
+	 * 
 	 * @version v1.0
-	 * @param event the event
+	 * @param event
+	 *            the event
 	 * @return true, if successful
 	 * @see android.view.View#onTouchEvent(android.view.MotionEvent)
 	 * @author: amsoft.cn
@@ -932,7 +974,8 @@ public class AbWheelView extends View {
 			return true;
 		}
 
-		if (!gestureDetector.onTouchEvent(event) && event.getAction() == MotionEvent.ACTION_UP) {
+		if (!gestureDetector.onTouchEvent(event)
+				&& event.getAction() == MotionEvent.ACTION_UP) {
 			justify();
 		}
 		return true;
@@ -940,8 +983,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Scrolls the wheel.
-	 *
-	 * @param delta the scrolling value
+	 * 
+	 * @param delta
+	 *            the scrolling value
 	 */
 	private void doScroll(int delta) {
 		scrollingOffset += delta;
@@ -996,17 +1040,21 @@ public class AbWheelView extends View {
 			return false;
 		}
 
-		public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+		public boolean onScroll(MotionEvent e1, MotionEvent e2,
+				float distanceX, float distanceY) {
 			startScrolling();
 			doScroll((int) -distanceY);
 			return true;
 		}
 
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
 			lastScrollY = currentItem * getItemHeight() + scrollingOffset;
-			int maxY = isCyclic ? 0x7FFFFFFF : adapter.getItemsCount() * getItemHeight();
+			int maxY = isCyclic ? 0x7FFFFFFF : adapter.getItemsCount()
+					* getItemHeight();
 			int minY = isCyclic ? -maxY : 0;
-			scroller.fling(0, lastScrollY, 0, (int) -velocityY / 2, 0, 0, minY, maxY);
+			scroller.fling(0, lastScrollY, 0, (int) -velocityY / 2, 0, 0, minY,
+					maxY);
 			setNextMessage(MESSAGE_SCROLL);
 			return true;
 		}
@@ -1021,7 +1069,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Set next message to queue. Clears queue before.
-	 * @param message the message to set
+	 * 
+	 * @param message
+	 *            the message to set
 	 */
 	private void setNextMessage(int message) {
 		clearMessages();
@@ -1076,8 +1126,10 @@ public class AbWheelView extends View {
 		lastScrollY = 0;
 		int offset = scrollingOffset;
 		int itemHeight = getItemHeight();
-		boolean needToIncrease = offset > 0 ? currentItem < adapter.getItemsCount() : currentItem > 0;
-		if ((isCyclic || needToIncrease) && Math.abs((float) offset) > (float) itemHeight / 2) {
+		boolean needToIncrease = offset > 0 ? currentItem < adapter
+				.getItemsCount() : currentItem > 0;
+		if ((isCyclic || needToIncrease)
+				&& Math.abs((float) offset) > (float) itemHeight / 2) {
 			if (offset < 0)
 				offset += itemHeight + MIN_DELTA_FOR_SCROLLING;
 			else
@@ -1115,9 +1167,11 @@ public class AbWheelView extends View {
 
 	/**
 	 * Scroll the wheel.
-	 *
-	 * @param itemsToScroll the items to scroll
-	 * @param time scrolling duration
+	 * 
+	 * @param itemsToScroll
+	 *            the items to scroll
+	 * @param time
+	 *            scrolling duration
 	 */
 	public void scroll(int itemsToScroll, int time) {
 		scroller.forceFinished(true);
@@ -1128,21 +1182,20 @@ public class AbWheelView extends View {
 		startScrolling();
 	}
 
-	
-
 	/**
 	 * Sets the value text size.
-	 *
-	 * @param textSize the new value text size
+	 * 
+	 * @param textSize
+	 *            the new value text size
 	 */
 	public void setValueTextSize(int textSize) {
 		this.valueTextSize = AbViewUtil.scaleTextValue(mContext, textSize);
-		this.itemOffset = valueTextSize/5;
+		this.itemOffset = valueTextSize / 5;
 	}
 
 	/**
 	 * Gets the center select gradient colors.
-	 *
+	 * 
 	 * @return the center select gradient colors
 	 */
 	public int[] getCenterSelectGradientColors() {
@@ -1151,8 +1204,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the center select gradient colors.
-	 *
-	 * @param centerSelectGradientColors the new center select gradient colors
+	 * 
+	 * @param centerSelectGradientColors
+	 *            the new center select gradient colors
 	 */
 	public void setCenterSelectGradientColors(int[] centerSelectGradientColors) {
 		this.centerSelectGradientColors = centerSelectGradientColors;
@@ -1160,7 +1214,7 @@ public class AbWheelView extends View {
 
 	/**
 	 * Gets the center select stroke width.
-	 *
+	 * 
 	 * @return the center select stroke width
 	 */
 	public int getCenterSelectStrokeWidth() {
@@ -1169,8 +1223,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the center select stroke width.
-	 *
-	 * @param centerSelectStrokeWidth the new center select stroke width
+	 * 
+	 * @param centerSelectStrokeWidth
+	 *            the new center select stroke width
 	 */
 	public void setCenterSelectStrokeWidth(int centerSelectStrokeWidth) {
 		this.centerSelectStrokeWidth = centerSelectStrokeWidth;
@@ -1178,7 +1233,7 @@ public class AbWheelView extends View {
 
 	/**
 	 * Gets the center select stroke color.
-	 *
+	 * 
 	 * @return the center select stroke color
 	 */
 	public int getCenterSelectStrokeColor() {
@@ -1187,8 +1242,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the center select stroke color.
-	 *
-	 * @param centerSelectStrokeColor the new center select stroke color
+	 * 
+	 * @param centerSelectStrokeColor
+	 *            the new center select stroke color
 	 */
 	public void setCenterSelectStrokeColor(int centerSelectStrokeColor) {
 		this.centerSelectStrokeColor = centerSelectStrokeColor;
@@ -1196,8 +1252,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * 描述：设置中间的选中层图片.
-	 *
-	 * @param centerSelectDrawable the new center select drawable
+	 * 
+	 * @param centerSelectDrawable
+	 *            the new center select drawable
 	 */
 	public void setCenterSelectDrawable(Drawable centerSelectDrawable) {
 		this.centerSelectDrawable = centerSelectDrawable;
@@ -1205,8 +1262,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the value text color.
-	 *
-	 * @param valueTextColor the new value text color
+	 * 
+	 * @param valueTextColor
+	 *            the new value text color
 	 */
 	public void setValueTextColor(int valueTextColor) {
 		this.valueTextColor = valueTextColor;
@@ -1214,8 +1272,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the label text color.
-	 *
-	 * @param labelTextColor the new label text color
+	 * 
+	 * @param labelTextColor
+	 *            the new label text color
 	 */
 	public void setLabelTextColor(int labelTextColor) {
 		this.labelTextColor = labelTextColor;
@@ -1223,8 +1282,9 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the label text size.
-	 *
-	 * @param labelTextSize the new label text size
+	 * 
+	 * @param labelTextSize
+	 *            the new label text size
 	 */
 	public void setLabelTextSize(int labelTextSize) {
 		this.labelTextSize = AbViewUtil.scaleTextValue(mContext, labelTextSize);
@@ -1232,50 +1292,60 @@ public class AbWheelView extends View {
 
 	/**
 	 * Sets the additional item height.
-	 *
-	 * @param additionalItemHeight the new additional item height
+	 * 
+	 * @param additionalItemHeight
+	 *            the new additional item height
 	 */
 	public void setAdditionalItemHeight(int additionalItemHeight) {
 		this.additionalItemHeight = additionalItemHeight;
 	}
-	
+
 	/**
 	 * Wheel scrolled listener interface.
-	 *
+	 * 
 	 * @see AbOnWheelScrollEvent
 	 */
 	public interface AbOnWheelScrollListener {
 		/**
 		 * Callback method to be invoked when scrolling started.
-		 * @param wheel the wheel view whose state has changed.
+		 * 
+		 * @param wheel
+		 *            the wheel view whose state has changed.
 		 */
 		void onScrollingStarted(AbWheelView wheel);
-		
+
 		/**
 		 * Callback method to be invoked when scrolling ended.
-		 * @param wheel the wheel view whose state has changed.
+		 * 
+		 * @param wheel
+		 *            the wheel view whose state has changed.
 		 */
 		void onScrollingFinished(AbWheelView wheel);
 	}
-	
+
 	/**
 	 * Wheel changed listener interface.
-	 * <p>The currentItemChanged() method is called whenever current wheel positions is changed:
-	 * <li> New Wheel position is set
-	 * <li> Wheel view is scrolled
-	 *
+	 * <p>
+	 * The currentItemChanged() method is called whenever current wheel
+	 * positions is changed:
+	 * <li>New Wheel position is set
+	 * <li>Wheel view is scrolled
+	 * 
 	 * @see AbOnWheelChangedEvent
 	 */
 	public interface AbOnWheelChangedListener {
-		
+
 		/**
 		 * Callback method to be invoked when current item changed.
-		 *
-		 * @param wheel the wheel view whose state has changed
-		 * @param oldValue the old value of current item
-		 * @param newValue the new value of current item
+		 * 
+		 * @param wheel
+		 *            the wheel view whose state has changed
+		 * @param oldValue
+		 *            the old value of current item
+		 * @param newValue
+		 *            the new value of current item
 		 */
 		void onChanged(AbWheelView wheel, int oldValue, int newValue);
 	}
-	
+
 }

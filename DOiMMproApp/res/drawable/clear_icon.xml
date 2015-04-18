@@ -4,4 +4,5 @@
     <item android:drawable="@drawable/clear_icon_f" android:state_pressed="true"/>
     <item android:drawable="@drawable/clear_icon_f" android:state_focused="true" android:state_pressed="false"/>
     <item android:drawable="@drawable/clear_icon_n"/>
+
 </selector>

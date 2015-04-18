@@ -8,7 +8,7 @@
         android:id="@+id/mExpandableListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:childDivider="@color/list_divider" 
-        android:dividerHeight="1dip"/>
+        android:childDivider="@color/list_divider"
+        android:dividerHeight="1dip" />
 
 </LinearLayout>

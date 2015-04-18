@@ -170,8 +170,8 @@
                 android:layout_weight="1"
                 android:text="按钮+文本" />
         </LinearLayout>
-        
-         <TextView
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
@@ -206,7 +206,7 @@
                 android:layout_margin="5dip"
                 android:layout_weight="1"
                 android:text="下部" />
-            
+
             <Button
                 android:id="@+id/button17"
                 android:layout_width="wrap_content"

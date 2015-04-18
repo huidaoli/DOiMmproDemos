@@ -17,21 +17,19 @@ public class SlidingMenuLeftActivity extends AbActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setAbContentView(R.layout.sliding_menu_content);
-		
+
 		AbTitleBar mAbTitleBar = this.getTitleBar();
 		mAbTitleBar.setTitleText(R.string.sliding_menu_name);
 		mAbTitleBar.setLogo(R.drawable.button_selector_menu);
 		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
 		mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
 		mAbTitleBar.setLogoLine(R.drawable.line);
-		
-        //主视图的Fragment添加
-		getFragmentManager()
-		.beginTransaction()
-		.replace(R.id.content_frame, new FragmentLoad())
-		.commit();
 
-		//SlidingMenu的配置
+		// 主视图的Fragment添加
+		getFragmentManager().beginTransaction()
+				.replace(R.id.content_frame, new FragmentLoad()).commit();
+
+		// SlidingMenu的配置
 		menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
@@ -40,23 +38,21 @@ public class SlidingMenuLeftActivity extends AbActivity {
 		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		menu.setFadeDegree(0.35f);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		
-		//menu视图的Fragment添加
+
+		// menu视图的Fragment添加
 		menu.setMenu(R.layout.sliding_menu_menu);
-		getFragmentManager()
-		.beginTransaction()
-		.replace(R.id.menu_frame, new FragmentLoad())
-		.commit();
-		
+		getFragmentManager().beginTransaction()
+				.replace(R.id.menu_frame, new FragmentLoad()).commit();
+
 		mAbTitleBar.getLogoView().setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				if (menu.isMenuShowing()) {
- 					menu.showContent();
- 				} else {
- 					menu.showMenu();
- 				}
+					menu.showContent();
+				} else {
+					menu.showMenu();
+				}
 			}
 		});
 	}

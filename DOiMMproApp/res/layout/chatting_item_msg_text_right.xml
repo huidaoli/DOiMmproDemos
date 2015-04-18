@@ -80,8 +80,8 @@
                 android:id="@+id/chatAttach"
                 android:layout_width="60dip"
                 android:layout_height="60dip"
-                android:layout_marginTop="5dip"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dip"
                 android:clickable="true"
                 android:visibility="gone" />
         </LinearLayout>

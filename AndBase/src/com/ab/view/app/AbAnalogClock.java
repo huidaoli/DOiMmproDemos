@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2012 www.amsoft.cn
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.ab.view.app;
 
 import java.util.TimeZone;
@@ -32,74 +17,74 @@ import com.ab.util.AbLogUtil;
 
 // TODO: Auto-generated Javadoc
 /**
- * © 2012 amsoft.cn
- * 名称：AbAnalogClock.java 
- * 描述：自定义模拟时钟
- *
- * @author 还如一梦中
- * @version v1.0
- * @date：2013-11-6 上午9:13:49
+ * © 2012 amsoft.cn 名称：AbAnalogClock.java 描述：自定义模拟时钟
+ * 
  */
 public class AbAnalogClock extends View {
-	
+
 	/** The m calendar. */
 	private Time mCalendar;
 
-	//时针图标
+	// 时针图标
 	/** The m hour hand. */
 	private Drawable mHourHand;
-	
-	//分针图标
+
+	// 分针图标
 	/** The m minute hand. */
 	private Drawable mMinuteHand;
-	
-	//秒针图标
+
+	// 秒针图标
 	/** The m second hand. */
 	private Drawable mSecondHand;
-		
-	//表盘图标
+
+	// 表盘图标
 	/** The m dial. */
 	private Drawable mDial;
 
-	//表盘图片的大小
+	// 表盘图片的大小
 	/** The m dial width. */
 	private int mDialWidth;
-	
+
 	/** The m dial height. */
 	private int mDialHeight;
 
 	/** The m attached. */
 	private boolean mAttached;
-	
-	//当前时间
+
+	// 当前时间
 	/** The m minutes. */
 	private float mMinutes;
-	
+
 	/** The m hour. */
 	private float mHour;
-	
+
 	/** The m second. */
 	private float mSecond;
-	
+
 	/** The m handler. */
 	private final Handler mHandler = new Handler();
-	
+
 	/** The m changed. */
 	private boolean mChanged;
 
 	/**
 	 * Instantiates a new ab analog clock.
-	 *
-	 * @param context the context
-	 * @param dial the dial
-	 * @param hourHand the hour hand
-	 * @param minuteHand the minute hand
-	 * @param secondHand the second hand
+	 * 
+	 * @param context
+	 *            the context
+	 * @param dial
+	 *            the dial
+	 * @param hourHand
+	 *            the hour hand
+	 * @param minuteHand
+	 *            the minute hand
+	 * @param secondHand
+	 *            the second hand
 	 */
 	public AbAnalogClock(Context context, Drawable dial, Drawable hourHand,
-			Drawable minuteHand,Drawable secondHand) {
+			Drawable minuteHand, Drawable secondHand) {
 		super(context);
-		
+
 		mDial = dial;
 		mHourHand = hourHand;
 		mMinuteHand = minuteHand;
@@ -111,7 +96,9 @@ public class AbAnalogClock extends View {
 		mDialHeight = mDial.getIntrinsicHeight();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onAttachedToWindow()
 	 */
 	@Override
@@ -126,7 +113,8 @@ public class AbAnalogClock extends View {
 			filter.addAction(Intent.ACTION_TIME_CHANGED);
 			filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
 
-			getContext().registerReceiver(mIntentReceiver, filter, null,mHandler);
+			getContext().registerReceiver(mIntentReceiver, filter, null,
+					mHandler);
 		}
 
 		// NOTE: It's safe to do these after registering the receiver since the
@@ -140,10 +128,12 @@ public class AbAnalogClock extends View {
 
 		// 更新当前时间每秒调用一次
 		onTimeChanged();
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onDetachedFromWindow()
 	 */
 	@Override
@@ -155,7 +145,9 @@ public class AbAnalogClock extends View {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onMeasure(int, int)
 	 */
 	@Override
@@ -179,10 +171,13 @@ public class AbAnalogClock extends View {
 
 		float scale = Math.min(hScale, vScale);
 
-		setMeasuredDimension(mDialWidth * (int)scale,mDialHeight * (int)scale);
+		setMeasuredDimension(mDialWidth * (int) scale, mDialHeight
+				* (int) scale);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onSizeChanged(int, int, int, int)
 	 */
 	@Override
@@ -191,7 +186,9 @@ public class AbAnalogClock extends View {
 		mChanged = true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View#onDraw(android.graphics.Canvas)
 	 */
 	@Override
@@ -228,7 +225,7 @@ public class AbAnalogClock extends View {
 		}
 		dial.draw(canvas);
 
-		//时针
+		// 时针
 		canvas.save();
 		canvas.rotate(mHour / 12.0f * 360.0f, x, y);
 		final Drawable hourHand = mHourHand;
@@ -241,7 +238,7 @@ public class AbAnalogClock extends View {
 		hourHand.draw(canvas);
 		canvas.restore();
 
-		//分针
+		// 分针
 		canvas.save();
 		canvas.rotate(mMinutes / 60.0f * 360.0f, x, y);
 
@@ -254,8 +251,8 @@ public class AbAnalogClock extends View {
 		}
 		minuteHand.draw(canvas);
 		canvas.restore();
-		
-		//秒针
+
+		// 秒针
 		canvas.save();
 		canvas.rotate(mSecond / 60.0f * 360.0f, x, y);
 
@@ -283,20 +280,21 @@ public class AbAnalogClock extends View {
 		int hour = mCalendar.hour;
 		int minute = mCalendar.minute;
 		int second = mCalendar.second;
-		mSecond =  second;
+		mSecond = second;
 		mMinutes = minute + second / 60.0f;
 		mHour = hour + mMinutes / 60.0f;
 		mChanged = true;
-		AbLogUtil.d(AbAnalogClock.class, "时间改变:mHour:"+mHour+",mMinutes:"+mMinutes+",mSecond:"+mSecond);
+		AbLogUtil.d(AbAnalogClock.class, "时间改变:mHour:" + mHour + ",mMinutes:"
+				+ mMinutes + ",mSecond:" + mSecond);
 		updateContentDescription(mCalendar);
-        new Handler().postDelayed(new Runnable() {
-			
+		new Handler().postDelayed(new Runnable() {
+
 			@Override
 			public void run() {
 				onTimeChanged();
 			}
 		}, 1000);
-        invalidate();
+		invalidate();
 	}
 
 	/** The m intent receiver. */
@@ -312,8 +310,9 @@ public class AbAnalogClock extends View {
 
 	/**
 	 * Update content description.
-	 *
-	 * @param time the time
+	 * 
+	 * @param time
+	 *            the time
 	 */
 	private void updateContentDescription(Time time) {
 		final int flags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_24HOUR;

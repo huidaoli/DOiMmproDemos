@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">本草品味</string>
+    <string name="app_copyright">南京凯之渡信息技术有限公司</string>
     <string name="demo_name">程序案例</string>
     <string name="ab_name">AbActivity用法</string>
     <string name="dialog_name">Dialog示例</string>
@@ -72,15 +73,13 @@
     <string name="about">关于</string>
     <string name="version_lable">程序版本：</string>
     <string name="copyright">© 2015 Can2DO.com</string>
-    <string name="about_desc">
-      \t\t本草品味app
+    <string name="about_desc">      \t\t本草品味app
       \n\t\t又“MMpro app”
                  本草品味app是为养身者量身打造的一款健康产品购买及分享学习的应用，
                  您可以在本应用中购买到最新的健康产品，学习最新的养身之道。
 	   \n
        \n\t\t官方主页：www.we2line.com
        \n\t\t交流QQ： 1069945237    </string>
-    
     <string name="date_picker">年月日：</string>
     <string name="time_picker1">月日时分：</string>
     <string name="time_picker2">时分：</string>
@@ -151,15 +150,17 @@
     <string name="read_desc">请仔细阅读如下条款</string>
     <string name="register_protocol">同意注册协议</string>
     <string name="clear_cache">清空缓存</string>
-    
-    <!-- 缺省的服务器配置 --> 
-    <integer name="xmpp_port">5222</integer> 
-    <string name="xmpp_host">192.168.1.127</string> 
+
+    <!-- 缺省的服务器配置 -->
+    <integer name="xmpp_port">5222</integer>
+
+    <string name="xmpp_host">192.168.1.127</string>
     <string name="xmpp_service_name">amsoft</string>
+
     <bool name="is_remember">true</bool>
     <bool name="is_autologin">false</bool>
-    <bool name="is_novisible">false</bool> 
-    
+    <bool name="is_novisible">false</bool>
+
     <string name="accept_btn">同意</string>
     <string name="reject_btn">拒绝</string>
 

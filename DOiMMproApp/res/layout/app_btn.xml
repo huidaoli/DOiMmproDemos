@@ -8,9 +8,9 @@
         android:id="@+id/line1"
         android:layout_width="1dip"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:background="@drawable/line"
-        android:scaleType="fitCenter" 
-        android:layout_gravity="center_vertical"/>
+        android:scaleType="fitCenter" />
 
     <Button
         android:id="@+id/appBtn"
