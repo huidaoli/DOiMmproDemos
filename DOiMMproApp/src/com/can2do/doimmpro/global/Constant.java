@@ -33,8 +33,8 @@ public class Constant {
 	// 3表示下载暂停
 	public static final int downLoadPause = 3;
 
-	public static final String BASEURL = "http://mmproapp.we2line.com";
-	// public static final String BASEURL = "http://www.amsoft.cn/";
+	public static final String BASEURL1 = "http://mmpro.we2line.com";
+	 public static final String BASEURL = "http://www.amsoft.cn/";
 
 	// 应用的key
 	// 1512528

@@ -34,17 +34,6 @@ public class ContacterActivity extends AbActivity {
 		// 缓存数量
 		mAbSlidingTabView.getViewPager().setOffscreenPageLimit(3);
 
-		// 禁止滑动
-		/*
-		 * mAbSlidingTabView.getViewPager().setOnTouchListener(new
-		 * OnTouchListener(){
-		 * 
-		 * @Override public boolean onTouch(View v, MotionEvent event) { return
-		 * true; }
-		 * 
-		 * });
-		 */
-
 		FragmentLoad page1 = new FragmentLoad();
 		ContacterFragment mContacterFragment = new ContacterFragment();
 		FragmentLoad page3 = new FragmentLoad();
@@ -55,9 +44,9 @@ public class ContacterActivity extends AbActivity {
 		mFragments.add(page3);
 
 		List<String> tabTexts = new ArrayList<String>();
-		tabTexts.add("会话");
-		tabTexts.add("好友");
-		tabTexts.add("群组");
+		tabTexts.add("资讯一");
+		tabTexts.add("资讯二");
+		tabTexts.add("资讯三");
 		// 设置样式
 		mAbSlidingTabView.setTabTextSize(15);
 		mAbSlidingTabView.setTabColor(Color.BLACK);

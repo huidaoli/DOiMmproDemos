@@ -13,7 +13,7 @@ import com.can2do.doimmpro.R;
 import com.can2do.doimmpro.friend.UserDao;
 import com.can2do.doimmpro.im.activity.MessageActivity;
 import com.can2do.doimmpro.im.model.IMMessage;
-import com.can2do.doimmpro.main.MainActivity;
+import com.can2do.doimmpro.main.UiMain;
 
 public class IMMessageReceiver extends BroadcastReceiver {
 
@@ -45,7 +45,7 @@ public class IMMessageReceiver extends BroadcastReceiver {
 				mIntent = new Intent(context, MessageActivity.class);
 			} else if (mIMMessage.getType() == IMMessage.CHAT_MSG) {
 				Log.d(TAG, "[广播接收器]收到了会话消息:" + mIMMessage.getContent());
-				mIntent = new Intent(context, MainActivity.class);
+				mIntent = new Intent(context, UiMain.class);
 				mIntent.putExtra("USERNAME", mIMMessage.getUserName());
 				mIntent.putExtra("TYPE", mIMMessage.getType());
 			} else if (mIMMessage.getType() == IMMessage.SYS_MSG) {

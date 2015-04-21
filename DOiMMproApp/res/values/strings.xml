@@ -64,7 +64,7 @@
     <string name="blog_name">博客空间</string>
     <string name="friend_name">朋友圈</string>
     <string name="contact_name">我的联系人</string>
-    <string name="message_name">系统通知</string>
+    <string name="message_name">消息</string>
     <string name="total">总条数:0</string>
     <string name="current">当前页:1</string>
     <string name="okBtn">确定</string>
